@@ -6,12 +6,26 @@ This project enables AI-assisted 3D content creation by allowing Claude to creat
 
 ## Features
 
-- **Node Management**: Create, delete, and connect nodes programmatically
-- **Parameter Control**: Set and animate node parameters
-- **Scene Inspection**: Query scene structure and node information
-- **HScript Execution**: Run HScript commands directly in Houdini
+### 🚀 Unlimited Power - Do ANYTHING in Houdini!
+
+This tool gives Claude **full access** to Houdini's capabilities:
+
+- **ALL Contexts**: SOPs, DOPs, COPs, CHOPs, VOPs, ROPs, LOPs - Everything!
+- **Any Node Type**: Geometry, simulations, compositing, animation, rendering
+- **Full HScript Access**: Execute any Houdini command with `execute_hscript`
+- **VEX Code**: Write custom procedural logic inline
+- **Simulations**: Particles, fluids, pyro, cloth, RBD, crowds
+- **Complex Networks**: Build intricate procedural systems
 - **Real-time Control**: Execute commands while Houdini is running
-- **Natural Language Interface**: Describe what you want in plain English
+- **Natural Language**: Just describe what you want in plain English
+
+### Core MCP Tools
+
+- **Node Management**: Create, delete, and connect nodes programmatically
+- **Parameter Control**: Set and animate node parameters with expressions
+- **Scene Inspection**: Query scene structure and node information
+- **HScript Execution**: Run ANY HScript command directly in Houdini
+- **Network Building**: Connect complex node chains automatically
 
 ## Architecture
 
@@ -39,8 +53,8 @@ The system consists of two components:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/houdini-mcp.git
-cd houdini-mcp
+git clone https://github.com/atayilgun/Houdini-claudecode-mcp.git
+cd Houdini-claudecode-mcp
 ```
 
 ### 2. Run Setup Script
@@ -251,17 +265,40 @@ MIT License - See LICENSE file for details
 
 ## Support
 
-- Issues: [GitHub Issues](https://github.com/YOUR_USERNAME/houdini-mcp/issues)
-- Discussions: [GitHub Discussions](https://github.com/YOUR_USERNAME/houdini-mcp/discussions)
+- Issues: [GitHub Issues](https://github.com/atayilgun/Houdini-claudecode-mcp/issues)
+- Discussions: [GitHub Discussions](https://github.com/atayilgun/Houdini-claudecode-mcp/discussions)
 
-## Roadmap
+## What Can It Do?
 
-- [ ] Support for more Houdini contexts (SOPs, DOPs, COPs, etc.)
-- [ ] Viewport rendering and screenshot capture
-- [ ] Geometry data export/import
-- [ ] Node preset management
-- [ ] Multi-session support
-- [ ] Web interface for monitoring
+**Short answer: EVERYTHING!**
+
+The tool already has full access to Houdini through `execute_hscript` and can:
+
+✅ **Create any node in any context** (SOPs, DOPs, COPs, CHOPs, VOPs, etc.)
+✅ **Build simulations** (Pyro, FLIP fluids, RBD, Vellum, Wire, etc.)
+✅ **Composite images** (COP networks, color correction, effects)
+✅ **Animate anything** (Keyframes, CHOPs, expressions, motion paths)
+✅ **Write VEX code** (Custom attributes, procedural geometry, deformers)
+✅ **Manage renders** (ROPs, render settings, batch rendering)
+✅ **Query scene data** (Node info, parameter values, geometry attributes)
+✅ **Execute Python in Houdini** (Via HScript's python command)
+
+**Example capabilities:**
+- "Create a pyro explosion simulation"
+- "Set up a FLIP water tank with collision objects"
+- "Build a procedural building generator with multiple levels"
+- "Create a particle system with custom VEX forces"
+- "Set up a COP network to add glow and color grade"
+
+## Future Enhancements
+
+These are convenience features, not limitations:
+
+- [ ] Direct viewport rendering API (currently use HScript)
+- [ ] Binary geometry data transfer (currently use file I/O)
+- [ ] Node preset library management
+- [ ] Multi-session support for team workflows
+- [ ] Web dashboard for monitoring
 
 ---
 
