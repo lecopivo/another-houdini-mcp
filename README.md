@@ -119,12 +119,39 @@ add colorful gradients, and make them flow like wind
 
 Claude has access to these tools:
 
+**Node Management:**
 - `create_node(node_type, node_name, parent)` - Create a new node
 - `delete_node(node_path)` - Delete a node
 - `connect_nodes(source_path, dest_path)` - Connect nodes
+
+**Parameter Control:**
 - `set_parameter(node_path, param_name, param_value)` - Set parameter values
+- `get_node_parameters(node_path, show_defaults)` - Get all parameters and values from a node
+- `get_parameter_info(node_type, category)` - Get available parameters for a node type
+
+**Scene & Node Inspection:**
 - `get_scene_info()` - Get information about the scene
+- `get_node_info(node_path)` - Get detailed information about a specific node
+
+**Advanced:**
 - `execute_hscript(code)` - Execute HScript commands
+
+### New in This Version
+
+The latest update adds powerful parameter inspection tools that make it much easier to work with Houdini nodes:
+
+**Before:** You had to know the exact parameter names (like `radx`, `rady`, `radz` for sphere radius)
+
+**Now:** You can:
+1. Query what parameters a node type supports with `get_parameter_info('sphere')`
+2. See all current parameter values with `get_node_parameters('/obj/geo1/sphere1')`
+3. Get detailed node information including connections with `get_node_info('/obj/geo1')`
+
+This makes it much easier to:
+- Discover correct parameter names before setting them
+- Debug why parameters aren't working as expected
+- Understand existing scenes and nodes
+- Build complex procedural setups without memorizing parameter names
 
 ## Examples
 
