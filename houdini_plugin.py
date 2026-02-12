@@ -233,7 +233,7 @@ class HoudiniMCPServer:
             "probe_geometry": self._probe_geometry,
             "validate_hda_behavior": self._validate_hda_behavior,
         }
-        handlers.update(get_plugin_handlers(hou))
+        handlers.update(get_plugin_handlers(self, hou))
         return handlers
 
     def _delete_node(self, params):

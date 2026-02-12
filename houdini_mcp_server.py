@@ -39,6 +39,18 @@ mcp = FastMCP(
     """
 )
 
+_real_mcp_tool_decorator = mcp.tool
+
+
+def _noop_tool_decorator(*args, **kwargs):
+    def _decorator(fn):
+        return fn
+    return _decorator
+
+
+# Keep legacy tool functions defined but prevent immediate registration.
+mcp.tool = _noop_tool_decorator
+
 # Configuration
 HOUDINI_HOST = "localhost"
 HOUDINI_PORT = 9876
@@ -104,9 +116,6 @@ def send_command(command: Dict[str, Any]) -> Dict[str, Any]:
 # ============================================================================
 # MCP Tools
 # ============================================================================
-
-# Register migrated tools from per-tool modules.
-register_mcp_tools(mcp, send_command)
 
 @mcp.tool()
 def delete_node(node_path: str) -> str:
@@ -1259,6 +1268,15 @@ def validate_hda_behavior(
         for err in result["errors"]:
             output += f"- {err}\n"
     return output.strip()
+
+
+# Register all tools via per-tool modules using legacy wrappers where needed.
+register_mcp_tools(
+    mcp,
+    send_command,
+    legacy_bridge_functions=globals(),
+    tool_decorator=_real_mcp_tool_decorator,
+)
 
 # ============================================================================
 # Server Entry Point
