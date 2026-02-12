@@ -25,12 +25,16 @@ The output of this work is a context-wide progress record plus one practical tut
 5. Read instructional metadata inside example networks:
    - node comments
    - sticky notes / post-it notes
-6. Test variations and record observed behavior, not just expected behavior
-7. Write `tutorials/nodes/<context>/<node>.md`
-8. Update progress files:
+6. Before setting parameters during tests, inspect actual parm names first:
+   - use `get_node_parameters(..., only_overrides=False)` or `get_parameter_info(...)`
+   - avoid guessing tuple names (for example `tx/ty/tz` vs `t`, `divsx/divsy/divsz` vs `divs`)
+7. Test variations and record observed behavior, not just expected behavior
+8. Write `tutorials/nodes/<context>/<node>.md` using `tutorials/node_study_template.md`
+9. Run QA gate from `tutorials/academy_qa_checklist.md`
+10. Update progress files:
    - `tutorials/houdiin_ai_acedemy_progress.md`
    - `tutorials/nodes/<context>_progress.md`
-9. Update high-level context guide:
+11. Update high-level context guide:
    - `tutorials/<context>_context.md`
    - Add or revise context-level patterns, common pitfalls, and cross-node workflows discovered during node study
 
@@ -41,6 +45,10 @@ The output of this work is a context-wide progress record plus one practical tut
 - Typical input/output data assumptions
 - Minimum reproducible setup
 - Key guidance captured from node comments and sticky notes
+- Explicit source-of-truth split:
+  - intended behavior (docs/comments/stickies)
+  - observed behavior (live network/params/geometry)
+  - mismatches if any
 - At least 2 practical use cases
 - Gotchas/failure modes/debug tactics
 - Related nodes and when to choose each
@@ -52,6 +60,7 @@ A node counts as studied only when all are true:
 - Documentation reviewed
 - Example OTL(s) reviewed in Houdini
 - Node comments and sticky notes reviewed and reflected in notes
+- Academy QA checklist completed
 - A summary note exists at `tutorials/nodes/<context>/<node>.md`
 - Progress counters updated
 - `tutorials/<context>_context.md` updated with any new context-level insight

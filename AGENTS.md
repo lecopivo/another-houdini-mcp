@@ -18,6 +18,7 @@ You can use it to:
 - `get_node_info`
 - `get_node_connections`
 - `get_scene_info`
+- `get_sticky_notes`
 
 ### Node Graph Editing
 - `create_node`
@@ -31,6 +32,7 @@ You can use it to:
 - `list_node_types`
 - `get_parameter_info`
 - `get_node_parameters`
+- `get_parameter_overrides`
 - `get_node_documentation`
 
 ### Python/HScript Execution

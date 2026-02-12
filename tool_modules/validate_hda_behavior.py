@@ -1,6 +1,8 @@
 from typing import Any, Optional
 import json
 
+from .hda_utils import geometry_stats
+
 TOOL_NAME = "validate_hda_behavior"
 IS_MUTATING = False
 
@@ -102,10 +104,6 @@ def execute_plugin(params, server, hou):
     if len(cases) == 0:
         raise ValueError("cases must be a non-empty list")
 
-    geometry_stats_fn = getattr(server, "_geometry_stats", None)
-    if not callable(geometry_stats_fn):
-        raise RuntimeError("Server missing _geometry_stats helper")
-
     # Save initial parm values for all params touched by cases.
     tracked_parms = set()
     for case in cases:
@@ -138,7 +136,7 @@ def execute_plugin(params, server, hou):
                 raise ValueError(
                     f"Unable to resolve geometry output from node: {node.path()}"
                 )
-            stats = geometry_stats_fn(geometry_node)
+            stats = geometry_stats(geometry_node, hou)
             case_results[name] = stats
 
             for attr_name in require_point_attributes:

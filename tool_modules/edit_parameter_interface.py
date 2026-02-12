@@ -1,6 +1,8 @@
 from typing import Any, Optional
 import json
 
+from .hda_utils import create_parm_template_from_tree
+
 TOOL_NAME = "edit_parameter_interface"
 IS_MUTATING = True
 
@@ -67,7 +69,7 @@ def execute_plugin(params, server, hou):
 
     folder = hou.FolderParmTemplate(folder_name, folder_label)
     for spec in parameter_specs:
-        parm_template = self._create_parm_template_from_spec(spec)
+        parm_template = create_parm_template_from_tree(spec, hou)
         folder.addParmTemplate(parm_template)
 
     if append_at_end:

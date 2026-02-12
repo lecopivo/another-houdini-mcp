@@ -1,6 +1,8 @@
 from typing import Any, Optional
 import json
 
+from .hda_utils import find_node_type
+
 TOOL_NAME = "instantiate_hda"
 IS_MUTATING = True
 
@@ -49,11 +51,18 @@ def execute_plugin(params, server, hou):
     if not parent:
         raise ValueError(f"Parent not found: {parent_path}")
 
-    node_type = self._find_node_type(type_name)
+    if not type_name:
+        raise ValueError("type_name or definition_name is required")
+
+    node_type = find_node_type(type_name, hou)
     if node_type is None:
         raise ValueError(f"HDA type not found: {type_name}")
 
-    node = parent.createNode(node_type.name(), node_name)
+    node = (
+        parent.createNode(node_type.name(), node_name)
+        if node_name
+        else parent.createNode(node_type.name())
+    )
 
     if bool(params.get("set_display", False)) and hasattr(node, "setDisplayFlag"):
         try:

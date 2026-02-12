@@ -1,6 +1,8 @@
 from typing import Any, Optional
 import json
 
+from .hda_utils import create_parm_template_from_tree, resolve_hda_definition
+
 TOOL_NAME = "set_hda_parm_templates"
 IS_MUTATING = True
 
@@ -44,9 +46,15 @@ def register_mcp_tool(mcp, send_command_impl, legacy_bridge_functions=None, tool
 
 def execute_plugin(params, server, hou):
     """Set parameter templates on an HDA definition."""
-    node, definition = self._resolve_hda_definition(params)
+    node, definition = resolve_hda_definition(params, hou)
     templates = params.get("templates", [])
     replace_all = bool(params.get("replace_all", True))
+
+    if isinstance(templates, str):
+        try:
+            templates = json.loads(templates)
+        except json.JSONDecodeError as exc:
+            raise ValueError("templates must be a list or JSON list string") from exc
 
     if not isinstance(templates, list):
         raise ValueError("templates must be a list")
@@ -57,7 +65,7 @@ def execute_plugin(params, server, hou):
         ptg = definition.parmTemplateGroup()
 
     for spec in templates:
-        ptg.append(self._create_parm_template_from_tree(spec))
+        ptg.append(create_parm_template_from_tree(spec, hou))
 
     definition.setParmTemplateGroup(ptg)
 

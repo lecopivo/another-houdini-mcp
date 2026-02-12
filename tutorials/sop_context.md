@@ -136,3 +136,21 @@ From the `sop/lattice` official examples (`DeformLattice`, `BallBounce`, `Lattic
   - In a first foreach, generate per-piece cages (`bound` with divisions).
   - In a second foreach, isolate matching piece/cage groups (`blast`/group naming) and apply `lattice` per piece.
   - This scales better for fractured assets where each chunk needs local deformation.
+
+## 10. PolyExtrude Patterns from Example OTLs
+
+From `sop/polyextrude` (`PolyextrudeTube`), a practical split is:
+
+- Global-style extrusion:
+  - Keep front transform off (`xformfront=0`).
+  - Drive shape mainly with `dist`, `inset`, and `divs`.
+  - Good for consistent shell/thickness changes.
+
+- Local/front-transform extrusion:
+  - Enable front transform (`xformfront=1`).
+  - Add non-uniform front scaling/rotation to shape profile.
+  - Good for stylized per-front shaping.
+
+Observed reminders:
+- Parameter sets differ across legacy/new variants; inspect live parms before writing values.
+- `outputfront/outputback/outputside` are fast topology controls for capping and open-shell workflows.

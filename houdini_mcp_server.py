@@ -61,47 +61,75 @@ def connect_to_houdini():
             "Make sure Houdini is running with the MCP plugin loaded."
         )
 
+
+def _close_houdini_socket():
+    global houdini_socket
+    if houdini_socket is not None:
+        try:
+            houdini_socket.close()
+        except OSError:
+            pass
+    houdini_socket = None
+
+
+def _send_and_receive(command: Dict[str, Any]) -> Dict[str, Any]:
+    """Send one request over the current socket and return decoded JSON."""
+    global houdini_socket
+    if not houdini_socket:
+        houdini_socket = connect_to_houdini()
+
+    command_json = json.dumps(command)
+    message = command_json.encode("utf-8")
+    length = len(message)
+    houdini_socket.send(length.to_bytes(4, byteorder="big"))
+    houdini_socket.send(message)
+
+    length_bytes = houdini_socket.recv(4)
+    if not length_bytes:
+        raise RuntimeError("Connection closed by Houdini")
+
+    response_length = int.from_bytes(length_bytes, byteorder="big")
+    response_data = b""
+    while len(response_data) < response_length:
+        chunk = houdini_socket.recv(min(4096, response_length - len(response_data)))
+        if not chunk:
+            raise RuntimeError("Connection closed while reading response")
+        response_data += chunk
+    return json.loads(response_data.decode("utf-8"))
+
 def send_command(command: Dict[str, Any]) -> Dict[str, Any]:
     """Send command to Houdini"""
     global houdini_socket
 
-    if not houdini_socket:
-        houdini_socket = connect_to_houdini()
-
-    try:
-        # Send command with length prefix
-        command_json = json.dumps(command)
-        message = command_json.encode('utf-8')
-        # Send length as 4-byte integer, then the message
-        length = len(message)
-        houdini_socket.send(length.to_bytes(4, byteorder='big'))
-        houdini_socket.send(message)
-
-        # Receive response (read length first, then full message)
-        length_bytes = houdini_socket.recv(4)
-        if not length_bytes:
-            raise RuntimeError("Connection closed by Houdini")
-
-        response_length = int.from_bytes(length_bytes, byteorder='big')
-
-        # Read the full response in chunks
-        response_data = b''
-        while len(response_data) < response_length:
-            chunk = houdini_socket.recv(min(4096, response_length - len(response_data)))
-            if not chunk:
-                raise RuntimeError("Connection closed while reading response")
-            response_data += chunk
-
-        response = json.loads(response_data.decode('utf-8'))
-
-        if response.get("status") == "error":
-            raise RuntimeError(response.get("error", "Unknown error"))
-
-        return response.get("result", {})
-
-    except (ConnectionRefusedError, BrokenPipeError):
-        houdini_socket = None
-        raise RuntimeError("Lost connection to Houdini")
+    for attempt in range(2):
+        try:
+            response = _send_and_receive(command)
+            if response.get("status") == "error":
+                raise RuntimeError(response.get("error", "Unknown error"))
+            return response.get("result", {})
+        except (ConnectionRefusedError, BrokenPipeError, ConnectionResetError, OSError) as exc:
+            message = str(exc)
+            retryable = (
+                "Broken pipe" in message
+                or isinstance(exc, (ConnectionRefusedError, BrokenPipeError, ConnectionResetError, OSError))
+            )
+            _close_houdini_socket()
+            if attempt == 0 and retryable:
+                continue
+            raise RuntimeError("Lost connection to Houdini") from exc
+        except RuntimeError as exc:
+            # Retry only transport-level RuntimeErrors from socket reads/writes.
+            message = str(exc)
+            retryable = (
+                "Connection closed" in message
+                or "Lost connection" in message
+            )
+            if retryable:
+                _close_houdini_socket()
+                if attempt == 0:
+                    continue
+                raise RuntimeError("Lost connection to Houdini") from exc
+            raise
 
 # ============================================================================
 # MCP Tools

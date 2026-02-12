@@ -1,6 +1,8 @@
 from typing import Any, Optional
 import json
 
+from .hda_utils import geometry_stats
+
 TOOL_NAME = "probe_geometry"
 IS_MUTATING = False
 
@@ -37,7 +39,7 @@ def execute_plugin(params, server, hou):
     if not node:
         raise ValueError(f"Node not found: {node_path}")
 
-    stats = self._geometry_stats(node)
+    stats = geometry_stats(node, hou)
     return {
         "node_path": node.path(),
         "stats": stats,

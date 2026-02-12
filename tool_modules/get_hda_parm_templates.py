@@ -1,6 +1,8 @@
 from typing import Any, Optional
 import json
 
+from .hda_utils import parm_template_to_dict, resolve_hda_definition
+
 TOOL_NAME = "get_hda_parm_templates"
 IS_MUTATING = False
 
@@ -32,9 +34,9 @@ def register_mcp_tool(mcp, send_command_impl, legacy_bridge_functions=None, tool
 
 def execute_plugin(params, server, hou):
     """Get parameter templates from an HDA definition."""
-    _, definition = self._resolve_hda_definition(params)
+    _, definition = resolve_hda_definition(params, hou)
     ptg = definition.parmTemplateGroup()
-    templates = [self._parm_template_to_dict(entry) for entry in ptg.entries()]
+    templates = [parm_template_to_dict(entry, hou) for entry in ptg.entries()]
 
     return {
         "definition_name": definition.nodeTypeName(),

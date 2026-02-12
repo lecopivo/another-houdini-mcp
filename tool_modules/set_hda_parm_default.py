@@ -1,6 +1,8 @@
 from typing import Any, Optional
 import json
 
+from .hda_utils import resolve_hda_definition
+
 TOOL_NAME = "set_hda_parm_default"
 IS_MUTATING = True
 
@@ -79,11 +81,7 @@ def register_mcp_tool(mcp, send_command_impl, legacy_bridge_functions=None, tool
 
 def execute_plugin(params, server, hou):
     """Set a single default value on an HDA definition parameter template."""
-    resolve_fn = getattr(server, "_resolve_hda_definition", None)
-    if not callable(resolve_fn):
-        raise RuntimeError("Server missing _resolve_hda_definition helper")
-
-    node, definition = resolve_fn(params)
+    node, definition = resolve_hda_definition(params, hou)
     param_name = params.get("param_name", "")
     default_value = _coerce_default_value(params.get("default_value"))
 

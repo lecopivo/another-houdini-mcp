@@ -35,4 +35,31 @@
     - `tutorials/nodes/sop_progress.md` (nodes studied = 1)
     - `tutorials/houdiin_ai_acedemy_progress.md` (fully studied = 1)
     - `tutorials/sop_context.md` (context-level lattice pattern notes)
-  - Next checkpoint: pick next SOP shortlist node (`polyextrude` or `attribwrangle`) and repeat full workflow.
+- Next checkpoint: pick next SOP shortlist node (`polyextrude` or `attribwrangle`) and repeat full workflow.
+- 2026-02-12: Continued Houdini AI Academy with `sop/polyextrude`.
+  - Reviewed:
+    - `tutorials/index.md`
+    - `tutorials/houdini_ai_academy.md`
+    - `tutorials/sop_context.md`
+    - `help/nodes/sop/polyextrude.txt` and `help/nodes/sop/polyextrude-.txt`
+    - `help/examples/nodes/sop/polyextrude/PolyextrudeTube.txt`
+  - Built practical network: `/obj/academy_polyextrude` (`grid -> polyextrude -> output`).
+  - Captured observed behavior snapshots via HOM probe script:
+    - baseline: points=25 prims=16
+    - dist=0.5: points=41 prims=32
+    - divs=4: points=89 prims=80
+    - outputfront=0: points=80 prims=64
+  - Loaded and inspected official example HDA:
+    - `/obj/academy_PolyextrudeTube`
+    - internals reviewed for `global` and `local` branches
+    - node comments extracted; no sticky notes present in this example
+  - Updated docs:
+    - `tutorials/nodes/sop/polyextrude.md` (new, marked studied)
+    - `tutorials/nodes/sop_progress.md` (visited/studied counters now 2; example sets 4)
+    - `tutorials/houdiin_ai_acedemy_progress.md` (overall visited/studied/notes now 2; SOP row updated)
+    - `tutorials/sop_context.md` (added PolyExtrude context patterns)
+  - Regressions encountered in current working tree while studying:
+    - `probe_geometry` fails (`name 'self' is not defined`)
+    - `instantiate_hda` fails (`name 'self' is not defined`)
+    - `get_sticky_notes` unavailable (`Unknown command`)
+  - Next checkpoint: study `attribwrangle` next, or fix the three tool regressions before continuing broader academy runs.
