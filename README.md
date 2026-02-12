@@ -5,6 +5,10 @@ AI, AI, AI, ... yap, yap, yap ... yawn ... another MCP incoming ... let AI do yo
 
 (This is a fork of [Houdini-claudecode-mcp](https://github.com/atayilgun/Houdini-claudecode-mcp) but I didn't like the name and this version does not target Claude only)
 
+## Self Improvement Philosophy
+
+LLMs are not trained directly on Houdini `*.hip` files, so even simple scene operations can be difficult at first. This MCP project is designed to run the agent from within the repository, where it is encouraged to add reusable tools and document proven workflows in tutorials, so future tasks become faster and more reliable.
+
 ## Installation
 
 ### 1. Clone the Repository
@@ -37,9 +41,6 @@ Click on one of the available AI clients:
 
 ![Click on client](icons/shelf2.png)
 
-## Self Improvement Philosophy
-
-LLMs are not trained directly on Houdini `*.hip` files, so even simple scene operations can be difficult at first. This MCP project is designed to run the agent from within the repository, where it is encouraged to add reusable tools and document proven workflows in tutorials, so future tasks become faster and more reliable.
 
 ## License
 
