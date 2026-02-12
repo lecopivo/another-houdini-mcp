@@ -262,7 +262,9 @@ def get_node_info(node_path: str) -> str:
     output += f"   Type: {result['type']} ({result['type_category']})\n"
     output += f"   Inputs: {result['num_inputs']}, Outputs: {result['num_outputs']}\n"
     output += f"   Position: {result['position']}\n"
-    output += f"   Locked: {result['is_locked']}, Template: {result['is_template']}\n"
+    lock_value = result.get('is_locked')
+    lock_label = str(lock_value) if lock_value is not None else "N/A (non-HDA)"
+    output += f"   Locked: {lock_label}, Template: {result['is_template']}\n"
     if result.get('comment'):
         output += f"   Comment: {result['comment']}\n"
 

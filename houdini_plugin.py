@@ -344,6 +344,17 @@ class HoudiniMCPServer:
         if not node:
             raise ValueError(f"Node not found: {node_path}")
 
+        # Lock state is only meaningful for HDA-backed nodes.
+        is_hda = node.type().definition() is not None
+        is_locked = None
+        if is_hda:
+            lock_fn = getattr(node, "isLockedHDA", None)
+            if callable(lock_fn):
+                try:
+                    is_locked = bool(lock_fn())
+                except Exception:
+                    is_locked = None
+
         return {
             "path": node.path(),
             "name": node.name(),
@@ -351,8 +362,9 @@ class HoudiniMCPServer:
             "type_category": node.type().category().name(),
             "num_inputs": len(node.inputs()),
             "num_outputs": len(node.outputs()),
-            "position": node.position(),
-            "is_locked": node.isLocked(),
+            "position": [node.position()[0], node.position()[1]],
+            "is_hda": is_hda,
+            "is_locked": is_locked,
             "is_template": node.isTemplateFlagSet(),
             "comment": node.comment()
         }
@@ -590,8 +602,10 @@ class HoudiniMCPServer:
             while len(outputs) <= output_idx:
                 outputs.append([])
 
+            # In HOM's NodeConnection naming, outputNode() is the downstream node.
+            dest_node = conn.outputNode()
             outputs[output_idx].append({
-                "dest_node": conn.inputNode().path(),
+                "dest_node": dest_node.path() if dest_node else None,
                 "dest_index": conn.inputIndex()
             })
 
