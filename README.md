@@ -40,7 +40,7 @@ Click on one of the available AI clients:
 
 ## Self Improvement Philosophy
 
-Because LLM were not trained on Houdini `*.hip` files they can struggle quite a bit doing very simple tasks. This MCP server is set up such that you run the LLM from within this project. The AI agent is heavily encouraged to implement new tools and write down tutorials for itself.
+LLMs are not trained directly on Houdini `*.hip` files, so even simple scene operations can be difficult at first. This MCP project is designed to run the agent from within the repository, where it is encouraged to add reusable tools and document proven workflows in tutorials, so future tasks become faster and more reliable.
 
 ## License
 
