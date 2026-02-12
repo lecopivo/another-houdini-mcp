@@ -17,6 +17,8 @@ import socket
 import sys
 from typing import Any, Dict, Optional
 
+from tool_modules.registry import register_mcp_tools
+
 try:
     from mcp.server.fastmcp import FastMCP
 except ImportError:
@@ -103,28 +105,8 @@ def send_command(command: Dict[str, Any]) -> Dict[str, Any]:
 # MCP Tools
 # ============================================================================
 
-@mcp.tool()
-def create_node(node_type: str, node_name: str = "", parent: str = "/obj") -> str:
-    """
-    Create a new node in Houdini
-
-    Args:
-        node_type: Type of node (e.g., 'geo', 'null', 'light', 'camera')
-        node_name: Optional name for the node
-        parent: Parent path (default: /obj)
-
-    Returns:
-        Path to the created node
-    """
-    result = send_command({
-        "type": "create_node",
-        "params": {
-            "node_type": node_type,
-            "node_name": node_name,
-            "parent": parent
-        }
-    })
-    return f"✅ Created: {result['node_path']} (type: {result['node_type']})"
+# Register migrated tools from per-tool modules.
+register_mcp_tools(mcp, send_command)
 
 @mcp.tool()
 def delete_node(node_path: str) -> str:
@@ -701,76 +683,6 @@ def get_node_connections(node_path: str) -> str:
                 output += f"  [{idx}] (not connected)\n"
     else:
         output += "  (no outputs)\n"
-
-    return output
-
-@mcp.tool()
-def get_folder_info(folder_path: str = "/obj") -> str:
-    """
-    **PRIMARY ENTRY POINT** - Get information about nodes in a specific folder
-
-    THIS IS THE MAIN TOOL TO EXPLORE AND UNDERSTAND THE HOUDINI SCENE.
-    Always start here when you need to understand what's in a scene.
-
-    This tool shows you all nodes in a specific location with their connections,
-    allowing you to navigate the scene hierarchy step by step.
-
-    Navigation guide:
-    - Start with "/" to see the root level
-    - Use "/obj" to see all object-level nodes (default)
-    - Use "/obj/geo1" to see inside a geometry node
-    - Use "/stage" for USD/Solaris nodes
-    - Use "/ch" for channel operators
-
-    This is NON-RECURSIVE - it only shows direct children, making it fast
-    and easy to navigate complex scenes level by level.
-
-    Args:
-        folder_path: Path to folder/node (e.g., '/', '/obj', '/obj/geo1')
-
-    Returns:
-        List of all nodes in the folder with their connections
-    """
-    result = send_command({
-        "type": "get_folder_info",
-        "params": {"folder_path": folder_path}
-    })
-
-    output = f"📁 Folder: {result['folder_path']}\n"
-    output += f"   Type: {result['folder_type']}\n"
-    output += f"   Children: {result['num_children']}\n\n"
-
-    if result['num_children'] == 0:
-        output += "   (empty)\n"
-        return output
-
-    output += "Nodes:\n"
-    for node in result['children']:
-        output += f"\n  📦 {node['name']} ({node['type']})\n"
-        output += f"     Path: {node['path']}\n"
-
-        # Show inputs
-        if node.get('inputs'):
-            output += f"     Inputs: "
-            input_strs = []
-            for idx, inp in enumerate(node['inputs']):
-                if inp:
-                    input_strs.append(f"[{idx}]←{inp['source_node']}")
-            output += ", ".join(input_strs) if input_strs else "(none connected)"
-            output += "\n"
-
-        # Show outputs
-        if node.get('outputs'):
-            has_outputs = any(node['outputs'])
-            if has_outputs:
-                output += f"     Outputs: "
-                output_strs = []
-                for idx, outputs_list in enumerate(node['outputs']):
-                    if outputs_list:
-                        for conn in outputs_list:
-                            output_strs.append(f"[{idx}]→{conn['dest_node']}")
-                output += ", ".join(output_strs)
-                output += "\n"
 
     return output
 

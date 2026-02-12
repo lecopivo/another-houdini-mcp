@@ -26,8 +26,32 @@ except ImportError:
     print("Open Houdini, go to Windows → Python Shell, and run this script")
     sys.exit(1)
 
+from tool_modules.registry import get_mutating_commands, get_plugin_handlers
+
 class HoudiniMCPServer:
     _active_server = None
+    MUTATING_COMMANDS = get_mutating_commands() | {
+        "delete_node",
+        "connect_nodes",
+        "remove_connection",
+        "set_parameter",
+        "execute_hscript",
+        "execute_python",
+        "create_digital_asset",
+        "set_hda_lock_state",
+        "save_hda_definition",
+        "edit_parameter_interface",
+        "set_parameter_conditionals",
+        "bind_internal_parameters",
+        "set_primitive_type_by_token",
+        "set_output_node_index",
+        "set_hda_parm_templates",
+        "set_hda_parm_default",
+        "set_hda_internal_binding",
+        "set_hda_internal_parm",
+        "save_hda_from_instance",
+        "instantiate_hda",
+    }
 
     def __init__(self, host="localhost", port=9876):
         self.host = host
@@ -158,107 +182,59 @@ class HoudiniMCPServer:
         cmd_type = command.get("type")
         params = command.get("params", {})
 
-        if cmd_type == "create_node":
-            return self._create_node(params)
-        elif cmd_type == "delete_node":
-            return self._delete_node(params)
-        elif cmd_type == "connect_nodes":
-            return self._connect_nodes(params)
-        elif cmd_type == "remove_connection":
-            return self._remove_connection(params)
-        elif cmd_type == "set_parameter":
-            return self._set_parameter(params)
-        elif cmd_type == "get_scene_info":
-            return self._get_scene_info(params)
-        elif cmd_type == "get_node_info":
-            return self._get_node_info(params)
-        elif cmd_type == "get_node_parameters":
-            return self._get_node_parameters(params)
-        elif cmd_type == "get_parameter_info":
-            return self._get_parameter_info(params)
-        elif cmd_type == "list_node_categories":
-            return self._list_node_categories(params)
-        elif cmd_type == "list_node_types":
-            return self._list_node_types(params)
-        elif cmd_type == "get_node_documentation":
-            return self._get_node_documentation(params)
-        elif cmd_type == "get_node_connections":
-            return self._get_node_connections(params)
-        elif cmd_type == "get_folder_info":
-            return self._get_folder_info(params)
-        elif cmd_type == "execute_hscript":
-            return self._execute_hscript(params)
-        elif cmd_type == "list_python_commands":
-            return self._list_python_commands(params)
-        elif cmd_type == "get_python_documentation":
-            return self._get_python_documentation(params)
-        elif cmd_type == "execute_python":
-            return self._execute_python(params)
-        elif cmd_type == "search_python_documentation":
-            return self._search_python_documentation(params)
-        elif cmd_type == "search_documentation_files":
-            return self._search_documentation_files(params)
-        elif cmd_type == "read_documentation_file":
-            return self._read_documentation_file(params)
-        elif cmd_type == "create_digital_asset":
-            return self._create_digital_asset(params)
-        elif cmd_type == "set_hda_lock_state":
-            return self._set_hda_lock_state(params)
-        elif cmd_type == "save_hda_definition":
-            return self._save_hda_definition(params)
-        elif cmd_type == "get_hda_definition_info":
-            return self._get_hda_definition_info(params)
-        elif cmd_type == "edit_parameter_interface":
-            return self._edit_parameter_interface(params)
-        elif cmd_type == "set_parameter_conditionals":
-            return self._set_parameter_conditionals(params)
-        elif cmd_type == "bind_internal_parameters":
-            return self._bind_internal_parameters(params)
-        elif cmd_type == "set_primitive_type_by_token":
-            return self._set_primitive_type_by_token(params)
-        elif cmd_type == "set_output_node_index":
-            return self._set_output_node_index(params)
-        elif cmd_type == "validate_hda":
-            return self._validate_hda(params)
-        elif cmd_type == "get_hda_parm_templates":
-            return self._get_hda_parm_templates(params)
-        elif cmd_type == "set_hda_parm_templates":
-            return self._set_hda_parm_templates(params)
-        elif cmd_type == "set_hda_parm_default":
-            return self._set_hda_parm_default(params)
-        elif cmd_type == "set_hda_internal_binding":
-            return self._set_hda_internal_binding(params)
-        elif cmd_type == "set_hda_internal_parm":
-            return self._set_hda_internal_parm(params)
-        elif cmd_type == "save_hda_from_instance":
-            return self._save_hda_from_instance(params)
-        elif cmd_type == "instantiate_hda":
-            return self._instantiate_hda(params)
-        elif cmd_type == "probe_geometry":
-            return self._probe_geometry(params)
-        elif cmd_type == "validate_hda_behavior":
-            return self._validate_hda_behavior(params)
-        else:
+        handler = self._get_handlers().get(cmd_type)
+        if handler is None:
             raise ValueError(f"Unknown command: {cmd_type}")
 
-    def _create_node(self, params):
-        """Create a new node"""
-        node_type = params.get("node_type", "")
-        node_name = params.get("node_name", "")
-        parent_path = params.get("parent", "/obj")
+        if cmd_type in self.MUTATING_COMMANDS:
+            with hou.undos.group(f"MCP: {cmd_type}"):
+                return handler(params)
+        return handler(params)
 
-        parent = hou.node(parent_path)
-        if not parent:
-            raise ValueError(f"Parent not found: {parent_path}")
-
-        node = parent.createNode(node_type, node_name)
-        print(f"✅ Created node: {node.path()}")
-
-        return {
-            "node_path": node.path(),
-            "node_name": node.name(),
-            "node_type": node.type().name()
+    def _get_handlers(self):
+        """Return command handler dispatch table."""
+        handlers = {
+            "delete_node": self._delete_node,
+            "connect_nodes": self._connect_nodes,
+            "remove_connection": self._remove_connection,
+            "set_parameter": self._set_parameter,
+            "get_scene_info": self._get_scene_info,
+            "get_node_info": self._get_node_info,
+            "get_node_parameters": self._get_node_parameters,
+            "get_parameter_info": self._get_parameter_info,
+            "list_node_categories": self._list_node_categories,
+            "list_node_types": self._list_node_types,
+            "get_node_documentation": self._get_node_documentation,
+            "get_node_connections": self._get_node_connections,
+            "execute_hscript": self._execute_hscript,
+            "list_python_commands": self._list_python_commands,
+            "get_python_documentation": self._get_python_documentation,
+            "execute_python": self._execute_python,
+            "search_python_documentation": self._search_python_documentation,
+            "search_documentation_files": self._search_documentation_files,
+            "read_documentation_file": self._read_documentation_file,
+            "create_digital_asset": self._create_digital_asset,
+            "set_hda_lock_state": self._set_hda_lock_state,
+            "save_hda_definition": self._save_hda_definition,
+            "get_hda_definition_info": self._get_hda_definition_info,
+            "edit_parameter_interface": self._edit_parameter_interface,
+            "set_parameter_conditionals": self._set_parameter_conditionals,
+            "bind_internal_parameters": self._bind_internal_parameters,
+            "set_primitive_type_by_token": self._set_primitive_type_by_token,
+            "set_output_node_index": self._set_output_node_index,
+            "validate_hda": self._validate_hda,
+            "get_hda_parm_templates": self._get_hda_parm_templates,
+            "set_hda_parm_templates": self._set_hda_parm_templates,
+            "set_hda_parm_default": self._set_hda_parm_default,
+            "set_hda_internal_binding": self._set_hda_internal_binding,
+            "set_hda_internal_parm": self._set_hda_internal_parm,
+            "save_hda_from_instance": self._save_hda_from_instance,
+            "instantiate_hda": self._instantiate_hda,
+            "probe_geometry": self._probe_geometry,
+            "validate_hda_behavior": self._validate_hda_behavior,
         }
+        handlers.update(get_plugin_handlers(hou))
+        return handlers
 
     def _delete_node(self, params):
         """Delete a node"""
@@ -626,62 +602,6 @@ class HoudiniMCPServer:
             "num_outputs": len(node.outputConnections()),
             "inputs": inputs,
             "outputs": outputs
-        }
-
-    def _get_folder_info(self, params):
-        """Get information about nodes in a specific folder (non-recursive)"""
-        folder_path = params.get("folder_path", "/obj")
-        folder = hou.node(folder_path)
-
-        if not folder:
-            raise ValueError(f"Folder not found: {folder_path}")
-
-        # Get direct children only (non-recursive)
-        children = []
-        for child in folder.children():
-            # Get inputs for this child
-            inputs = []
-            for i, input_node in enumerate(child.inputs()):
-                if input_node:
-                    source_outputs = input_node.outputs()
-                    source_index = 0
-                    for conn in input_node.outputConnections():
-                        if conn.inputNode() == child and conn.inputIndex() == i:
-                            source_index = conn.outputIndex()
-                            break
-
-                    inputs.append({
-                        "source_node": input_node.name(),  # Just name for brevity
-                        "source_index": source_index
-                    })
-                else:
-                    inputs.append(None)
-
-            # Get outputs for this child
-            outputs = [[] for _ in range(max(1, len(child.outputConnections())))]
-            for conn in child.outputConnections():
-                output_idx = conn.outputIndex()
-                while len(outputs) <= output_idx:
-                    outputs.append([])
-
-                outputs[output_idx].append({
-                    "dest_node": conn.inputNode().name(),  # Just name for brevity
-                    "dest_index": conn.inputIndex()
-                })
-
-            children.append({
-                "name": child.name(),
-                "path": child.path(),
-                "type": child.type().name(),
-                "inputs": inputs,
-                "outputs": outputs
-            })
-
-        return {
-            "folder_path": folder_path,
-            "folder_type": folder.type().name() if folder.type() else "root",
-            "num_children": len(children),
-            "children": children
         }
 
     def _execute_hscript(self, params):
