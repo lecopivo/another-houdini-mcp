@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 0
-- Nodes studied: 0
-- Example sets reviewed: 0
+- Nodes visited: 1
+- Nodes studied: 1
+- Example sets reviewed: 3
 
 ## Shortlist
 
@@ -20,4 +20,4 @@
 
 | Node | Visited | Docs Read | Examples Reviewed | Note File | Status |
 |---|---|---|---|---|---|
-| lattice | no | no | no | `tutorials/nodes/sop/lattice.md` | planned (seed note) |
+| lattice | yes | yes | yes | `tutorials/nodes/sop/lattice.md` | studied |

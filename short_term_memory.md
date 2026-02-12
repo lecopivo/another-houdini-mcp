@@ -19,3 +19,20 @@
   - `set_hda_parm_default(node_path=/obj/mcp_verify1, param_name=t, default_value=\"1.25\")` succeeded.
   - `validate_hda_behavior` on `/obj/mcp_verify1` with JSON-string `cases`/`comparisons`/`require_point_attributes` succeeded (`Valid: True`, `Errors: 0`).
 - Next checkpoint: optionally run broader regression tests for tool-module bridge paths and add automated tests for these three regressions.
+- 2026-02-12: Began Houdini AI Academy training on `sop/lattice`.
+  - Reviewed `tutorials/index.md`, `tutorials/houdini_ai_academy.md`, and `tutorials/sop_context.md`.
+  - Read official docs in `help/nodes/sop/lattice.txt` and reviewed example notes in `help/examples/nodes/sop/lattice/*.txt`.
+  - Built practical test network at `/obj/academy_lattice` with `sphere -> bound -> xform -> lattice -> output`.
+  - Verified deformation via bbox delta after cage transform.
+  - Inspected example OTL internals by loading and unlocking:
+    - `/obj/academy_DeformLattice`
+    - `/obj/academy_BallBounce`
+    - `/obj/academy_LatticePerChunk`
+  - Explicitly extracted and reviewed sticky-note (post-it) text from all three assets and relevant subnets.
+  - Extracted reusable patterns for single-lattice and per-piece foreach-lattice workflows.
+  - Updated records:
+    - `tutorials/nodes/sop/lattice.md` (now marked studied with OTL findings)
+    - `tutorials/nodes/sop_progress.md` (nodes studied = 1)
+    - `tutorials/houdiin_ai_acedemy_progress.md` (fully studied = 1)
+    - `tutorials/sop_context.md` (context-level lattice pattern notes)
+  - Next checkpoint: pick next SOP shortlist node (`polyextrude` or `attribwrangle`) and repeat full workflow.

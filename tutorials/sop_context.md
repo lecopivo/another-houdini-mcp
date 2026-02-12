@@ -121,3 +121,18 @@ Recommended tools:
 Quick fix pattern:
 - If the only output node has `outputidx = 1`, set it to `0` immediately.
 - Re-run geometry probe/validation to confirm final output path is correct.
+
+## 9. Lattice Patterns from Example OTLs
+
+From the `sop/lattice` official examples (`DeformLattice`, `BallBounce`, `LatticePerChunk`), two reusable patterns stand out:
+
+- Single-object lattice control:
+  - Build one rest cage (`box` or `bound`) and a deformed-cage branch (`group` + `xform` or simulation node).
+  - Feed `lattice` inputs as: target geo (0), rest cage (1), deformed cage (2).
+  - Keep lattice divisions aligned with cage divisions.
+
+- Per-piece lattice control:
+  - Partition geometry into piece groups (`connectivity` + `partition`).
+  - In a first foreach, generate per-piece cages (`bound` with divisions).
+  - In a second foreach, isolate matching piece/cage groups (`blast`/group naming) and apply `lattice` per piece.
+  - This scales better for fractured assets where each chunk needs local deformation.
