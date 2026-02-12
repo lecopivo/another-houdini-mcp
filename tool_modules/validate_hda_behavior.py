@@ -6,6 +6,48 @@ IS_MUTATING = False
 
 send_command = None
 
+
+def _coerce_list(value, name):
+    if isinstance(value, str):
+        try:
+            value = json.loads(value)
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"{name} must be a JSON array or list") from exc
+    if value is None:
+        return []
+    if not isinstance(value, list):
+        raise ValueError(f"{name} must be a list")
+    return value
+
+
+def _resolve_geometry_node(node):
+    geometry_fn = getattr(node, "geometry", None)
+    if callable(geometry_fn):
+        try:
+            geometry_fn()
+            return node
+        except Exception:
+            pass
+
+    for attr_name in ("displayNode", "renderNode"):
+        resolver = getattr(node, attr_name, None)
+        if not callable(resolver):
+            continue
+        try:
+            child = resolver()
+        except Exception:
+            child = None
+        if child is None:
+            continue
+        child_geometry = getattr(child, "geometry", None)
+        if callable(child_geometry):
+            try:
+                child_geometry()
+                return child
+            except Exception:
+                continue
+    return None
+
 def validate_hda_behavior(
     node_path: str,
     cases: Any,
@@ -47,15 +89,22 @@ def register_mcp_tool(mcp, send_command_impl, legacy_bridge_functions=None, tool
 def execute_plugin(params, server, hou):
     """Validate HDA behavior by probing geometry across parameterized test cases."""
     node_path = params.get("node_path", "")
-    cases = params.get("cases", [])
-    comparisons = params.get("comparisons", [])
-    require_point_attributes = params.get("require_point_attributes", [])
+    cases = _coerce_list(params.get("cases", []), "cases")
+    comparisons = _coerce_list(params.get("comparisons", []), "comparisons")
+    require_point_attributes = _coerce_list(
+        params.get("require_point_attributes", []),
+        "require_point_attributes",
+    )
 
     node = hou.node(node_path)
     if not node:
         raise ValueError(f"Node not found: {node_path}")
-    if not isinstance(cases, list) or len(cases) == 0:
+    if len(cases) == 0:
         raise ValueError("cases must be a non-empty list")
+
+    geometry_stats_fn = getattr(server, "_geometry_stats", None)
+    if not callable(geometry_stats_fn):
+        raise RuntimeError("Server missing _geometry_stats helper")
 
     # Save initial parm values for all params touched by cases.
     tracked_parms = set()
@@ -84,7 +133,12 @@ def execute_plugin(params, server, hou):
                     raise ValueError(f"Parameter not found on node: {parm_name}")
                 parm.set(value)
 
-            stats = self._geometry_stats(node)
+            geometry_node = _resolve_geometry_node(node)
+            if geometry_node is None:
+                raise ValueError(
+                    f"Unable to resolve geometry output from node: {node.path()}"
+                )
+            stats = geometry_stats_fn(geometry_node)
             case_results[name] = stats
 
             for attr_name in require_point_attributes:

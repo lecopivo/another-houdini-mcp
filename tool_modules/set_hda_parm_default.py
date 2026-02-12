@@ -6,6 +6,42 @@ IS_MUTATING = True
 
 send_command = None
 
+
+def _coerce_default_value(value):
+    if not isinstance(value, str):
+        return value
+
+    text = value.strip()
+    if not text:
+        return value
+
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        lower = text.lower()
+        if lower in ("true", "false"):
+            return lower == "true"
+        try:
+            if any(ch in text for ch in (".", "e", "E")):
+                return float(text)
+            return int(text)
+        except ValueError:
+            return value
+
+
+def _coerce_bool(value):
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return value != 0
+    if isinstance(value, str):
+        lower = value.strip().lower()
+        if lower in ("1", "true", "yes", "on"):
+            return True
+        if lower in ("0", "false", "no", "off", ""):
+            return False
+    raise ValueError(f"Cannot coerce value to bool: {value}")
+
 def set_hda_parm_default(
     param_name: str,
     default_value: Any,
@@ -43,9 +79,13 @@ def register_mcp_tool(mcp, send_command_impl, legacy_bridge_functions=None, tool
 
 def execute_plugin(params, server, hou):
     """Set a single default value on an HDA definition parameter template."""
-    node, definition = self._resolve_hda_definition(params)
+    resolve_fn = getattr(server, "_resolve_hda_definition", None)
+    if not callable(resolve_fn):
+        raise RuntimeError("Server missing _resolve_hda_definition helper")
+
+    node, definition = resolve_fn(params)
     param_name = params.get("param_name", "")
-    default_value = params.get("default_value")
+    default_value = _coerce_default_value(params.get("default_value"))
 
     if not param_name:
         raise ValueError("param_name is required")
@@ -59,7 +99,7 @@ def execute_plugin(params, server, hou):
 
     parm_type = template.type()
     if parm_type == hou.parmTemplateType.Toggle:
-        template.setDefaultValue(bool(default_value))
+        template.setDefaultValue(_coerce_bool(default_value))
     elif parm_type == hou.parmTemplateType.Menu:
         template.setDefaultValue(int(default_value))
     else:
@@ -73,6 +113,14 @@ def execute_plugin(params, server, hou):
                 f"default_value length mismatch for {param_name}. "
                 f"Expected {num_components}, got {len(value_tuple)}"
             )
+
+        if parm_type == hou.parmTemplateType.Int:
+            value_tuple = tuple(int(v) for v in value_tuple)
+        elif parm_type == hou.parmTemplateType.String:
+            value_tuple = tuple(str(v) for v in value_tuple)
+        else:
+            value_tuple = tuple(float(v) for v in value_tuple)
+
         template.setDefaultValue(value_tuple)
 
     ptg.replace(param_name, template)

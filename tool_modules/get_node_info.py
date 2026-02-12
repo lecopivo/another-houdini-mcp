@@ -42,6 +42,21 @@ def execute_plugin(params, server, hou):
             except Exception:
                 is_locked = None
 
+    is_template = False
+    template_fn = getattr(node, "isTemplateFlagSet", None)
+    if callable(template_fn):
+        try:
+            is_template = bool(template_fn())
+        except Exception:
+            is_template = False
+    else:
+        generic_flag_fn = getattr(node, "isGenericFlagSet", None)
+        if callable(generic_flag_fn):
+            try:
+                is_template = bool(generic_flag_fn(hou.nodeFlag.Template))
+            except Exception:
+                is_template = False
+
     return {
         "path": node.path(),
         "name": node.name(),
@@ -52,6 +67,6 @@ def execute_plugin(params, server, hou):
         "position": [node.position()[0], node.position()[1]],
         "is_hda": is_hda,
         "is_locked": is_locked,
-        "is_template": node.isTemplateFlagSet(),
+        "is_template": is_template,
         "comment": node.comment(),
     }

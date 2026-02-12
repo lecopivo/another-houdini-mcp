@@ -188,7 +188,7 @@ if [ -n "$HOUDINI_DIR" ]; then
         echo "📖 Houdini help directory found!"
         echo ""
         echo "  ✓ help directory: $HOUDINI_HELP_DIR"
-        echo "  Excluding from copy: videos/, examples/, files/, images.zip"
+        echo "  Excluding from copy: videos/, files/, images.zip"
 
         echo ""
         echo "Would you like to copy and unpack the documentation? (y/n)"
@@ -205,7 +205,6 @@ if [ -n "$HOUDINI_DIR" ]; then
             if command -v rsync &> /dev/null; then
                 rsync -a \
                     --exclude 'videos/' \
-                    --exclude 'examples/' \
                     --exclude 'files/' \
                     --exclude 'images.zip' \
                     "$HOUDINI_HELP_DIR/" "$SCRIPT_DIR/help/"
