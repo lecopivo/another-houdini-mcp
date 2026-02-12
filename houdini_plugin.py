@@ -27,32 +27,10 @@ except ImportError:
     sys.exit(1)
 
 from tool_modules.registry import get_mutating_commands, get_plugin_handlers
-from tool_modules.legacy_plugin_methods import LegacyPluginMethods
 
-class HoudiniMCPServer(LegacyPluginMethods):
+class HoudiniMCPServer:
     _active_server = None
-    MUTATING_COMMANDS = get_mutating_commands() | {
-        "delete_node",
-        "connect_nodes",
-        "remove_connection",
-        "set_parameter",
-        "execute_hscript",
-        "execute_python",
-        "create_digital_asset",
-        "set_hda_lock_state",
-        "save_hda_definition",
-        "edit_parameter_interface",
-        "set_parameter_conditionals",
-        "bind_internal_parameters",
-        "set_primitive_type_by_token",
-        "set_output_node_index",
-        "set_hda_parm_templates",
-        "set_hda_parm_default",
-        "set_hda_internal_binding",
-        "set_hda_internal_parm",
-        "save_hda_from_instance",
-        "instantiate_hda",
-    }
+    MUTATING_COMMANDS = get_mutating_commands()
 
     def __init__(self, host="localhost", port=9876):
         self.host = host

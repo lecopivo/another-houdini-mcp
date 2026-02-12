@@ -107,12 +107,10 @@ def send_command(command: Dict[str, Any]) -> Dict[str, Any]:
 # MCP Tools
 # ============================================================================
 
-from tool_modules.legacy_bridge_functions import get_legacy_bridge_functions
 # Register all tools via per-tool modules using legacy wrappers where needed.
 register_mcp_tools(
     mcp,
     send_command,
-    legacy_bridge_functions=get_legacy_bridge_functions(send_command),
     tool_decorator=_real_mcp_tool_decorator,
 )
 

@@ -87,10 +87,10 @@ TOOL_MODULES = [
 ]
 
 
-def register_mcp_tools(mcp, send_command, legacy_bridge_functions=None, tool_decorator=None):
+def register_mcp_tools(mcp, send_command, tool_decorator=None):
     """Register migrated per-tool MCP wrappers on the bridge side."""
     for module in TOOL_MODULES:
-        module.register_mcp_tool(mcp, send_command, legacy_bridge_functions, tool_decorator)
+        module.register_mcp_tool(mcp, send_command, None, tool_decorator)
 
 
 def get_plugin_handlers(server, hou):
