@@ -11,7 +11,7 @@ This project enables AI-assisted 3D content creation by allowing your MCP client
 ### 1. Clone the Repository
 
 ```bash
-https://github.com/lecopivo/another-houdini-mcp
+git clone https://github.com/lecopivo/another-houdini-mcp
 cd another-houdini-mcp
 ```
 
@@ -37,6 +37,10 @@ Start Houdini, enable `AI Chat` shelf:
 Click on one of the available AI clients:
 
 ![Click on client](icons/shelf2.png)
+
+## Self Improvement Philosophy
+
+Because LLM were not trained on Houdini `*.hip` files they can struggle quite a bit doing very simple tasks. This MCP server is set up such that you run the LLM from within this project. The AI agent is heavily encouraged to implement new tools and write down tutorials for itself.
 
 ## License
 
