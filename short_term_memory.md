@@ -1,3 +1,21 @@
 ## Short-Term Memory
 
-tabula rasa
+- 2026-02-12: Patched refactored tool regressions after validation pass.
+- Updated `tool_modules/get_node_info.py` to handle template-flag queries safely on OBJ nodes (fallback to `isGenericFlagSet`).
+- Updated `tool_modules/validate_hda_behavior.py` to:
+  - accept JSON-string or list inputs for `cases`, `comparisons`, and `require_point_attributes`,
+  - resolve geometry from SOP nodes or OBJ display/render SOPs before probing.
+- Updated `tool_modules/set_hda_parm_default.py` to:
+  - coerce string defaults (`"1.25"`, `"true"`, JSON arrays) into correct value types,
+  - coerce per-parameter-type tuple values (float/int/string),
+  - use `server._resolve_hda_definition` explicitly.
+- Restart checkpoint: rerun failing repros:
+  - `get_node_info` on `/obj/mcp_verify1` should no longer throw.
+  - `set_hda_parm_default` with scalar string should succeed.
+  - `validate_hda_behavior` on object-level HDA should resolve geometry and run.
+- 2026-02-12 verification run completed:
+  - `get_node_info(/obj/mcp_verify1)` succeeded (no template-flag exception).
+  - Created object-level verification HDA: `mcp::verify_asset::1.0` at `otls/mcp_verify_asset.hda`.
+  - `set_hda_parm_default(node_path=/obj/mcp_verify1, param_name=t, default_value=\"1.25\")` succeeded.
+  - `validate_hda_behavior` on `/obj/mcp_verify1` with JSON-string `cases`/`comparisons`/`require_point_attributes` succeeded (`Valid: True`, `Errors: 0`).
+- Next checkpoint: optionally run broader regression tests for tool-module bridge paths and add automated tests for these three regressions.
