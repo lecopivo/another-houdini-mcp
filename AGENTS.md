@@ -62,3 +62,7 @@ You can use it to:
   - `houdini_plugin.py` (command implementation/dispatch)
   - `houdini_mcp_server.py` (MCP tool exposure/wrapper)
 - Prefer proposing reusable, general-purpose tools over one-off script snippets.
+
+## Session Memory Expectations
+- When implementing new tools or changing tool behavior, record current progress and restart checkpoints in `short_term_memory.md`.
+- The user may restart the agent at any time; always keep `short_term_memory.md` up to date so work can resume immediately.
