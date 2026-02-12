@@ -1,14 +1,14 @@
 # Houdini MCP Server
 
-Control SideFX Houdini directly from Claude Code using the Model Context Protocol (MCP).
+Control SideFX Houdini directly from AI coding clients using the Model Context Protocol (MCP).
 
-This project enables AI-assisted 3D content creation by allowing Claude to create nodes, set parameters, execute HScript commands, and build complex procedural networks in Houdini.
+This project enables AI-assisted 3D content creation by allowing your MCP client to create nodes, set parameters, execute HScript commands, and build complex procedural networks in Houdini.
 
 ## Features
 
 ### 🚀 Unlimited Power - Do ANYTHING in Houdini!
 
-This tool gives Claude **full access** to Houdini's capabilities:
+This tool gives your MCP client **full access** to Houdini's capabilities:
 
 - **ALL Contexts**: SOPs, DOPs, COPs, CHOPs, VOPs, ROPs, LOPs - Everything!
 - **Any Node Type**: Geometry, simulations, compositing, animation, rendering
@@ -31,12 +31,12 @@ This tool gives Claude **full access** to Houdini's capabilities:
 
 The system consists of two components:
 
-1. **MCP Server** (`houdini_mcp_server.py`): Runs as a Claude Code MCP server, exposes tools to Claude
+1. **MCP Server** (`houdini_mcp_server.py`): Runs as a stdio MCP server, exposes tools to your AI client
 2. **Houdini Plugin** (`houdini_plugin.py`): Runs inside Houdini, listens for commands via TCP socket
 
 ```
 ┌─────────────┐         ┌──────────────────┐         ┌─────────────┐
-│ Claude Code │ ◄─MCP──►│ MCP Server       │◄──TCP──►│ Houdini     │
+│ AI Client   │ ◄─MCP──►│ MCP Server       │◄──TCP──►│ Houdini     │
 │             │         │ (stdio)          │  :9876  │ Plugin      │
 └─────────────┘         └──────────────────┘         └─────────────┘
 ```
@@ -45,7 +45,7 @@ The system consists of two components:
 
 - **Houdini** 19.5 or later (tested with Houdini 21)
 - **Python** 3.10+ (included with Houdini)
-- **Claude Code** CLI
+- **MCP-capable AI client CLI** (for example: `claude`, `codex`, `opencode`)
 - **Operating System**: macOS, Linux, or Windows
 
 ## Installation
@@ -65,10 +65,14 @@ cd Houdini-claudecode-mcp
 
 The setup script will:
 - Detect your Houdini installation
+- Copy `$HFS/houdini/help` into local `help/` (excluding `videos/`, `examples/`, `files/`, `images.zip`) and unpack all `help/*.zip`
 - Install Python dependencies
-- Configure Claude Code with the MCP server
+- Optionally install an `AI Chat` shelf tab with a `Restart Server` tool and per-client launcher tools in your Houdini user preferences
+- Detect installed MCP-capable AI clients and prompt to install for each one
 
 ### 3. Start the Houdini Plugin
+
+You can either use the `AI Chat` shelf tab (`Restart Server` and client launchers) if you installed it during setup, or run manually:
 
 1. **Open Houdini**
 2. Go to **Windows → Python Shell**
@@ -85,12 +89,12 @@ server.start()
 You should see:
 ```
 ✅ Houdini MCP Server listening on localhost:9876
-Ready to receive commands from Claude Code!
+Ready to receive commands from your AI client!
 ```
 
 ## Usage
 
-Once the plugin is running, you can control Houdini from Claude Code using natural language:
+Once the plugin is running, you can control Houdini from your AI client using natural language:
 
 ### Basic Examples
 
@@ -117,7 +121,7 @@ add colorful gradients, and make them flow like wind
 
 ### Available MCP Tools
 
-Claude has access to these tools:
+Your AI client has access to these tools:
 
 **Node Management:**
 - `create_node(node_type, node_name, parent)` - Create a new node
@@ -172,17 +176,41 @@ If the setup script doesn't work for your system:
 /path/to/houdini/python3 -m pip install fastmcp httpx --user
 ```
 
-### 2. Configure Claude Code
+### 2. Configure Your AI Client
+
+Claude Code:
 
 ```bash
 claude mcp add houdini --transport stdio -- /path/to/houdini/python3 /path/to/houdini_mcp_server.py
 ```
 
+Codex:
+
+```bash
+codex mcp add houdini -- /path/to/houdini/python3 /path/to/houdini_mcp_server.py
+```
+
+OpenCode (`opencode.json` in your project):
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "houdini": {
+      "type": "local",
+      "command": ["/path/to/houdini/python3", "/path/to/houdini_mcp_server.py"],
+      "enabled": true
+    }
+  }
+}
+```
+
 ### 3. Verify Installation
 
 ```bash
-claude mcp list
-claude mcp get houdini
+<client> mcp list
+# Optional (supported by some clients like claude/codex)
+<client> mcp get houdini
 ```
 
 ## Troubleshooting
@@ -203,7 +231,7 @@ If you see `Address already in use` error:
 
 ```bash
 # Check if server is registered
-claude mcp list
+<client> mcp list
 
 # If not listed, run setup again
 ./setup.sh
@@ -225,7 +253,7 @@ houdini-mcp/
 ├── README.md                   # This file
 ├── requirements.txt            # Python dependencies
 ├── setup.sh                    # Installation script
-├── houdini_mcp_server.py      # MCP server (runs with Claude)
+├── houdini_mcp_server.py      # MCP server (runs with your AI client)
 ├── houdini_plugin.py          # Plugin (runs in Houdini)
 └── examples/                  # Example scripts
     ├── create_animated_cube.py

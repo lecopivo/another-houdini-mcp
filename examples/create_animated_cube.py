@@ -16,11 +16,28 @@ PORT = 9876
 def send_command(cmd):
     """Send command to Houdini plugin"""
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((HOST, PORT))
-    sock.send(json.dumps(cmd).encode('utf-8'))
-    response = json.loads(sock.recv(4096).decode('utf-8'))
-    sock.close()
-    return response
+    try:
+        sock.connect((HOST, PORT))
+
+        payload = json.dumps(cmd).encode('utf-8')
+        sock.send(len(payload).to_bytes(4, byteorder='big'))
+        sock.send(payload)
+
+        length_bytes = sock.recv(4)
+        if not length_bytes:
+            raise RuntimeError("Connection closed while reading response length")
+
+        response_length = int.from_bytes(length_bytes, byteorder='big')
+        response_bytes = b''
+        while len(response_bytes) < response_length:
+            chunk = sock.recv(min(4096, response_length - len(response_bytes)))
+            if not chunk:
+                raise RuntimeError("Connection closed while reading response body")
+            response_bytes += chunk
+
+        return json.loads(response_bytes.decode('utf-8'))
+    finally:
+        sock.close()
 
 def main():
     print("Creating animated cube...\n")

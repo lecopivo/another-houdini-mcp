@@ -27,17 +27,32 @@ def main():
         sock.connect((HOST, PORT))
         print("   ✅ Connected successfully!\n")
 
-        # Send test command
+        # Send test command (length-prefixed protocol)
         print("📤 Sending test command (get_scene_info)...")
         command = {
             "type": "get_scene_info",
             "params": {}
         }
-        sock.send(json.dumps(command).encode('utf-8'))
+        payload = json.dumps(command).encode('utf-8')
+        sock.send(len(payload).to_bytes(4, byteorder='big'))
+        sock.send(payload)
 
-        # Receive response
+        # Receive response (length-prefixed protocol)
         print("📥 Waiting for response...")
-        response_data = sock.recv(4096).decode('utf-8')
+        length_bytes = sock.recv(4)
+        if not length_bytes:
+            raise RuntimeError("Connection closed while reading response length")
+
+        response_length = int.from_bytes(length_bytes, byteorder='big')
+
+        response_data_bytes = b''
+        while len(response_data_bytes) < response_length:
+            chunk = sock.recv(min(4096, response_length - len(response_data_bytes)))
+            if not chunk:
+                raise RuntimeError("Connection closed while reading response body")
+            response_data_bytes += chunk
+
+        response_data = response_data_bytes.decode('utf-8')
         response = json.loads(response_data)
 
         if response.get("status") == "success":

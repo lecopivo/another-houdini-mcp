@@ -529,6 +529,18 @@ def execute_python(code: str) -> str:
     """
     Execute Python code in Houdini using the Houdini Object Model (HOM)
 
+    IMPORTANT TOOL-USAGE RULE:
+    For usual scene tasks (creating nodes, connecting nodes, setting parameters,
+    and inspecting scene structure), use dedicated MCP tools first:
+    - create_node
+    - connect_nodes / remove_connection
+    - set_parameter
+    - get_folder_info / get_node_info / get_node_parameters
+
+    Use execute_python only when no dedicated tool can do the task.
+    If a custom snippet is reusable and generic, propose creating a new
+    dedicated MCP tool instead of repeating ad-hoc code execution.
+
     The Houdini Object Model (HOM) is Houdini's Python API. The 'hou' module
     is automatically available and provides access to all Houdini functionality.
 
@@ -767,6 +779,13 @@ def execute_hscript(code: str) -> str:
     """
     Execute HScript commands in Houdini
 
+    IMPORTANT TOOL-USAGE RULE:
+    For usual scene tasks (creating nodes, connecting nodes, setting parameters,
+    and inspecting scene structure), use dedicated MCP tools first.
+    Use execute_hscript only when no dedicated tool can do the task.
+    If the command solves a reusable/general workflow, suggest adding a
+    dedicated MCP tool for it instead of relying on custom HScript.
+
     WARNING: Use carefully - executes directly in Houdini
 
     Args:
@@ -786,6 +805,548 @@ def execute_hscript(code: str) -> str:
     if error:
         return f"Output:\n{output}\n\nErrors:\n{error}"
     return output
+
+
+@mcp.tool()
+def search_documentation_files(query: str, file_pattern: str = "*.txt", search_content: bool = True, max_results: int = 30) -> str:
+    """
+    Search local Houdini documentation files under the project help directory.
+
+    This searches by file path and (optionally) file content. Use it to locate
+    relevant docs before reading a specific file with read_documentation_file().
+
+    Args:
+        query: Search term to match in path/content
+        file_pattern: Glob filter for filenames (default: '*.txt')
+        search_content: Whether to search within file contents (default: True)
+        max_results: Maximum number of results (default: 30, max: 200)
+
+    Returns:
+        Matching documentation file paths and metadata
+    """
+    result = send_command({
+        "type": "search_documentation_files",
+        "params": {
+            "query": query,
+            "file_pattern": file_pattern,
+            "search_content": search_content,
+            "max_results": max_results,
+        }
+    })
+
+    if result.get("error"):
+        return f"❌ {result['error']}"
+
+    output = f"🔎 Documentation search: '{query}'\n"
+    output += f"   Pattern: {result.get('file_pattern', file_pattern)}\n"
+    output += f"   Content search: {result.get('search_content', search_content)}\n"
+    output += f"   Matches: {result.get('num_results', 0)}\n\n"
+
+    matches = result.get("results", [])
+    if not matches:
+        output += "No matching documentation files found."
+        return output
+
+    for match in matches:
+        output += f"  • {match['rel_path']} ({match['matched_in']}, {match['size_bytes']} bytes)\n"
+
+    output += "\nUse read_documentation_file(path) to read a specific file."
+    return output
+
+
+@mcp.tool()
+def read_documentation_file(path: str, max_chars: int = 20000) -> str:
+    """
+    Read a documentation file from the local project help directory.
+
+    Use search_documentation_files() first to find the exact file path, then
+    pass the relative path here.
+
+    Args:
+        path: Relative path under help/ (e.g., 'nodes/sop/box.txt')
+        max_chars: Maximum characters to return (default: 20000)
+
+    Returns:
+        Documentation file contents
+    """
+    result = send_command({
+        "type": "read_documentation_file",
+        "params": {
+            "path": path,
+            "max_chars": max_chars,
+        }
+    })
+
+    if result.get("error"):
+        return f"❌ {result['error']}"
+
+    output = f"📄 Documentation file: {result['path']}\n"
+    output += f"   Size: {result['size_bytes']} bytes\n"
+    if result.get("truncated"):
+        output += f"   Note: output truncated to {result['max_chars']} chars\n"
+    output += "\n"
+    output += result.get("content", "")
+    return output
+
+
+@mcp.tool()
+def create_digital_asset(
+    node_path: str,
+    definition_name: str,
+    description: str,
+    hda_file_path: str,
+    min_inputs: int = 0,
+    max_inputs: int = 0,
+) -> str:
+    """Create a digital asset from a node or export/update an existing HDA definition."""
+    result = send_command({
+        "type": "create_digital_asset",
+        "params": {
+            "node_path": node_path,
+            "definition_name": definition_name,
+            "description": description,
+            "hda_file_path": hda_file_path,
+            "min_inputs": min_inputs,
+            "max_inputs": max_inputs,
+        }
+    })
+    return (
+        f"✅ Digital asset ready\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Type: {result.get('node_type')}\n"
+        f"Definition: {result.get('definition_name')}\n"
+        f"File: {result.get('hda_file_path')}"
+    )
+
+
+@mcp.tool()
+def set_hda_lock_state(node_path: str, locked: bool = True) -> str:
+    """Lock or unlock an HDA instance."""
+    result = send_command({
+        "type": "set_hda_lock_state",
+        "params": {
+            "node_path": node_path,
+            "locked": locked,
+        }
+    })
+    return (
+        f"✅ Lock state updated\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Requested locked: {result.get('requested_locked')}\n"
+        f"Matches definition: {result.get('matches_current_definition')}"
+    )
+
+
+@mcp.tool()
+def save_hda_definition(node_path: str) -> str:
+    """Save an HDA definition from an instance."""
+    result = send_command({
+        "type": "save_hda_definition",
+        "params": {"node_path": node_path}
+    })
+    return (
+        f"✅ Definition saved\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Definition: {result.get('definition_name')}\n"
+        f"File: {result.get('hda_file_path')}"
+    )
+
+
+@mcp.tool()
+def get_hda_definition_info(node_path: str) -> str:
+    """Get definition information for an HDA instance."""
+    result = send_command({
+        "type": "get_hda_definition_info",
+        "params": {"node_path": node_path}
+    })
+    if not result.get("is_hda_instance"):
+        return f"Node is not an HDA instance: {result.get('node_path')}"
+    return (
+        f"📦 HDA Definition Info\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Node Type: {result.get('node_type')}\n"
+        f"Definition: {result.get('definition_name')}\n"
+        f"Description: {result.get('description')}\n"
+        f"Library: {result.get('library_file_path')}\n"
+        f"Matches definition: {result.get('matches_current_definition')}\n"
+        f"Editable inside locked HDA: {result.get('is_editable_inside_locked_hda')}"
+    )
+
+
+@mcp.tool()
+def edit_parameter_interface(
+    node_path: str,
+    parameters: Any,
+    folder_name: str = "custom_controls",
+    folder_label: str = "Custom Controls",
+    clear_folder: bool = True,
+    append_at_end: bool = True,
+) -> str:
+    """Edit a node's parameter interface from a declarative schema."""
+    result = send_command({
+        "type": "edit_parameter_interface",
+        "params": {
+            "node_path": node_path,
+            "folder_name": folder_name,
+            "folder_label": folder_label,
+            "clear_folder": clear_folder,
+            "append_at_end": append_at_end,
+            "parameters": parameters,
+        }
+    })
+    return (
+        f"✅ Parameter interface updated\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Folder: {result.get('folder_name')} ({result.get('folder_label')})\n"
+        f"Parameters added: {result.get('num_parameters_added')}"
+    )
+
+
+@mcp.tool()
+def set_parameter_conditionals(
+    node_path: str,
+    param_name: str,
+    hide_when: Optional[str] = None,
+    disable_when: Optional[str] = None,
+) -> str:
+    """Set hide/disable conditionals on an existing parameter template."""
+    result = send_command({
+        "type": "set_parameter_conditionals",
+        "params": {
+            "node_path": node_path,
+            "param_name": param_name,
+            "hide_when": hide_when,
+            "disable_when": disable_when,
+        }
+    })
+    return (
+        f"✅ Conditionals updated\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Parameter: {result.get('param_name')}\n"
+        f"Hide when: {result.get('hide_when')}\n"
+        f"Disable when: {result.get('disable_when')}"
+    )
+
+
+@mcp.tool()
+def bind_internal_parameters(node_path: str, bindings: Any) -> str:
+    """Bind internal parameters using expression mappings."""
+    result = send_command({
+        "type": "bind_internal_parameters",
+        "params": {
+            "node_path": node_path,
+            "bindings": bindings,
+        }
+    })
+    return (
+        f"✅ Bindings applied\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Applied: {result.get('num_bindings_applied')}"
+    )
+
+
+@mcp.tool()
+def set_primitive_type_by_token(node_path: str, token: str) -> str:
+    """Set a primitive node type parameter by menu token."""
+    result = send_command({
+        "type": "set_primitive_type_by_token",
+        "params": {
+            "node_path": node_path,
+            "token": token,
+        }
+    })
+    return (
+        f"✅ Primitive type set\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Token: {result.get('token')}\n"
+        f"Label: {result.get('label')}"
+    )
+
+
+@mcp.tool()
+def set_output_node_index(node_path: str, output_index: int = 0) -> str:
+    """Set output index on an output node."""
+    result = send_command({
+        "type": "set_output_node_index",
+        "params": {
+            "node_path": node_path,
+            "output_index": output_index,
+        }
+    })
+    return f"✅ Output index set: {result.get('node_path')} -> {result.get('output_index')}"
+
+
+@mcp.tool()
+def validate_hda(node_path: str, rules: Any) -> str:
+    """Validate HDA structure and expectations."""
+    result = send_command({
+        "type": "validate_hda",
+        "params": {
+            "node_path": node_path,
+            "rules": rules,
+        }
+    })
+    output = (
+        f"🧪 validate_hda\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Valid: {result.get('valid')}\n"
+        f"Checks: {len(result.get('checks', []))}\n"
+        f"Errors: {len(result.get('errors', []))}\n"
+        f"Warnings: {len(result.get('warnings', []))}\n"
+    )
+    if result.get("errors"):
+        output += "\nError details:\n"
+        for err in result["errors"]:
+            output += f"- {err}\n"
+    if result.get("warnings"):
+        output += "\nWarnings:\n"
+        for warning in result["warnings"]:
+            output += f"- {warning}\n"
+    return output.strip()
+
+
+@mcp.tool()
+def get_hda_parm_templates(
+    node_path: Optional[str] = None,
+    type_name: Optional[str] = None,
+    definition_name: Optional[str] = None,
+) -> str:
+    """Get parameter templates from an HDA definition."""
+    result = send_command({
+        "type": "get_hda_parm_templates",
+        "params": {
+            "node_path": node_path,
+            "type_name": type_name,
+            "definition_name": definition_name,
+        }
+    })
+    return json.dumps(result, indent=2, default=str)
+
+
+@mcp.tool()
+def set_hda_parm_templates(
+    templates: Any,
+    node_path: Optional[str] = None,
+    type_name: Optional[str] = None,
+    definition_name: Optional[str] = None,
+    replace_all: bool = True,
+    sync_instance: bool = True,
+) -> str:
+    """Set parameter templates on an HDA definition."""
+    result = send_command({
+        "type": "set_hda_parm_templates",
+        "params": {
+            "node_path": node_path,
+            "type_name": type_name,
+            "definition_name": definition_name,
+            "templates": templates,
+            "replace_all": replace_all,
+            "sync_instance": sync_instance,
+        }
+    })
+    return (
+        f"✅ HDA templates updated\n"
+        f"Definition: {result.get('definition_name')}\n"
+        f"File: {result.get('library_file_path')}\n"
+        f"Top-level templates: {result.get('num_top_level_templates')}\n"
+        f"replace_all: {result.get('replace_all')}"
+    )
+
+
+@mcp.tool()
+def set_hda_parm_default(
+    param_name: str,
+    default_value: Any,
+    node_path: Optional[str] = None,
+    type_name: Optional[str] = None,
+    definition_name: Optional[str] = None,
+    sync_instance: bool = True,
+) -> str:
+    """Set a default value for an HDA parameter template."""
+    result = send_command({
+        "type": "set_hda_parm_default",
+        "params": {
+            "node_path": node_path,
+            "type_name": type_name,
+            "definition_name": definition_name,
+            "param_name": param_name,
+            "default_value": default_value,
+            "sync_instance": sync_instance,
+        }
+    })
+    return (
+        f"✅ HDA default updated\n"
+        f"Definition: {result.get('definition_name')}\n"
+        f"Parameter: {result.get('param_name')}\n"
+        f"Default: {result.get('default_value')}"
+    )
+
+
+@mcp.tool()
+def set_hda_internal_binding(
+    hda_node_path: str,
+    internal_node: str,
+    internal_parm: str,
+    source_parm: Optional[str] = None,
+    expression: Optional[str] = None,
+    language: str = "hscript",
+    unlock: bool = True,
+    save_definition: bool = True,
+    relock: bool = True,
+) -> str:
+    """Set an expression binding on an internal parameter of an HDA instance."""
+    result = send_command({
+        "type": "set_hda_internal_binding",
+        "params": {
+            "hda_node_path": hda_node_path,
+            "internal_node": internal_node,
+            "internal_parm": internal_parm,
+            "source_parm": source_parm,
+            "expression": expression,
+            "language": language,
+            "unlock": unlock,
+            "save_definition": save_definition,
+            "relock": relock,
+        }
+    })
+    return (
+        f"✅ Internal binding updated\n"
+        f"HDA: {result.get('hda_node_path')}\n"
+        f"Target: {result.get('target_parm_path')}\n"
+        f"Expression: {result.get('expression')}\n"
+        f"Language: {result.get('language')}"
+    )
+
+
+@mcp.tool()
+def set_hda_internal_parm(
+    hda_node_path: str,
+    internal_node: str,
+    internal_parm: str,
+    param_value: Any = None,
+    expression: Optional[str] = None,
+    language: str = "hscript",
+    unlock: bool = True,
+    save_definition: bool = True,
+    relock: bool = True,
+) -> str:
+    """Set value or expression on an internal parameter of an HDA instance."""
+    result = send_command({
+        "type": "set_hda_internal_parm",
+        "params": {
+            "hda_node_path": hda_node_path,
+            "internal_node": internal_node,
+            "internal_parm": internal_parm,
+            "param_value": param_value,
+            "expression": expression,
+            "language": language,
+            "unlock": unlock,
+            "save_definition": save_definition,
+            "relock": relock,
+        }
+    })
+    return (
+        f"✅ Internal parameter updated\n"
+        f"HDA: {result.get('hda_node_path')}\n"
+        f"Target: {result.get('target_parm_path')}\n"
+        f"Value: {result.get('value')}"
+    )
+
+
+@mcp.tool()
+def save_hda_from_instance(node_path: str, relock: bool = True) -> str:
+    """Save HDA definition from an instance and optionally relock."""
+    result = send_command({
+        "type": "save_hda_from_instance",
+        "params": {
+            "node_path": node_path,
+            "relock": relock,
+        }
+    })
+    return (
+        f"✅ HDA saved from instance\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Definition: {result.get('definition_name')}\n"
+        f"File: {result.get('library_file_path')}\n"
+        f"Matches definition: {result.get('matches_current_definition')}"
+    )
+
+
+@mcp.tool()
+def instantiate_hda(
+    type_name: Optional[str] = None,
+    definition_name: Optional[str] = None,
+    parent_path: str = "/obj",
+    node_name: str = "",
+    set_display: bool = False,
+) -> str:
+    """Instantiate an HDA node in a given parent network."""
+    result = send_command({
+        "type": "instantiate_hda",
+        "params": {
+            "type_name": type_name,
+            "definition_name": definition_name,
+            "parent_path": parent_path,
+            "node_name": node_name,
+            "set_display": set_display,
+        }
+    })
+    return (
+        f"✅ HDA instantiated\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Type: {result.get('node_type')}\n"
+        f"Definition: {result.get('definition_name')}"
+    )
+
+
+@mcp.tool()
+def probe_geometry(node_path: str) -> str:
+    """Probe geometry output metrics for a SOP node."""
+    result = send_command({
+        "type": "probe_geometry",
+        "params": {"node_path": node_path}
+    })
+    stats = result.get("stats", {})
+    output = f"📊 Geometry probe: {result.get('node_path')}\n"
+    output += f"Points: {stats.get('points')}\n"
+    output += f"Prims: {stats.get('prims')}\n"
+    output += f"Vertices: {stats.get('vertices')}\n"
+    output += f"Point attribs: {stats.get('point_attributes')}\n"
+    output += f"Prim attribs: {stats.get('prim_attributes')}\n"
+    output += f"Detail attribs: {stats.get('detail_attributes')}"
+    return output
+
+
+@mcp.tool()
+def validate_hda_behavior(
+    node_path: str,
+    cases: Any,
+    comparisons: Optional[Any] = None,
+    require_point_attributes: Optional[Any] = None,
+) -> str:
+    """Validate HDA behavior across parameterized geometry test cases."""
+    result = send_command({
+        "type": "validate_hda_behavior",
+        "params": {
+            "node_path": node_path,
+            "cases": cases,
+            "comparisons": comparisons or [],
+            "require_point_attributes": require_point_attributes or [],
+        }
+    })
+    output = (
+        f"🧪 validate_hda_behavior\n"
+        f"Node: {result.get('node_path')}\n"
+        f"Valid: {result.get('valid')}\n"
+        f"Cases: {len(result.get('case_results', {}))}\n"
+        f"Checks: {len(result.get('checks', []))}\n"
+        f"Errors: {len(result.get('errors', []))}\n"
+    )
+    if result.get("errors"):
+        output += "\nError details:\n"
+        for err in result["errors"]:
+            output += f"- {err}\n"
+    return output.strip()
 
 # ============================================================================
 # Server Entry Point

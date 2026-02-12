@@ -65,3 +65,8 @@ htmlcov/
 # Distribution
 *.tar.gz
 *.zip
+/.launch_claude.sh
+/.launch_codex.sh
+/.launch_opencode.sh
+/help/
+/opencode.json
