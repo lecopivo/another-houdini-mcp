@@ -31,9 +31,11 @@ The setup script will:
 ### 3. Use
 
 Start Houdini, enable `AI Chat` shelf:
+
 ![Turn on AI Chat shelf](icons/shelf.png)
 
 Click on one of the available AI clients:
+
 ![Click on client](icons/shelf2.png)
 
 ## License
