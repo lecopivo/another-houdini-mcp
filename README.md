@@ -1,10 +1,9 @@
 # Yet Another Houdini MCP Server
 
-Control SideFX Houdini directly from AI coding clients using the Model Context Protocol (MCP).
+AI, AI, AI, ... yap, yap, yap ... yawn ... another MCP incoming ... let AI do your Houdini work ....
 
-This project enables AI-assisted 3D content creation by allowing your MCP client to create nodes, set parameters, execute Pythong/HScript commands, and build complex procedural networks in Houdini.
 
-(This is a fork of [Houdini-claudecode-mcp](https://github.com/atayilgun/Houdini-claudecode-mcp) but I didn't like the name and it does not target Claude only)
+(This is a fork of [Houdini-claudecode-mcp](https://github.com/atayilgun/Houdini-claudecode-mcp) but I didn't like the name and this version does not target Claude only)
 
 ## Installation
 
