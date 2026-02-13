@@ -60,9 +60,10 @@ You can use it to:
 
 ## Tooling Improvement Expectations
 - If you struggle to perform a repeated task and finally manage it via custom scripting/workarounds, suggest adding or improving a dedicated MCP tool.
-- Tool additions/updates must be kept in sync across both files:
-  - `houdini_plugin.py` (command implementation/dispatch)
-  - `houdini_mcp_server.py` (MCP tool exposure/wrapper)
+- Tool additions/updates should be implemented as per-tool modules under `tool_modules/`.
+- Register new tool modules in `tool_modules/registry.py` (module import + `TOOL_MODULES` entry).
+- In this architecture, routine tool additions usually do **not** require edits to `houdini_plugin.py` or `houdini_mcp_server.py`.
+- Edit `houdini_plugin.py` / `houdini_mcp_server.py` only for framework-level behavior changes (transport, server lifecycle, global wiring/instructions, etc.).
 - Prefer proposing reusable, general-purpose tools over one-off script snippets.
 
 ## Session Memory Expectations

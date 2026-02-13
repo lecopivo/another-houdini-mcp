@@ -21,6 +21,7 @@ The output of this work is a context-wide progress record plus one practical tut
 1. Pick node from shortlist in `<context>_progress.md`
 2. Read official docs in `help/nodes/<context>/<node>.txt`
 3. Inspect examples in `help/examples/nodes/<context>/<node>/`
+   - if path-based matching misses docs/examples under `help/`, use `search_documentation_files` then `read_documentation_file`
 4. Load the `.otl` example in Houdini, create instance, unlock, inspect internals
 5. Read instructional metadata inside example networks:
    - node comments

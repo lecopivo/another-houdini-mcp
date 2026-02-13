@@ -2,6 +2,10 @@
 
 Use this for each `tutorials/nodes/<context>/<node>.md` note.
 
+## Workflow Reference
+
+Use `tutorials/houdini_ai_academy.md` section `Workflow (Per Node)` as the canonical end-to-end process.
+
 ## Session Status
 
 - Status: planned | in progress | studied
