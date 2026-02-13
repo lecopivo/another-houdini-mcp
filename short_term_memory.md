@@ -1,5 +1,74 @@
 ## Short-Term Memory
 
+- 2026-02-13: Completed requested uninterrupted 15-node SOP batch one-by-one.
+- Studied nodes:
+  - `extrudevolume`, `tube`, `vdbfrompolygons`, `vdbactivate`, `volumewrangle`, `volume`, `volumesdf`, `primitive`, `filecache`, `subnet`, `output`, `testgeometry_rubbertoy`, `box`, `sphere`, `add`
+- Example handling rule honored:
+  - Loaded and studied one example asset at a time, then deleted it before loading the next example asset.
+  - Examples explicitly inspected/deleted in sequence:
+    - `/obj/academy_PrimitiveColors` (deleted)
+    - `/obj/academy_BoxSpring` (deleted)
+    - `/obj/academy_SphereTypes` (deleted)
+    - `/obj/academy_AddItUp` (deleted)
+- Live validation networks created:
+  - `/obj/academy_extrudevolume_live`, `/obj/academy_tube_live`, `/obj/academy_vdbfrompolygons_live`, `/obj/academy_vdbactivate_live`, `/obj/academy_volumewrangle_live`, `/obj/academy_volume_live`, `/obj/academy_volumesdf_live`, `/obj/academy_primitive_live`, `/obj/academy_filecache_live`, `/obj/academy_subnet_live`, `/obj/academy_output_live`, `/obj/academy_testgeometry_rubbertoy_live`, `/obj/academy_box_live`, `/obj/academy_sphere_live`, `/obj/academy_add_live`
+- Key observed outcomes:
+  - `tube` and `sphere` analytic-to-polygon switch confirmed large topology change.
+  - `vdbfrompolygons` enabling fog created second VDB primitive (`surface + density`).
+  - `primitive` color write created primitive `Cd`.
+  - `filecache` with `loadfromdisk=1` and no cache file produced empty output.
+  - `add` point-only mode confirmed (`100 pts / 0 prims`) with `keep=1` and `remove=0`.
+- Memory updates:
+  - Added node notes for all 15 studied nodes (updated existing `sphere.md` to full study format).
+  - Updated `memory/nodes/sop_progress.md`, `memory/houdiin_ai_acedemy_progress.md`, and `memory/sop_context.md`.
+
+- 2026-02-13: Continued overnight SOP batch one-by-one and completed next 3 nodes.
+- Studied nodes:
+  - `attribfrommap`, `attribnoise`, `attribadjustcolor`
+- Example coverage status:
+  - No local node-scoped example folders found for these 3 nodes in `help/examples/nodes/sop/<node>/`.
+  - Used documented fallback strategy: official docs + live validation networks.
+- Live validation networks:
+  - `/obj/academy_attribfrommap_live`
+  - `/obj/academy_attribnoise_live`
+  - `/obj/academy_attribadjustcolor_live`
+- Key observed outcomes:
+  - `attribfrommap`: changing `export_attribute` to `density` creates point `density` (topology unchanged).
+  - `attribnoise`: changing `attribs` to `pscale` creates point `pscale` (attribute-only modification).
+  - `attribadjustcolor`: changing `attrib` to `myCd` writes custom point color attr `myCd`.
+- Memory updates:
+  - added `memory/nodes/sop/attribfrommap.md`
+  - added `memory/nodes/sop/attribnoise.md`
+  - added `memory/nodes/sop/attribadjustcolor.md`
+  - updated `memory/nodes/sop_progress.md`
+  - updated `memory/houdiin_ai_acedemy_progress.md`
+  - updated `memory/sop_context.md`
+
+- 2026-02-13: Continued SOP node studies with a 3-node batch: `subdivide`, `file`, `bound`.
+- Docs and examples reviewed:
+  - `nodes/sop/subdivide.txt`, `examples/nodes/sop/subdivide/SubdivideCrease.txt`
+  - `nodes/sop/file.txt`, `examples/nodes/sop/file/PackedPoints.txt`
+  - `nodes/sop/bound.txt`, `examples/nodes/sop/bound/BoundingBox.txt`
+- Example OTLs loaded and inspected:
+  - `/obj/academy_SubdivideCrease`
+  - `/obj/academy_PackedPoints`
+  - `/obj/academy_BoundingBox`
+- Live validation networks created:
+  - `/obj/academy_subdivide_live`
+  - `/obj/academy_file_live`
+  - `/obj/academy_bound_live`
+- Key observed checks:
+  - `subdivide` depth scaling: `26/24 -> 98/96 -> 386/384` (pts/prims) for iterations `1/2/3`.
+  - `file` mode behavior confirmed: write creates `/tmp/academy_file_live.bgeo.sc`; read ignores changed input; no-op passes through input.
+  - `bound` box vs sphere output forms validated; enabling radii/xform toggles adds detail attrs `radii`, `xform`.
+- Memory updates:
+  - added `memory/nodes/sop/subdivide.md`
+  - added `memory/nodes/sop/file.md`
+  - added `memory/nodes/sop/bound.md`
+  - updated `memory/sop_context.md`
+  - updated `memory/nodes/sop_progress.md`
+  - updated `memory/houdiin_ai_acedemy_progress.md`
+
 - 2026-02-13: Built new clean ocean FLIP setup from scratch based on corrected notes.
 - Network:
   - `/obj/academy_flip_setup4_ocean_clean`

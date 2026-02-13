@@ -470,3 +470,92 @@ From SOP FLIP ocean/whitewater companion studies:
 
 - Compression-aware downstreaming:
   - `fluidcompress` can be inserted before caching and still feed `particlefluidsurface`/`whitewatersource` reliably when stream contract is respected.
+
+## 38. Subdivide Practical Pattern
+
+From `subdivide/SubdivideCrease` plus live repro:
+
+- Local-detail-first heuristic:
+  - Prefer driving `subdivide` with an explicit primitive group before raising `iterations` globally.
+
+- Crease authoring options:
+  - Interactive edge creases (`crease` SOP) are fast for lookdev.
+  - Procedural second-input crease topology is better for reusable/automated setups.
+
+## 39. File SOP Cache-Boundary Pattern
+
+From `file/PackedPoints` plus live mode toggles:
+
+- Mode-switch debugging rule:
+  - Validate expected behavior by intentionally toggling `filemode` between write/read/no-op and observing output changes.
+  - This quickly catches stale-cache mistakes where input rewires appear ignored.
+
+- Packed workflow baseline:
+  - Generate sample files upstream (ROP), read as packed primitives, then instance/copy for lightweight viewport and disk footprints.
+
+## 40. Bound + Switch Proxy Pattern
+
+From `bound/BoundingBox` example:
+
+- Source-comparison setup:
+  - Place `switch` directly before `bound` to compare how alternate input shapes affect proxies without rebuilding downstream.
+
+- Metadata export habit:
+  - Enable `addradiiattrib` and `addxformattrib` when downstream nodes need transform/extent data, not just proxy geometry.
+
+## 41. Attribute-Field Authoring Pattern
+
+From `attribfrommap`, `attribnoise`, and `attribadjustcolor` live studies:
+
+- Establish destination attr contracts first:
+  - Set destination names explicitly (`density`, `pscale`, `Cd`/custom) before tuning look parameters.
+  - This prevents silent downstream breakage from unexpected attribute names/classes.
+
+- Topology vs attribute separation:
+  - These nodes are typically attribute-only modifiers; if topology changes, suspect upstream/downstream nodes instead.
+
+- Missing example fallback:
+  - For SOP utility nodes with no local node-scoped example folder, use docs + focused live repro + companion references and record that coverage path explicitly.
+
+## 42. Analytic vs Explicit Primitive Rule
+
+From `tube`/`sphere` studies:
+
+- Many generators default to analytic/implicit primitive forms (`1 pt / 1 prim`) that are fast but sparse.
+- For downstream topology-sensitive nodes (fracture, collision, deform), switch to polygon/mesh variants before processing.
+
+## 43. VDB Pairing Pattern
+
+From `vdbfrompolygons` + `vdbactivate` studies:
+
+- Build foundational fields first (`surface` SDF and optionally `density` fog), then adjust active regions with `vdbactivate` before heavy volume operations.
+- Activation edits often do not show dramatic primitive-count changes; verify intent with dedicated VDB visualization when debugging sparse regions.
+
+## 44. Cache Safety Pattern
+
+From `filecache` study:
+
+- Treat `loadfromdisk` as a strict mode switch.
+- If cache files are absent or stale, output can become empty or outdated while upstream network appears correct.
+- Keep version/path policy explicit and documented per shot.
+
+## 45. Subnetwork Contract Pattern
+
+From `subnet` + `output` studies:
+
+- Always define explicit output nodes and stable output indices when building reusable subnets/HDAs.
+- Avoid dynamic/output-index expression tricks; use upstream switch logic for routing changes.
+
+## 46. Point-Only Add Pattern
+
+From `add` study:
+
+- `Add` is a reliable bridge between full geometry and point-only representations.
+- `keep` + `remove` interactions are high risk: misconfiguration can cull all geometry unexpectedly.
+
+## 47. Box-Lattice Coupling Pattern
+
+From `box/BoxSpring` example:
+
+- When `box` is used as lattice cage source, keep division settings synchronized with downstream `lattice` requirements.
+- Grouping top cage points + spring deformation is a reusable soft-cage setup.

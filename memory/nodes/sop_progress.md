@@ -1,14 +1,14 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 44
-- Nodes studied: 44
-- Example sets reviewed: 45
+- Nodes visited: 65
+- Nodes studied: 65
+- Example sets reviewed: 52
 
 ## Shortlist
 
 - Remaining `/obj/geo1` nodes to study next:
-- `subdivide`, `attribfrommap`, `attribnoise`, `attribadjustcolor`, `file`, `bound`, `extrudevolume`, `tube`, `vdbfrompolygons`, `vdbactivate`, `volumewrangle`, `volume`, `volumesdf`, `primitive`, `filecache`, `subnet`, `output`, `testgeometry_rubbertoy`, `box`, `sphere`
+- (none from current `/obj/geo1` discovery list)
 
 ## Studied Nodes
 
@@ -58,3 +58,24 @@
 | whitewaterpostprocess | yes | yes | yes | `memory/nodes/sop/whitewaterpostprocess.md` | studied |
 | oceanspectrum | yes | yes | yes | `memory/nodes/sop/oceanspectrum.md` | studied |
 | oceanevaluate | yes | yes | yes | `memory/nodes/sop/oceanevaluate.md` | studied |
+| subdivide | yes | yes | yes | `memory/nodes/sop/subdivide.md` | studied |
+| file | yes | yes | yes | `memory/nodes/sop/file.md` | studied |
+| bound | yes | yes | yes | `memory/nodes/sop/bound.md` | studied |
+| attribfrommap | yes | yes | yes | `memory/nodes/sop/attribfrommap.md` | studied |
+| attribnoise | yes | yes | yes | `memory/nodes/sop/attribnoise.md` | studied |
+| attribadjustcolor | yes | yes | yes | `memory/nodes/sop/attribadjustcolor.md` | studied |
+| extrudevolume | yes | yes | yes | `memory/nodes/sop/extrudevolume.md` | studied |
+| tube | yes | yes | yes | `memory/nodes/sop/tube.md` | studied |
+| vdbfrompolygons | yes | yes | yes | `memory/nodes/sop/vdbfrompolygons.md` | studied |
+| vdbactivate | yes | yes | yes | `memory/nodes/sop/vdbactivate.md` | studied |
+| volumewrangle | yes | yes | yes | `memory/nodes/sop/volumewrangle.md` | studied |
+| volume | yes | yes | yes | `memory/nodes/sop/volume.md` | studied |
+| volumesdf | yes | yes | yes | `memory/nodes/sop/volumesdf.md` | studied |
+| primitive | yes | yes | yes | `memory/nodes/sop/primitive.md` | studied |
+| filecache | yes | yes | yes | `memory/nodes/sop/filecache.md` | studied |
+| subnet | yes | yes | yes | `memory/nodes/sop/subnet.md` | studied |
+| output | yes | yes | yes | `memory/nodes/sop/output.md` | studied |
+| testgeometry_rubbertoy | yes | yes | yes | `memory/nodes/sop/testgeometry_rubbertoy.md` | studied |
+| box | yes | yes | yes | `memory/nodes/sop/box.md` | studied |
+| sphere | yes | yes | yes | `memory/nodes/sop/sphere.md` | studied |
+| add | yes | yes | yes | `memory/nodes/sop/add.md` | studied |
