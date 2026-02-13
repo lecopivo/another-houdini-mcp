@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 3
-- Nodes studied: 3
-- Example sets reviewed: 6
+- Nodes visited: 6
+- Nodes studied: 4
+- Example sets reviewed: 9
 
 ## Shortlist
 
@@ -11,7 +11,6 @@
 - polyextrude
 - attribwrangle
 - blast
-- copy
 - merge
 - remesh
 - vellumsolver
@@ -23,3 +22,6 @@
 | lattice | yes | yes | yes | `tutorials/nodes/sop/lattice.md` | studied |
 | polyextrude | yes | yes | yes | `tutorials/nodes/sop/polyextrude.md` | studied |
 | attribwrangle | yes | yes | yes | `tutorials/nodes/sop/attribwrangle.md` | studied |
+| copytopoints | yes | yes | partial | `tutorials/nodes/sop/copytopoints.md` | in progress |
+| foreach | yes | yes | yes | `tutorials/nodes/sop/foreach.md` | studied |
+| boolean | yes | yes | no | `tutorials/nodes/sop/boolean.md` | in progress |

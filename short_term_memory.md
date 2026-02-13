@@ -1,5 +1,45 @@
 ## Short-Term Memory
 
+- 2026-02-13: Continued Houdini AI Academy SOP study batch (copytopoints, foreach, boolean).
+- Reviewed docs:
+  - `help/nodes/sop/copytopoints.txt`
+  - `help/nodes/sop/block_begin.txt`
+  - `help/nodes/sop/block_end.txt`
+  - `help/nodes/sop/boolean.txt`
+- Reviewed examples/assets:
+  - `help/examples/nodes/sop/foreach/AttributeShuffle.*`
+  - `help/examples/nodes/sop/foreach/ForEachExamples.*`
+  - related copy template example: `help/examples/nodes/sop/copy/CopyTemplateAttribs.*`
+- Built/loaded live test networks:
+  - `/obj/academy_copytopoints`
+  - `/obj/academy_boolean`
+  - `/obj/academy_AttributeShuffle`
+  - `/obj/academy_ForEachExamples`
+  - `/obj/academy_CopyTemplateAttribs`
+- Key observed outcomes:
+  - `copytopoints`: unpacked output scales to `800 pts / 600 prims`; `pack=1` collapses to `100 pts / 100 prims`.
+  - `foreach` (block-based AttributeShuffle): validated piece-loop pattern; sticky notes confirm merge-ordering caveat.
+  - `boolean::2.0`: validated union/intersect/subtract behavior with bbox deltas.
+  - Local docs corpus has no node-scoped `help/examples/nodes/sop/boolean/` or `.../copytopoints/` folders; marked those notes as in-progress/partial where appropriate.
+- Notes/progress updates:
+  - Added `tutorials/nodes/sop/copytopoints.md`
+  - Added `tutorials/nodes/sop/foreach.md`
+  - Added `tutorials/nodes/sop/boolean.md`
+  - Updated `tutorials/nodes/sop_progress.md`
+  - Updated `tutorials/houdiin_ai_acedemy_progress.md`
+  - Updated `tutorials/sop_context.md`
+
+- 2026-02-13: Added reusable example-study tool modules to reduce ad-hoc Python usage.
+- New tools added under `tool_modules/` and registered in `tool_modules/registry.py`:
+  - `install_hda_file`: install `.otl/.hda` files with optional reload behavior.
+  - `list_example_nodes`: enumerate example docs/assets under `help/examples/nodes/<context>/`.
+  - `instantiate_example_asset`: install an example asset file and create an instance.
+  - `load_example`: resolve official example by `context/node/example_name`, install, and instantiate.
+  - `get_node_presentation`: inspect node presentation state (display/render/template/bypass/comment).
+- Updated `AGENTS.md` tool list + architecture guidance to reflect module-based tool registration.
+- Restart checkpoint:
+  - Reload/restart Houdini MCP plugin so newly added tool modules are available to command dispatch.
+
 - 2026-02-13: Fixed live MCP regressions in shared geometry stats + default-write validation.
 - Updated `tool_modules/hda_utils.py`:
   - `geometry_stats` now computes vertex count using `Geometry.vertexCount()` when available, with fallback to `vertices()` and intrinsic `vertexcount`.

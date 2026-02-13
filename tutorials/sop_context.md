@@ -154,3 +154,45 @@ From `sop/polyextrude` (`PolyextrudeTube`), a practical split is:
 Observed reminders:
 - Parameter sets differ across legacy/new variants; inspect live parms before writing values.
 - `outputfront/outputback/outputside` are fast topology controls for capping and open-shell workflows.
+
+## 11. Copy-to-Points Patterns
+
+From live `copytopoints` testing (`/obj/academy_copytopoints`) and related copy-template examples:
+
+- Topology scaling rule of thumb:
+  - `pack=0`: output topology scales roughly as source topology x number of target points.
+  - `pack=1`: output tracks one packed primitive per target point (far lighter for large scatters).
+
+- Practical workflow:
+  - Build/clean source geometry first.
+  - Build destination points (grid/scatter/particles) and validate count.
+  - Apply `copytopoints`; then tune transform and attribute transfer fields.
+
+## 12. For-Each Loop Patterns
+
+From `foreach` examples (especially `AttributeShuffle`):
+
+- Prefer explicit block pairing:
+  - `block_begin.blockpath -> block_end`
+  - `block_end.templatepath -> block_begin` (for piece mode)
+
+- Piece-loop baseline:
+  - `block_begin.method = Extract Piece or Point`
+  - `block_end.itermethod = By Pieces`
+  - `block_end.method = Merge Each Iteration`
+  - `block_end.attrib = piece` (or `name`)
+
+- Stability reminder:
+  - Merge loops may reorder primitive numbering; preserve IDs if downstream steps depend on stable prim order.
+
+## 13. Boolean Patterns
+
+From `/obj/academy_boolean` tests with overlapping boxes:
+
+- Fast sanity triad:
+  - Test `booleanop` values for union/intersect/subtract early.
+  - Verify both topology and bbox-size changes (counts alone can be ambiguous).
+
+- Input hygiene:
+  - Treat normals/manifold quality as first-class checks before debugging parameter tweaks.
+  - Keep `collapsetinyedges` enabled unless you need very specific seam geometry behavior.
