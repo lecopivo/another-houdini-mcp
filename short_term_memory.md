@@ -1,5 +1,58 @@
 ## Short-Term Memory
 
+- 2026-02-13: Started stricter "deep play" SOP pass (per-node parameter interaction checks) and completed 10 nodes.
+- Deep-studied nodes:
+  - `curveclay`, `delete`, `deltamush`, `dissolve`, `distancealonggeometry`, `distancefromgeometry`, `divide`, `dopimportrecords`, `duplicate`, `extrude`
+- Deep-play highlights:
+  - `dissolve`: toggling invert selection collapsed output from `8 pts / 5 prims` to `2 pts / 1 prim` in example branch.
+  - `distancealonggeometry` / `distancefromgeometry`: disabling mask output removes `mask` attr while preserving `dist`.
+  - `dopimportrecords`: `field` filter narrowed imported attributes without changing point count.
+  - `duplicate`: `ncy 5 -> 6` increased output from `48/36` to `56/42` (pts/prims).
+  - `extrude`: `depthxlate` changed placement while topology remained stable in tested font setup.
+- Process:
+  - For each node: load official example, probe baseline, tweak key parameter(s), probe again, then delete example before next node.
+- Memory updates:
+  - Added/updated 10 node notes with explicit before/after observations.
+  - Updated SOP progress and academy totals, and added new SOP context patterns.
+
+- 2026-02-13: Continued one-by-one SOP academy pass and completed another 15 nodes.
+- Newly studied nodes:
+  - `clusterpoints`, `comb`, `convert`, `convertline`, `cookie`, `copy`, `crease`, `creep`, `crowdmotionpath`, `crowdmotionpathavoid`, `crowdmotionpathfollow`, `crowdmotionpathlayer`, `crowdmotionpathtransition`, `crowdsource`, `curve`
+- Process followed:
+  - Same strict sequence: instantiate one official example, validate cook/output, delete instance, then move to next node.
+- Memory updates:
+  - Added 15 new node notes under `memory/nodes/sop/`.
+  - Updated progress totals and SOP context patterns for crowd path and conversion/legacy-node usage.
+
+- 2026-02-13: Continued unattended one-by-one SOP academy pass and completed 15 more nodes.
+- Newly studied nodes:
+  - `blendshapes`, `block_end`, `bulge`, `cache`, `cap`, `captureattribunpack`, `carve`, `chain`, `channel`, `circle`, `circlefromedges`, `clay`, `clip`, `clothdeform`, `cloudbillowynoise`
+- Process followed:
+  - Same strict sequence: instantiate one official example, validate cook/output, delete instance, then move to next node.
+- Memory updates:
+  - Added 15 new node notes under `memory/nodes/sop/`.
+  - Updated SOP/academy progress totals and `memory/sop_context.md` with additional reusable patterns.
+
+- 2026-02-13: Continued SOP academy study in strict one-by-one mode and completed 20 additional nodes.
+- Newly studied nodes:
+  - `agentlayer`, `agentrelationship`, `agentvellumunpack`, `align`, `apex--editgraph`, `attribcomposite`, `attribcopy`, `attribcreate`, `attribfade`, `attribfill`, `attribfrompieces`, `attribfromvolume`, `attribpaint`, `attribremap`, `attribreorient`, `attribstringedit`, `attribtransfer`, `attribute`, `bakevolume`, `bend`
+- Process followed:
+  - Loaded first official example for each node, instantiated, validated cook/output, then deleted instance before moving to next node.
+- Notable note:
+  - `apex--editgraph` has no local SOP doc file (`help/nodes/sop/apex--editgraph.txt` missing), but official example study completed successfully.
+- Memory updates:
+  - Added 20 new node notes under `memory/nodes/sop/` for this batch.
+  - Updated `memory/nodes/sop_progress.md`, `memory/houdiin_ai_acedemy_progress.md`, and `memory/sop_context.md`.
+
+- 2026-02-13: Ran requested 50-node SOP smoke-test batch (next unstudied example nodes) without pausing.
+- Scope:
+  - `agentlayer`, `agentrelationship`, `agentvellumunpack`, `align`, `apex--editgraph`, `attribcomposite`, `attribcopy`, `attribcreate`, `attribfade`, `attribfill`, `attribfrompieces`, `attribfromvolume`, `attribpaint`, `attribremap`, `attribreorient`, `attribstringedit`, `attribtransfer`, `attribute`, `bakevolume`, `bend`, `blendshapes`, `block_end`, `bulge`, `cache`, `cap`, `captureattribunpack`, `carve`, `chain`, `channel`, `circle`, `circlefromedges`, `clay`, `clip`, `clothdeform`, `cloudbillowynoise`, `clusterpoints`, `comb`, `convert`, `convertline`, `cookie`, `copy`, `crease`, `creep`, `crowdmotionpath`, `crowdmotionpathavoid`, `crowdmotionpathfollow`, `crowdmotionpathlayer`, `crowdmotionpathtransition`, `crowdsource`, `curve`
+- Method:
+  - For each node, selected first local example under `help/examples/nodes/sop/<node>/`, installed asset, instantiated in `/obj`, performed lightweight cook check when possible, and destroyed the instance.
+- Result:
+  - 50/50 pass, 0 failures.
+  - One doc-path exception: `help/nodes/sop/apex--editgraph.txt` missing while example asset still instantiated successfully.
+
 - 2026-02-13: Completed requested uninterrupted 15-node SOP batch one-by-one.
 - Studied nodes:
   - `extrudevolume`, `tube`, `vdbfrompolygons`, `vdbactivate`, `volumewrangle`, `volume`, `volumesdf`, `primitive`, `filecache`, `subnet`, `output`, `testgeometry_rubbertoy`, `box`, `sphere`, `add`

@@ -70,3 +70,4 @@ htmlcov/
 /.launch_opencode.sh
 /help/
 /opencode.json
+/otls/

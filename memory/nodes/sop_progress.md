@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 65
-- Nodes studied: 65
-- Example sets reviewed: 52
+- Nodes visited: 125
+- Nodes studied: 125
+- Example sets reviewed: 112
 
 ## Shortlist
 
@@ -79,3 +79,63 @@
 | box | yes | yes | yes | `memory/nodes/sop/box.md` | studied |
 | sphere | yes | yes | yes | `memory/nodes/sop/sphere.md` | studied |
 | add | yes | yes | yes | `memory/nodes/sop/add.md` | studied |
+| agentlayer | yes | yes | yes | `memory/nodes/sop/agentlayer.md` | studied |
+| agentrelationship | yes | yes | yes | `memory/nodes/sop/agentrelationship.md` | studied |
+| agentvellumunpack | yes | yes | yes | `memory/nodes/sop/agentvellumunpack.md` | studied |
+| align | yes | yes | yes | `memory/nodes/sop/align.md` | studied |
+| apex--editgraph | yes | partial | yes | `memory/nodes/sop/apex--editgraph.md` | studied |
+| attribcomposite | yes | yes | yes | `memory/nodes/sop/attribcomposite.md` | studied |
+| attribcopy | yes | yes | yes | `memory/nodes/sop/attribcopy.md` | studied |
+| attribcreate | yes | yes | yes | `memory/nodes/sop/attribcreate.md` | studied |
+| attribfade | yes | yes | yes | `memory/nodes/sop/attribfade.md` | studied |
+| attribfill | yes | yes | yes | `memory/nodes/sop/attribfill.md` | studied |
+| attribfrompieces | yes | yes | yes | `memory/nodes/sop/attribfrompieces.md` | studied |
+| attribfromvolume | yes | yes | yes | `memory/nodes/sop/attribfromvolume.md` | studied |
+| attribpaint | yes | yes | yes | `memory/nodes/sop/attribpaint.md` | studied |
+| attribremap | yes | yes | yes | `memory/nodes/sop/attribremap.md` | studied |
+| attribreorient | yes | yes | yes | `memory/nodes/sop/attribreorient.md` | studied |
+| attribstringedit | yes | yes | yes | `memory/nodes/sop/attribstringedit.md` | studied |
+| attribtransfer | yes | yes | yes | `memory/nodes/sop/attribtransfer.md` | studied |
+| attribute | yes | yes | yes | `memory/nodes/sop/attribute.md` | studied |
+| bakevolume | yes | yes | yes | `memory/nodes/sop/bakevolume.md` | studied |
+| bend | yes | yes | yes | `memory/nodes/sop/bend.md` | studied |
+| blendshapes | yes | yes | yes | `memory/nodes/sop/blendshapes.md` | studied |
+| block_end | yes | yes | yes | `memory/nodes/sop/block_end.md` | studied |
+| bulge | yes | yes | yes | `memory/nodes/sop/bulge.md` | studied |
+| cache | yes | yes | yes | `memory/nodes/sop/cache.md` | studied |
+| cap | yes | yes | yes | `memory/nodes/sop/cap.md` | studied |
+| captureattribunpack | yes | yes | yes | `memory/nodes/sop/captureattribunpack.md` | studied |
+| carve | yes | yes | yes | `memory/nodes/sop/carve.md` | studied |
+| chain | yes | yes | yes | `memory/nodes/sop/chain.md` | studied |
+| channel | yes | yes | yes | `memory/nodes/sop/channel.md` | studied |
+| circle | yes | yes | yes | `memory/nodes/sop/circle.md` | studied |
+| circlefromedges | yes | yes | yes | `memory/nodes/sop/circlefromedges.md` | studied |
+| clay | yes | yes | yes | `memory/nodes/sop/clay.md` | studied |
+| clip | yes | yes | yes | `memory/nodes/sop/clip.md` | studied |
+| clothdeform | yes | yes | yes | `memory/nodes/sop/clothdeform.md` | studied |
+| cloudbillowynoise | yes | yes | yes | `memory/nodes/sop/cloudbillowynoise.md` | studied |
+| clusterpoints | yes | yes | yes | `memory/nodes/sop/clusterpoints.md` | studied |
+| comb | yes | yes | yes | `memory/nodes/sop/comb.md` | studied |
+| convert | yes | yes | yes | `memory/nodes/sop/convert.md` | studied |
+| convertline | yes | yes | yes | `memory/nodes/sop/convertline.md` | studied |
+| cookie | yes | yes | yes | `memory/nodes/sop/cookie.md` | studied |
+| copy | yes | yes | yes | `memory/nodes/sop/copy.md` | studied |
+| crease | yes | yes | yes | `memory/nodes/sop/crease.md` | studied |
+| creep | yes | yes | yes | `memory/nodes/sop/creep.md` | studied |
+| crowdmotionpath | yes | yes | yes | `memory/nodes/sop/crowdmotionpath.md` | studied |
+| crowdmotionpathavoid | yes | yes | yes | `memory/nodes/sop/crowdmotionpathavoid.md` | studied |
+| crowdmotionpathfollow | yes | yes | yes | `memory/nodes/sop/crowdmotionpathfollow.md` | studied |
+| crowdmotionpathlayer | yes | yes | yes | `memory/nodes/sop/crowdmotionpathlayer.md` | studied |
+| crowdmotionpathtransition | yes | yes | yes | `memory/nodes/sop/crowdmotionpathtransition.md` | studied |
+| crowdsource | yes | yes | yes | `memory/nodes/sop/crowdsource.md` | studied |
+| curve | yes | yes | yes | `memory/nodes/sop/curve.md` | studied |
+| curveclay | yes | yes | yes | `memory/nodes/sop/curveclay.md` | studied |
+| delete | yes | yes | yes | `memory/nodes/sop/delete.md` | studied |
+| deltamush | yes | yes | yes | `memory/nodes/sop/deltamush.md` | studied |
+| dissolve | yes | yes | yes | `memory/nodes/sop/dissolve.md` | studied |
+| distancealonggeometry | yes | yes | yes | `memory/nodes/sop/distancealonggeometry.md` | studied |
+| distancefromgeometry | yes | yes | yes | `memory/nodes/sop/distancefromgeometry.md` | studied |
+| divide | yes | yes | yes | `memory/nodes/sop/divide.md` | studied |
+| dopimportrecords | yes | yes | yes | `memory/nodes/sop/dopimportrecords.md` | studied |
+| duplicate | yes | yes | yes | `memory/nodes/sop/duplicate.md` | studied |
+| extrude | yes | yes | yes | `memory/nodes/sop/extrude.md` | studied |

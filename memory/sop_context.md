@@ -559,3 +559,118 @@ From `box/BoxSpring` example:
 
 - When `box` is used as lattice cage source, keep division settings synchronized with downstream `lattice` requirements.
 - Grouping top cage points + spring deformation is a reusable soft-cage setup.
+
+## 48. One-by-One Example Validation Pattern
+
+From the current academy sweep:
+
+- For broad node coverage, instantiate one official example asset at a time, verify cook/output quickly, then delete it before loading the next.
+- This avoids scene bloat and reduces cross-example contamination during long unattended study sessions.
+
+## 49. Attribute Utility Cluster Pattern
+
+From `attribcomposite`, `attribcopy`, `attribcreate`, `attribfill`, `attribfrompieces`, `attribfromvolume`, `attribpaint`, `attribremap`, `attribreorient`, `attribstringedit`, `attribtransfer`:
+
+- Treat attribute names/types/classes as explicit contracts.
+- Most failures are contract mismatches (wrong class, missing source attr, incompatible value type), not node algorithm failures.
+- For dense or painted workflows, establish a quick probe habit at handoff points to ensure expected attrs remain present.
+
+## 50. Crowd Example Baseline Pattern
+
+From `agentlayer`, `agentrelationship`, `agentvellumunpack`:
+
+- Crowd examples often encapsulate behavior in HDAs with OBJ-level orchestration; validate at object display outputs first, then dive deeper only when needed.
+- Parent-child and cloth-unpack workflows rely on consistent agent data plumbing; keep packed-agent contracts stable before downstream simulation.
+
+## 51. Missing-Doc Fallback Rule
+
+From `apex--editgraph` pass:
+
+- If `help/nodes/sop/<node>.txt` is missing but official examples exist, proceed with example-first study and clearly mark docs status as partial.
+- Capture this explicitly in node note status to preserve traceability.
+
+## 52. Foreach Block-End Reliability Pattern
+
+From `block_end` examples:
+
+- Treat `block_begin`/`block_end` pair wiring as a strict contract.
+- Small miswires in feedback/merge mode can produce valid-looking but semantically wrong output; verify iteration intent explicitly.
+
+## 53. CHOP-to-SOP Control Pattern
+
+From `channel` example:
+
+- CHOP-driven SOP control is effective for procedural motion shaping, but channel naming/path conventions must stay stable.
+- Validate imported channel effects directly at the consuming SOP, not only at CHOP level.
+
+## 54. Cloth Transfer Pattern
+
+From `clothdeform` example:
+
+- Use simulation on lower-res driver where possible, then transfer deformation to high-res target.
+- This provides better scalability than simulating the final dense mesh directly.
+
+## 55. Curve/Cap/Carve Construction Pattern
+
+From `circle`, `circlefromedges`, `carve`, `cap`, `chain` examples:
+
+- Build parametric curve structures first, then derive solid topology via cap/sweep/copy workflows.
+- Keep curve parameterization predictable before extraction/carving to avoid unstable downstream segmentation.
+
+## 56. Volume Noise Authoring Pattern
+
+From `cloudbillowynoise` + `bakevolume`:
+
+- Generate primary volumetric structure with procedural noise, then bake/transfer as needed for downstream lookdev or optimization.
+- Keep density/noise resolution choices conservative early to avoid expensive iterative tuning.
+
+## 57. Crowd Motion Path Stack Pattern
+
+From `crowdmotionpath*` + `crowdsource` examples:
+
+- Treat motion-path workflows as a layered stack:
+  1) source agents, 2) base paths, 3) follow/avoid/layer/transition ops, 4) evaluate.
+- Keep clip names, trigger logic, and transition graph assumptions consistent across the stack; subtle mismatches can silently degrade motion quality.
+
+## 58. Conversion Tool Choice Pattern
+
+From `convert`, `convertline`, `curve`, `circle`, `circlefromedges`:
+
+- Convert as late as possible, after core modeling intent is established.
+- Preserve clean curve parameterization before operations like carve/cap/copy-on-curve.
+
+## 59. Legacy vs Modern Geometry Ops Pattern
+
+From `cookie`, `copy`, `crease`, `creep` examples:
+
+- Some legacy nodes remain useful for specific established setups, but behavior may differ from modern counterparts.
+- In production maintenance, prefer matching existing tool lineage in a shot rather than mixing paradigms mid-network.
+
+## 60. Attribute-Mask Distance Pattern
+
+From `distancealonggeometry` and `distancefromgeometry` deep play:
+
+- Treat `dist` and `mask` as separate outputs with distinct contracts.
+- Toggling output-mask options can remove `mask` while keeping `dist`, which is useful to slim attribute payloads for downstream nodes.
+
+## 61. Delete vs Dissolve Decision Rule
+
+From `delete` and `dissolve` deep play:
+
+- Use `delete` when you want explicit component culling (including random/number filters).
+- Use `dissolve` when you want topological edge removal/merging while preserving surrounding surface continuity.
+- Invert/non-selected modes on both nodes can drastically expand operation scope; verify with probes immediately.
+
+## 62. Transform-vs-Topology Extrusion Rule
+
+From `extrude` and `duplicate` deep play:
+
+- Parameters like extrusion depth offset and duplicate transforms may change placement while preserving topology.
+- Parameters controlling copy count (`ncy`) change topology linearly/additively; monitor output size growth.
+
+## 63. Import-Record Payload Filtering Pattern
+
+From `dopimportrecords` deep play:
+
+- Field filtering can keep point counts stable while significantly shrinking imported attribute sets.
+- This is an effective optimization when downstream nodes only need a subset of simulation record data.
