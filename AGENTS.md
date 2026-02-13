@@ -64,6 +64,8 @@ You can use it to:
 ## Tutorials Expectations
 - Review `tutorials/index.md` first to refresh workflow memory.
 - Use relevant files in `tutorials/` before inventing a new approach.
+- When working in a specific context (for example SOP), refresh context memory first by reading `tutorials/<context>_context.md` (for example `tutorials/sop_context.md`).
+- When working on a specific node, refresh node memory first by reading `tutorials/nodes/<context>/<node>.md` if it exists.
 - If you struggle with something and then finally solve it, suggest updating the appropriate tutorial in `tutorials/` with that lesson.
 
 ## Tooling Improvement Expectations
