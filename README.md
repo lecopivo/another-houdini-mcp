@@ -7,7 +7,7 @@ AI, AI, AI, ... yap, yap, yap ... yawn ... another MCP incoming ... let AI do yo
 
 ## Self Improvement Philosophy
 
-LLMs are not trained directly on Houdini `*.hip` files, so even simple scene operations can be difficult at first. This MCP project is designed to run the agent from within the repository, where it is encouraged to add reusable tools and document proven workflows in tutorials, so future tasks become faster and more reliable.
+LLMs are not trained directly on Houdini `*.hip` files, so even simple scene operations can be difficult at first. This MCP project is designed to run the agent from within the repository, where it is encouraged to add reusable tools and document proven workflows in memory notes, so future tasks become faster and more reliable.
 
 ## Installation
 

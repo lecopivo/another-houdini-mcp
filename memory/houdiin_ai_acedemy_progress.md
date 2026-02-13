@@ -28,4 +28,4 @@ This file tracks overall progress across all node contexts.
 ## Notes
 
 - Total node examples by context are based on subdirectories in `help/examples/nodes/<context>/`.
-- Use `tutorials/nodes/<context>_progress.md` for node-level details.
+- Use `memory/nodes/<context>_progress.md` for node-level details.

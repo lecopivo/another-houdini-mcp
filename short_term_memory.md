@@ -16,12 +16,12 @@
   - Merge: output carries unioned attributes; in custom repro, missing `Cd` defaults appeared as white `(1,1,1)` rather than zero.
   - Remesh: adaptive example output `36417 pts / 72724 prims`; uniform mode and larger `targetsize` reduce topology substantially.
 - Docs updated:
-  - Added `tutorials/nodes/sop/blast.md`
-  - Added `tutorials/nodes/sop/merge.md`
-  - Added `tutorials/nodes/sop/remesh.md`
-  - Updated `tutorials/nodes/sop_progress.md`
-  - Updated `tutorials/houdiin_ai_acedemy_progress.md`
-  - Updated `tutorials/sop_context.md`
+  - Added `memory/nodes/sop/blast.md`
+  - Added `memory/nodes/sop/merge.md`
+  - Added `memory/nodes/sop/remesh.md`
+  - Updated `memory/nodes/sop_progress.md`
+  - Updated `memory/houdiin_ai_acedemy_progress.md`
+  - Updated `memory/sop_context.md`
 
 - 2026-02-13: Continued Houdini AI Academy SOP study batch (copytopoints, foreach, boolean).
 - Reviewed docs:
@@ -45,12 +45,12 @@
   - `boolean::2.0`: validated union/intersect/subtract behavior with bbox deltas.
   - Local docs corpus has no node-scoped `help/examples/nodes/sop/boolean/` or `.../copytopoints/` folders; marked those notes as in-progress/partial where appropriate.
 - Notes/progress updates:
-  - Added `tutorials/nodes/sop/copytopoints.md`
-  - Added `tutorials/nodes/sop/foreach.md`
-  - Added `tutorials/nodes/sop/boolean.md`
-  - Updated `tutorials/nodes/sop_progress.md`
-  - Updated `tutorials/houdiin_ai_acedemy_progress.md`
-  - Updated `tutorials/sop_context.md`
+  - Added `memory/nodes/sop/copytopoints.md`
+  - Added `memory/nodes/sop/foreach.md`
+  - Added `memory/nodes/sop/boolean.md`
+  - Updated `memory/nodes/sop_progress.md`
+  - Updated `memory/houdiin_ai_acedemy_progress.md`
+  - Updated `memory/sop_context.md`
 
 - 2026-02-13: Added reusable example-study tool modules to reduce ad-hoc Python usage.
 - New tools added under `tool_modules/` and registered in `tool_modules/registry.py`:
@@ -98,7 +98,7 @@
   - `validate_hda_behavior` on `/obj/mcp_verify1` with JSON-string `cases`/`comparisons`/`require_point_attributes` succeeded (`Valid: True`, `Errors: 0`).
 - Next checkpoint: optionally run broader regression tests for tool-module bridge paths and add automated tests for these three regressions.
 - 2026-02-12: Began Houdini AI Academy training on `sop/lattice`.
-  - Reviewed `tutorials/index.md`, `tutorials/houdini_ai_academy.md`, and `tutorials/sop_context.md`.
+  - Reviewed `memory/index.md`, `memory/houdini_ai_academy.md`, and `memory/sop_context.md`.
   - Read official docs in `help/nodes/sop/lattice.txt` and reviewed example notes in `help/examples/nodes/sop/lattice/*.txt`.
   - Built practical test network at `/obj/academy_lattice` with `sphere -> bound -> xform -> lattice -> output`.
   - Verified deformation via bbox delta after cage transform.
@@ -109,16 +109,16 @@
   - Explicitly extracted and reviewed sticky-note (post-it) text from all three assets and relevant subnets.
   - Extracted reusable patterns for single-lattice and per-piece foreach-lattice workflows.
   - Updated records:
-    - `tutorials/nodes/sop/lattice.md` (now marked studied with OTL findings)
-    - `tutorials/nodes/sop_progress.md` (nodes studied = 1)
-    - `tutorials/houdiin_ai_acedemy_progress.md` (fully studied = 1)
-    - `tutorials/sop_context.md` (context-level lattice pattern notes)
+    - `memory/nodes/sop/lattice.md` (now marked studied with OTL findings)
+    - `memory/nodes/sop_progress.md` (nodes studied = 1)
+    - `memory/houdiin_ai_acedemy_progress.md` (fully studied = 1)
+    - `memory/sop_context.md` (context-level lattice pattern notes)
 - Next checkpoint: pick next SOP shortlist node (`polyextrude` or `attribwrangle`) and repeat full workflow.
 - 2026-02-12: Continued Houdini AI Academy with `sop/polyextrude`.
   - Reviewed:
-    - `tutorials/index.md`
-    - `tutorials/houdini_ai_academy.md`
-    - `tutorials/sop_context.md`
+    - `memory/index.md`
+    - `memory/houdini_ai_academy.md`
+    - `memory/sop_context.md`
     - `help/nodes/sop/polyextrude.txt` and `help/nodes/sop/polyextrude-.txt`
     - `help/examples/nodes/sop/polyextrude/PolyextrudeTube.txt`
   - Built practical network: `/obj/academy_polyextrude` (`grid -> polyextrude -> output`).
@@ -132,10 +132,10 @@
     - internals reviewed for `global` and `local` branches
     - node comments extracted; no sticky notes present in this example
   - Updated docs:
-    - `tutorials/nodes/sop/polyextrude.md` (new, marked studied)
-    - `tutorials/nodes/sop_progress.md` (visited/studied counters now 2; example sets 4)
-    - `tutorials/houdiin_ai_acedemy_progress.md` (overall visited/studied/notes now 2; SOP row updated)
-    - `tutorials/sop_context.md` (added PolyExtrude context patterns)
+    - `memory/nodes/sop/polyextrude.md` (new, marked studied)
+    - `memory/nodes/sop_progress.md` (visited/studied counters now 2; example sets 4)
+    - `memory/houdiin_ai_acedemy_progress.md` (overall visited/studied/notes now 2; SOP row updated)
+    - `memory/sop_context.md` (added PolyExtrude context patterns)
   - Regressions encountered in current working tree while studying:
     - `probe_geometry` fails (`name 'self' is not defined`)
     - `instantiate_hda` fails (`name 'self' is not defined`)

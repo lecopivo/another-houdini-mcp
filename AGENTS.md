@@ -62,11 +62,11 @@ You can use it to:
 - The project documentation corpus is in `help/`.
 
 ## Tutorials Expectations
-- Review `tutorials/index.md` first to refresh workflow memory.
-- Use relevant files in `tutorials/` before inventing a new approach.
-- When working in a specific context (for example SOP), refresh context memory first by reading `tutorials/<context>_context.md` (for example `tutorials/sop_context.md`).
-- When working on a specific node, refresh node memory first by reading `tutorials/nodes/<context>/<node>.md` if it exists.
-- If you struggle with something and then finally solve it, suggest updating the appropriate tutorial in `tutorials/` with that lesson.
+- Review `memory/index.md` first to refresh workflow memory.
+- Use relevant files in `memory/` before inventing a new approach.
+- When working in a specific context (for example SOP), refresh context memory first by reading `memory/<context>_context.md` (for example `memory/sop_context.md`).
+- When working on a specific node, refresh node memory first by reading `memory/nodes/<context>/<node>.md` if it exists.
+- If you struggle with something and then finally solve it, suggest updating the appropriate tutorial in `memory/` with that lesson.
 
 ## Tooling Improvement Expectations
 - If you struggle to perform a repeated task and finally manage it via custom scripting/workarounds, suggest adding or improving a dedicated MCP tool.

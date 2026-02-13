@@ -14,7 +14,7 @@ The output of this work is a context-wide progress record plus one practical tut
 
 - Contexts covered: `chop`, `cop`, `cop2`, `dop`, `lop`, `obj`, `out`, `shop`, `sop`, `top`, `vop`
 - Node selection source: `help/examples/nodes/<context>/`
-- Per-node notes location: `tutorials/nodes/<context>/<node>.md`
+- Per-node notes location: `memory/nodes/<context>/<node>.md`
 
 ## Workflow (Per Node)
 
@@ -30,13 +30,13 @@ The output of this work is a context-wide progress record plus one practical tut
    - use `get_node_parameters(..., only_overrides=False)` or `get_parameter_info(...)`
    - avoid guessing tuple names (for example `tx/ty/tz` vs `t`, `divsx/divsy/divsz` vs `divs`)
 7. Test variations and record observed behavior, not just expected behavior
-8. Write `tutorials/nodes/<context>/<node>.md` using `tutorials/node_study_template.md`
-9. Run QA gate from `tutorials/academy_qa_checklist.md`
+8. Write `memory/nodes/<context>/<node>.md` using `memory/node_study_template.md`
+9. Run QA gate from `memory/academy_qa_checklist.md`
 10. Update progress files:
-   - `tutorials/houdiin_ai_acedemy_progress.md`
-   - `tutorials/nodes/<context>_progress.md`
+   - `memory/houdiin_ai_acedemy_progress.md`
+   - `memory/nodes/<context>_progress.md`
 11. Update high-level context guide:
-   - `tutorials/<context>_context.md`
+   - `memory/<context>_context.md`
    - Add or revise context-level patterns, common pitfalls, and cross-node workflows discovered during node study
 
 ## Node Study Checklist
@@ -62,9 +62,9 @@ A node counts as studied only when all are true:
 - Example OTL(s) reviewed in Houdini
 - Node comments and sticky notes reviewed and reflected in notes
 - Academy QA checklist completed
-- A summary note exists at `tutorials/nodes/<context>/<node>.md`
+- A summary note exists at `memory/nodes/<context>/<node>.md`
 - Progress counters updated
-- `tutorials/<context>_context.md` updated with any new context-level insight
+- `memory/<context>_context.md` updated with any new context-level insight
 
 ## Cadence
 

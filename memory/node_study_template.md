@@ -1,10 +1,10 @@
 # Node Study Template
 
-Use this for each `tutorials/nodes/<context>/<node>.md` note.
+Use this for each `memory/nodes/<context>/<node>.md` note.
 
 ## Workflow Reference
 
-Use `tutorials/houdini_ai_academy.md` section `Workflow (Per Node)` as the canonical end-to-end process.
+Use `memory/houdini_ai_academy.md` section `Workflow (Per Node)` as the canonical end-to-end process.
 
 ## Session Status
 
