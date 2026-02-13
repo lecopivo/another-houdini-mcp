@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 125
-- Nodes studied: 125
-- Example sets reviewed: 112
+- Nodes visited: 135
+- Nodes studied: 135
+- Example sets reviewed: 122
 
 ## Shortlist
 
@@ -139,3 +139,13 @@
 | dopimportrecords | yes | yes | yes | `memory/nodes/sop/dopimportrecords.md` | studied |
 | duplicate | yes | yes | yes | `memory/nodes/sop/duplicate.md` | studied |
 | extrude | yes | yes | yes | `memory/nodes/sop/extrude.md` | studied |
+| edgecollapse | yes | yes | yes | `memory/nodes/sop/edgecollapse.md` | studied |
+| edgecusp | yes | yes | yes | `memory/nodes/sop/edgecusp.md` | studied |
+| edgedivide | yes | yes | yes | `memory/nodes/sop/edgedivide.md` | studied |
+| edgeequalize | yes | yes | yes | `memory/nodes/sop/edgeequalize.md` | studied |
+| edgeflip | yes | yes | yes | `memory/nodes/sop/edgeflip.md` | studied |
+| edgefracture | yes | yes | yes | `memory/nodes/sop/edgefracture.md` | studied |
+| edgestraighten | yes | yes | yes | `memory/nodes/sop/edgestraighten.md` | studied |
+| edit | yes | yes | yes | `memory/nodes/sop/edit.md` | studied |
+| extracttransform | yes | yes | yes | `memory/nodes/sop/extracttransform.md` | studied |
+| facet | yes | yes | yes | `memory/nodes/sop/facet.md` | studied |

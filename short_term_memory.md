@@ -1,5 +1,18 @@
 ## Short-Term Memory
 
+- 2026-02-13: Continued strict deep-play pass and completed another 10 nodes.
+- Deep-studied nodes:
+  - `edgecollapse`, `edgecusp`, `edgedivide`, `edgeequalize`, `edgeflip`, `edgefracture`, `edgestraighten`, `edit`, `extracttransform`, `facet`
+- Deep-play highlights:
+  - `edgecollapse`: disabling degenerate removal changed primitive count (`3 -> 4`) in tested branch.
+  - `edgedivide`: `numdivs 4 -> 5` increased point count (`28 -> 32`) in active branch.
+  - `extracttransform`: enabling distortion added `distortion` attribute without changing point count.
+  - `facet`: cusp toggle altered shading/share behavior with stable topology in tested branch.
+- Process:
+  - One-by-one load, probe baseline, tweak key parm(s), probe again, delete node, continue.
+- Memory updates:
+  - Added/updated 10 node notes and refreshed progress/context totals.
+
 - 2026-02-13: Started stricter "deep play" SOP pass (per-node parameter interaction checks) and completed 10 nodes.
 - Deep-studied nodes:
   - `curveclay`, `delete`, `deltamush`, `dissolve`, `distancealonggeometry`, `distancefromgeometry`, `divide`, `dopimportrecords`, `duplicate`, `extrude`

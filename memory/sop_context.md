@@ -674,3 +674,31 @@ From `dopimportrecords` deep play:
 
 - Field filtering can keep point counts stable while significantly shrinking imported attribute sets.
 - This is an effective optimization when downstream nodes only need a subset of simulation record data.
+
+## 64. Edge Toolkit Separation Pattern
+
+From `edgecollapse`, `edgecusp`, `edgedivide`, `edgeequalize`, `edgeflip`, `edgefracture`, `edgestraighten` deep play:
+
+- Distinguish topology-changing operations (`edgecollapse`, `edgedivide`, fracture stages) from topology-stable reshaping/ordering ops (`edgeequalize`, `edgestraighten`, many `edgeflip`/`edgecusp` uses).
+- For topology-stable edge operations, probe counts will often stay fixed; validate by edge quality/shading/ordering expectations instead.
+
+## 65. Degeneracy Control Rule
+
+From `edgecollapse` and `dissolve`:
+
+- Degenerate-cleanup toggles can materially affect primitive counts after edge operations.
+- Keep cleanup intent explicit so downstream nodes receive expected manifold/non-manifold structures.
+
+## 66. Transform-Metadata Extraction Pattern
+
+From `extracttransform` deep play:
+
+- `extracttransform` outputs metadata points (transform attrs), not transformed geometry meshes.
+- Enabling distortion output is a practical QA signal for fit quality without changing point count.
+
+## 67. Facet Pipeline Order Reminder
+
+From `facet` example deep play:
+
+- Facet operations are staged; toggles like cusp/unique/consolidate can alter shading and sharing contracts even when counts appear unchanged.
+- Be explicit about whether your goal is render-normal behavior or watertight topology preservation.
