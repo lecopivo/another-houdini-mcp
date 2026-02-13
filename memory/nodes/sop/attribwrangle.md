@@ -84,6 +84,10 @@ Interpretation:
 - Wrong run-over class can duplicate operations unexpectedly (e.g., one `addpoint()` per point).
 - Reading from additional inputs requires careful index usage (`point(1, ...)`, `vertexindex(1, ...)`).
 - VEX errors often surface via node MMB info, not obvious viewport feedback.
+- **Using input-index references without wiring the corresponding input**: Functions like `nearpoint(1, @P)` or `point(1, "P", pt)` require input 1 to be wired. Using these without the input connected causes errors or incorrect behavior.
+- **Hardcoded geometry paths are fragile**: Using `nearpoint("op:/obj/geo/target", @P)` breaks when networks are moved or copied. Prefer relative input references like `nearpoint(1, @P, 10.0)` over hardcoded paths.
+- **No need to unlock native nodes**: Native Houdini nodes like attribwrangle can have their parameters set directly without unlocking. Only HDAs require unlocking before parameter edits.
+- **Working example**: `/obj/nearpoint_example` demonstrates correct usage of `nearpoint(1, @P)` with input 1 wired to target geometry.
 
 ## Related Nodes
 

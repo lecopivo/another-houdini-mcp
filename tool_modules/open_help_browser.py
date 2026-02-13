@@ -1,10 +1,77 @@
 from typing import Optional
 import re
+import os
 
 TOOL_NAME = "open_help_browser"
 IS_MUTATING = False
 
 send_command = None
+
+HELP_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "help")
+
+CONCEPT_PATHS = {
+    "crowds": "/crowds/index",
+    "crowd": "/crowds/index",
+    "agents": "/crowds/agents",
+    "flip": "/fluid/sopconfigflip",
+    "flip fluid": "/fluid/sopconfigflip",
+    "pyro": "/pyro/overview",
+    "vellum": "/vellum/index",
+    "ocean": "/ocean/overview",
+    "destruction": "/destruction/overview",
+    "rop": "/render/rop",
+    "mantra": "/props/mantra",
+    "kinefx": "/kinefx/index",
+    "lops": "/solaris/overview",
+    "solaris": "/solaris/overview",
+    "top": "/tops/overview",
+    "mpm": "/mpm/index",
+    "usd": "/solaris/overview",
+    "karma": "/solaris/karma",
+}
+
+VALID_EXTENSIONS = (".txt", ".md")
+
+
+def _help_path_exists(help_path: str) -> bool:
+    """Check if a help path exists in the local documentation."""
+    if not HELP_DIR or not os.path.isdir(HELP_DIR):
+        return True
+
+    path_parts = help_path.strip("/").split("/")
+    search_dir = HELP_DIR
+
+    for part in path_parts:
+        if not part:
+            continue
+        candidate = os.path.join(search_dir, part)
+        if os.path.isdir(candidate):
+            search_dir = candidate
+        elif os.path.isfile(candidate + ".txt") or os.path.isfile(candidate + ".md"):
+            return True
+        elif os.path.isfile(candidate):
+            return True
+        else:
+            return False
+
+    return True
+
+
+def _find_matching_docs(query: str) -> list:
+    """Find documentation files matching the query."""
+    matches = []
+    if not HELP_DIR or not os.path.isdir(HELP_DIR):
+        return matches
+
+    query_lower = query.lower()
+    for root, dirs, files in os.walk(HELP_DIR):
+        for f in files:
+            if f.endswith(VALID_EXTENSIONS):
+                rel_path = os.path.relpath(os.path.join(root, f), HELP_DIR)
+                if query_lower in rel_path.lower():
+                    matches.append(rel_path)
+
+    return matches[:5]
 
 def open_help_browser(
     node_type: Optional[str] = None,
@@ -111,29 +178,39 @@ def execute_plugin(params, server, hou):
         elif concept:
             # General concept - try common paths
             concept_lower = concept.lower()
-            # Map common concept names to help paths
-            concept_paths = {
-                "crowds": "/crowds/index",
-                "crowd": "/crowds/index",
-                "agents": "/crowds/agents",
-                "flip": "/fluid/sopconfigflip",
-                "flip fluid": "/fluid/sopconfigflip",
-                "pyro": "/pyro/overview",
-                "vellum": "/vellum/index",
-                "ocean": "/ocean/overview",
-                "destruction": "/destruction/overview",
-                "rop": "/render/rop",
-                "mantra": "/props/mantra",
-                "kinefx": "/kinefx/index",
-                "lops": "/solaris/overview",
-                "solaris": "/solaris/overview",
-                "top": "/tops/overview",
-            }
             
-            if concept_lower in concept_paths:
-                help_path = concept_paths[concept_lower]
+            # Check if concept is known
+            if concept_lower in CONCEPT_PATHS:
+                help_path = CONCEPT_PATHS[concept_lower]
+                if help_path is None:
+                    # Concept known but has no direct help page
+                    matches = _find_matching_docs(concept_lower)
+                    if matches:
+                        best_match = matches[0].replace(".txt", "").replace(".md", "")
+                        help_path = "/" + best_match
+                    else:
+                        return {
+                            "error": f"Concept '{concept}' does not have a dedicated help page. Try using 'solaris' instead for USD workflows.",
+                            "message": ""
+                        }
             else:
+                # Try to construct path and validate
                 help_path = f"/{concept_lower}/index"
+                if not _help_path_exists(help_path):
+                    # Try alternate path
+                    alt_path = f"/{concept_lower}/overview"
+                    if not _help_path_exists(alt_path):
+                        matches = _find_matching_docs(concept_lower)
+                        if matches:
+                            best_match = matches[0].replace(".txt", "").replace(".md", "")
+                            help_path = "/" + best_match
+                        else:
+                            return {
+                                "error": f"Documentation for '{concept}' not found. Try a different term or use 'solaris' for USD.",
+                                "message": ""
+                            }
+                    else:
+                        help_path = alt_path
             
             help_browser.displayHelpPath(help_path)
             message = f"Opened help for concept: {concept} ({help_path})"

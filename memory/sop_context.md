@@ -836,3 +836,21 @@ From deep `graphcolor` study:
 
 - Connectivity mode changes both color attribute class and required number of colors.
 - Enable sort + worksets for deterministic contiguous batching (`workset_begins`, `workset_lengths`) before OpenCL/grouped downstream passes.
+
+## 83. Wrangle Geometry Reference Pattern
+
+From wrangle node usage patterns:
+
+- **Prefer relative input references** over hardcoded paths:
+  - `nearpoint(1, @P, 10.0)` instead of `nearpoint("op:/obj/geo/target", @P, 10.0)`
+  - `point(1, "P", pt)` instead of `point("op:/obj/geo/target", "P", pt)`
+
+- **Always wire the corresponding input** to the wrangle node before using input-index references.
+  - Input 0 = first input (default)
+  - Input 1 = second input
+  - Input 2 = third input
+  - etc.
+
+- **Common mistake**: Using `nearpoint(1, ...)` without wiring input 1 results in errors or incorrect behavior.
+
+- **Hardcoded paths are fragile**: They break when networks move or are copied to different locations. Relative input references are portable and self-contained.

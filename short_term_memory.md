@@ -1,5 +1,18 @@
 ## Short-Term Memory
 
+- 2026-02-13: Created example setups for VEX proximity functions.
+- Created networks:
+  - `/obj/nearpoint_example`: sphere + scatter + attribwrangle using `nearpoint(1, @P)` with input 1 wired to target
+  - `/obj/planepoint_example`: grid + attribwrangle using `planepointdistance()` for plane distance
+- Updated help docs with examples:
+  - `help/vex/functions/nearpoint.txt`
+  - `help/vex/functions/nearpoints.txt`  
+  - `help/vex/functions/planepointdistance.txt`
+- Updated `memory/sop_context.md` with wrangle geometry reference pattern (section 83):
+  - Prefer relative input references like `nearpoint(1, @P)` over hardcoded paths
+  - Always wire corresponding input before using input-index references
+  - No need to unlock native Houdini nodes (only HDAs need unlocking)
+
 - 2026-02-13: Created new `open_help_browser` tool
 - Tool location: `tool_modules/open_help_browser.py`
 - Registered in: `tool_modules/registry.py` (import + TOOL_MODULES entry)
