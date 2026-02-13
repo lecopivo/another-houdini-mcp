@@ -1,5 +1,20 @@
 ## Short-Term Memory
 
+- 2026-02-13: Completed requested 3-node uninterrupted deep-study chunk.
+- Nodes covered:
+  - `grid` (`GridBasic`)
+  - `groupcopy` (`GroupCopyBox`)
+  - `groupexpand` (`GroupExpandBasic`)
+- Deep-play highlights:
+  - `grid`: validated representation matrix (quads/triangles/rows/cols/mesh/NURBS/Bezier/points-only) and orientation plane switching.
+  - `groupcopy`: validated conflict modes (`skip`, `overwrite`, `addsuffix`) with real destination-side preexisting group.
+  - `groupexpand`: validated grow/shrink via positive/negative steps and normal-angle constrained growth behavior; step attribute output verified.
+- Memory updates:
+  - added `memory/nodes/sop/grid.md`
+  - added `memory/nodes/sop/groupcopy.md`
+  - added `memory/nodes/sop/groupexpand.md`
+  - updated SOP progress/academy totals and SOP context patterns.
+
 - 2026-02-13: Continued strict one-node deep study with `fractal`.
 - Node covered:
   - `fractal` via `FractalGeoTypes` example

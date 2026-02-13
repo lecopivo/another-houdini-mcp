@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 143
-- Nodes studied: 143
-- Example sets reviewed: 134
+- Nodes visited: 146
+- Nodes studied: 146
+- Example sets reviewed: 137
 
 ## Shortlist
 
@@ -157,3 +157,6 @@
 | fluidsource | yes | partial | yes | `memory/nodes/sop/fluidsource.md` | studied |
 | force | yes | yes | yes | `memory/nodes/sop/force.md` | studied |
 | fractal | yes | yes | yes | `memory/nodes/sop/fractal.md` | studied |
+| grid | yes | yes | yes | `memory/nodes/sop/grid.md` | studied |
+| groupcopy | yes | yes | yes | `memory/nodes/sop/groupcopy.md` | studied |
+| groupexpand | yes | yes | yes | `memory/nodes/sop/groupexpand.md` | studied |

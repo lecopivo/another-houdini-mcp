@@ -788,3 +788,29 @@ From deep `fractal` study:
   4) `seed` for pattern variation.
 - Use `vtxnms=1` for surface-following breakup; use explicit `dir` when a directional bias is intentional.
 - Compare outputs with both topology counts and geometric roughness metrics (bbox/variance), since count-only checks miss shape character changes.
+
+## 77. Grid Representation Contract Pattern
+
+From deep `grid` study:
+
+- Distinguish sampling lattice (`rows/cols`) from representation (`type/surftype`).
+- Same point lattice can map to very different primitive structures (quads, triangles, lines, single-surface, or points-only).
+- For downstream tool compatibility, lock representation early (for example primitives required vs point-only source required).
+
+## 78. Group Copy Conflict-Safety Pattern
+
+From deep `groupcopy` study:
+
+- Treat conflict policy as part of data contract:
+  - `skip` for preservation,
+  - `overwrite` for authoritative source replacement,
+  - `addsuffix` for non-destructive merging.
+- Apply prefixes in production pipelines to avoid accidental namespace collisions when many group producers feed one destination stream.
+
+## 79. Group Expand Wavefront Pattern
+
+From deep `groupexpand` study:
+
+- Use positive/negative steps as a symmetric grow/shrink operator around a seed group.
+- Enable step attributes when debugging region propagation; this gives an explicit wavefront index per element.
+- Normal-angle constraints can intentionally localize growth to near-coplanar regions; tighten only after validating unconstrained spread.
