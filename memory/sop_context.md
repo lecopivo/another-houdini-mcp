@@ -757,3 +757,12 @@ From deep `font` study (`FontBasic`, `BubblyFont`):
 - Treat `type` and `lod` as primary performance controls; they can change point density by an order of magnitude.
 - Enable glyph metadata attributes (`textsymbol`, `textindex`) when downstream logic needs stable mapping from geometry back to characters.
 - In animated demo networks, many font parameters are expression-driven; inspect time-dependency before manual edits.
+
+## 74. Fluid Source Field-Contract Pattern
+
+From deep `fluidsource` study (`TorusVolume`, `ColourAdvect`):
+
+- Validate each emitted field by name and resolution, not just primitive count.
+- `divsize` mainly controls voxel resolution, while branch-composed fields (for example `Cd.x/y/z`) may keep independent resolutions.
+- `make_sdf` + `invert_sign` flips field semantics; keep sign conventions consistent with downstream sourcing/compositing.
+- Noise toggles can materially change source amplitude; retune source scale/operations when enabling procedural noise.

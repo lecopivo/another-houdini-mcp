@@ -1,5 +1,18 @@
 ## Short-Term Memory
 
+- 2026-02-13: Continued strict one-node deep study with `fluidsource`.
+- Node covered:
+  - `fluidsource` via `TorusVolume` and `ColourAdvect` examples (node doc file missing locally)
+- Deep-play observations recorded:
+  - `divsize` strongly changed voxel resolution in source fields
+  - `make_sdf` and `invert_sign` changed signed field ranges/semantics
+  - `use_noise` materially changed source amplitude
+  - in colour workflow, `density` and `Cd.*` fields came from separate branches with different resolutions
+  - `smoke_source` setup emitted both `density` and `temperature` fields
+- Memory updates:
+  - added `memory/nodes/sop/fluidsource.md`
+  - updated SOP progress and context patterns with fluid-source field-contract guidance
+
 - 2026-02-13: Continued strict one-node deep study with `font`.
 - Node covered:
   - `font` via `FontBasic` and `BubblyFont` examples
