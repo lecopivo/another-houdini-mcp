@@ -16,6 +16,7 @@ You can use it to:
 ### Scene and Node Exploration
 - `get_folder_info`
 - `get_node_info`
+- `get_node_presentation`
 - `get_node_connections`
 - `get_scene_info`
 - `get_sticky_notes`
@@ -26,6 +27,13 @@ You can use it to:
 - `connect_nodes`
 - `remove_connection`
 - `set_parameter`
+
+### Example and HDA Loading
+- `install_hda_file`
+- `list_example_nodes`
+- `instantiate_example_asset`
+- `load_example`
+- `instantiate_hda`
 
 ### Node and Parameter Discovery
 - `list_node_categories`
