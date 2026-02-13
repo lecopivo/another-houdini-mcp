@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 26
-- Nodes studied: 26
-- Example sets reviewed: 44
+- Nodes visited: 33
+- Nodes studied: 33
+- Example sets reviewed: 45
 
 ## Shortlist
 
@@ -39,3 +39,10 @@
 | error | yes | yes | yes | `memory/nodes/sop/error.md` | studied |
 | vellumsolver | yes | yes | yes | `memory/nodes/sop/vellumsolver.md` | studied |
 | vellumconstraints | yes | yes | yes | `memory/nodes/sop/vellumconstraints.md` | studied |
+| vellumconstraints_grain | yes | yes | yes | `memory/nodes/sop/vellumconstraints_grain.md` | studied |
+| vellumpostprocess | yes | yes | yes | `memory/nodes/sop/vellumpostprocess.md` | studied |
+| vellumio | yes | yes | yes | `memory/nodes/sop/vellumio.md` | studied |
+| vellumconfigurecloth | yes | yes | yes | `memory/nodes/sop/vellumconfigurecloth.md` | studied |
+| vellumconfigurehair | yes | yes | yes | `memory/nodes/sop/vellumconfigurehair.md` | studied |
+| guidedeform | yes | yes | yes | `memory/nodes/sop/guidedeform.md` | studied |
+| tetconform | yes | yes | yes | `memory/nodes/sop/tetconform.md` | studied |

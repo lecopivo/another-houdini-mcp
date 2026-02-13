@@ -1,5 +1,56 @@
 ## Short-Term Memory
 
+- 2026-02-13: Revisited `guidedeform` after user feedback and corrected validation depth.
+- Read docs again and verified mode semantics with explicit repro:
+  - `skin`, `capturedeform`, `capture`, `deform`
+  - confirmed node exposes 5 inputs: deform geo, rest skin, animated skin, rest guides, animated guides.
+- New test network:
+  - `/obj/academy_guidedeform_guides`
+  - validates one-step `capturedeform` vs two-step `capture -> deform` parity (pointwise identical in sampled frames).
+- Updated note:
+  - `memory/nodes/sop/guidedeform.md` now includes corrected mode-focused setup, frame displacement checks, and gotchas.
+
+- 2026-02-13: Added `memory/dop_context.md` as DOP-context companion to SOP context.
+- Includes:
+  - compressed DOP network fundamentals (state, time/substeps, bindings, SOP<->DOP workflow)
+  - rolling short-note section for studied DOP nodes
+  - initial notes for `vellumsource`, `vellumconstraintproperty`, `vellumrestblend`
+- Updated `memory/index.md` to link `DOP Context Basics`.
+
+- 2026-02-13: Completed requested 10-node follow-up list (with node-availability mapping where needed).
+- SOP nodes completed:
+  - `vellumconstraints_grain`, `vellumpostprocess`, `vellumio`, `vellumconfigurecloth` (workflow note), `vellumconfigurehair` (workflow note), `guidedeform`, `tetconform`.
+- DOP nodes completed:
+  - `vellumsource`, `vellumconstraintproperty`, `vellumrestblend`.
+- Availability note:
+  - No standalone SOP node types named `vellumconfigurecloth`/`vellumconfigurehair` in this build; documented equivalent workflow via `vellumconstraints` (`constrainttype=cloth` / `hair`).
+- Example coverage:
+  - No local example folders for most nodes above; fallback companion coverage used.
+  - Reviewed official `sop/vellumrestblend/BasicRestBlend` example as companion for rest-blend workflows.
+- Live validation setups created:
+  - `/obj/academy_vellumconstraints_grain`
+  - `/obj/academy_guidedeform`
+  - `/obj/academy_tetconform`
+  - `/obj/academy_vellum_dop_nodes`
+- Progress updates:
+  - `memory/nodes/sop_progress.md`: 33 studied SOP nodes.
+  - `memory/nodes/dop_progress.md`: 3 studied DOP nodes.
+  - `memory/houdiin_ai_acedemy_progress.md`: overall 36 studied nodes.
+
+- 2026-02-13: Started next Vellum-focused academy batch; completed `sop/vellumconstraints_grain`.
+- Docs reviewed:
+  - `help/nodes/sop/vellumconstraints_grain.txt`
+- Example coverage:
+  - No local `help/examples/nodes/sop/vellumconstraints_grain/` folder in corpus.
+  - Used fallback companion coverage + live custom validation network.
+- Live validation setup:
+  - `/obj/academy_vellumconstraints_grain` with `sphere -> vellumconstraints_grain -> vellumsolver`.
+  - Verified generated attrs and counts (`isgrain`, `pscale`, `mass`, etc.) and frame-wise settling behavior.
+  - Confirmed practical stability baseline with `solver.substeps=5` and ground-plane collision.
+- Docs updated:
+  - Added `memory/nodes/sop/vellumconstraints_grain.md`
+  - Updated `memory/nodes/sop_progress.md` and `memory/houdiin_ai_acedemy_progress.md`
+
 - 2026-02-13: Added SOP study note for `vellumconstraints` after live hair-pin debugging session.
 - Docs reviewed:
   - `help/nodes/sop/vellumconstraints.txt`
