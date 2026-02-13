@@ -196,3 +196,35 @@ From `/obj/academy_boolean` tests with overlapping boxes:
 - Input hygiene:
   - Treat normals/manifold quality as first-class checks before debugging parameter tweaks.
   - Keep `collapsetinyedges` enabled unless you need very specific seam geometry behavior.
+
+## 14. Blast Patterns
+
+From `blast/TorusBlast` and live parameter toggles:
+
+- Fast isolate/delete switch:
+  - Use `negate` to flip between "delete selected" and "keep selected" without rebuilding groups.
+
+- Reliable targeting:
+  - Confirm `grouptype` before trusting results (point vs primitive vs edge can radically change outcome).
+
+## 15. Merge Patterns
+
+From `merge/MergeAttributes` and custom repro:
+
+- Merge is structural, not corrective:
+  - It combines streams and unifies attribute schemas, but does not semantically reconcile mismatched attributes for you.
+
+- Build-safe habit:
+  - Set critical attrs explicitly upstream on all branches instead of relying on implicit defaults.
+
+## 16. Remesh Patterns
+
+From `remesh/Squidremesh`:
+
+- Mode selection heuristic:
+  - Adaptive (`sizing=1`) for feature-following density.
+  - Uniform (`sizing=0`) for predictable simulation-friendly triangle sizes.
+
+- Density controls:
+  - `targetsize` is the quickest coarse/fine control in uniform mode.
+  - Use hard-edge constraints when silhouette or seam preservation matters.

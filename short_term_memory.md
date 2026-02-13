@@ -1,5 +1,28 @@
 ## Short-Term Memory
 
+- 2026-02-13: Studied/tested SOP nodes `blast`, `merge`, and `remesh`.
+- Docs reviewed:
+  - `help/nodes/sop/blast.txt`
+  - `help/nodes/sop/merge.txt`
+  - `help/nodes/sop/remesh.txt`
+- Examples loaded and inspected:
+  - `/obj/academy_TorusBlast` from `help/examples/nodes/sop/blast/TorusBlast.*`
+  - `/obj/academy_MergeAttributes` from `help/examples/nodes/sop/merge/MergeAttributes.*`
+  - `/obj/academy_Squidremesh` from `help/examples/nodes/sop/remesh/Squidremesh.*`
+- Additional live validation network:
+  - `/obj/academy_merge_live` to test merge attribute propagation behavior explicitly.
+- Key observed outcomes:
+  - Blast: base deletion reduced torus from `100/100` to `93/91` (pts/prims); `negate=1` isolates to `7/3`.
+  - Merge: output carries unioned attributes; in custom repro, missing `Cd` defaults appeared as white `(1,1,1)` rather than zero.
+  - Remesh: adaptive example output `36417 pts / 72724 prims`; uniform mode and larger `targetsize` reduce topology substantially.
+- Docs updated:
+  - Added `tutorials/nodes/sop/blast.md`
+  - Added `tutorials/nodes/sop/merge.md`
+  - Added `tutorials/nodes/sop/remesh.md`
+  - Updated `tutorials/nodes/sop_progress.md`
+  - Updated `tutorials/houdiin_ai_acedemy_progress.md`
+  - Updated `tutorials/sop_context.md`
+
 - 2026-02-13: Continued Houdini AI Academy SOP study batch (copytopoints, foreach, boolean).
 - Reviewed docs:
   - `help/nodes/sop/copytopoints.txt`
