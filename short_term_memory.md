@@ -1,5 +1,57 @@
 ## Short-Term Memory
 
+- 2026-02-13: Continued strict one-node deep study with `font`.
+- Node covered:
+  - `font` via `FontBasic` and `BubblyFont` examples
+- Deep-play observations recorded:
+  - primitive type changed tessellation density on same text
+  - `addattrib` correctly emitted `textsymbol` and `textindex`
+  - `lod` massively changed point counts on curved glyphs (`OOOO` low vs high lod)
+  - control-character text can produce empty geometry (valid behavior)
+  - expression-driven demo parameters can mask manual parameter edits if not accounted for
+- Memory updates:
+  - added `memory/nodes/sop/font.md`
+  - updated SOP progress and context patterns
+
+- 2026-02-13: Continued strict one-node deep study with `findshortestpath`.
+- Node covered:
+  - `findshortestpath` via `DirectedEdgesPath` and `PathAnalysis` examples
+- Deep-play observations recorded:
+  - directed-primitive constraints can make endpoints unreachable (no path primitives emitted)
+  - disabling directed constraints restored reachability for previously unreachable endpoint tests
+  - output-path metadata attrs (`startpt`, `endpt`, `pathcost`) correctly emitted with sentinel `-1` on non-path prims
+  - in analysis branch, point cost attribute materially changed route-cost distributions vs no-cost branch
+  - `omitdistance` interaction: without alternate costs produced zero-cost field; with point costs produced weight-only costs
+- Memory updates:
+  - added `memory/nodes/sop/findshortestpath.md`
+  - updated SOP progress and context patterns
+
+- 2026-02-13: Continued strict one-node deep study with `fit`.
+- Node covered:
+  - `fit` via `examples/nodes/sop/fit/FitCurves.txt` and `examples/nodes/sop/fit/FitSurfaces.txt`
+- Deep-play observations recorded:
+  - interpolation scope changed curve/surface CV counts significantly
+  - NURBS vs Bezier output type strongly affected point density
+  - approximation order increased output density on surface example
+  - observed major density jumps with Bezier + breakpoint/global scope combinations
+- Memory updates:
+  - added `memory/nodes/sop/fit.md`
+  - updated progress/context totals and SOP context with fit stability pattern
+
+- 2026-02-13: Continued strict one-node deep study with `fillet`.
+- Node covered:
+  - `fillet` via `examples/nodes/sop/fillet/GridFillet.txt`
+- Deep-play observations recorded:
+  - direction (`U` vs `V`) significantly changed bridge density (`240 pts` vs `330 pts` in tested setup)
+  - higher order increased density (`order 4 -> 6` raised points)
+  - width/scale combinations changed bridge footprint and bounds
+  - `cut` interaction with direction could collapse bridge result (`dir=V`, `cut=1` -> `140 pts / 2 prims`)
+- Memory updates:
+  - added `memory/nodes/sop/fillet.md`
+  - updated `memory/nodes/sop_progress.md`
+  - updated `memory/houdiin_ai_acedemy_progress.md`
+  - updated `memory/sop_context.md`
+
 - 2026-02-13: Continued strict one-node deep study with `falloff`.
 - Node covered:
   - `falloff` via `examples/nodes/sop/falloff/falloff_twisted_squab.txt`

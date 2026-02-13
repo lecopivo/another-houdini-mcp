@@ -720,3 +720,40 @@ From deep `falloff` study (`falloff_twisted_squab`):
 - `Unbounded Distance` output can exceed 1.0 and overdrive blend math (for example `lerp` extrapolation).
 - For blending masks, prefer normalized outputs or explicit clamping/remapping before use.
 - Enable lead-point/group outputs when debugging influence scope (`falloff_leadpt`, `insideRad`).
+
+## 70. Fillet Direction-First Pattern
+
+From deep `fillet` study (`GridFillet`):
+
+- Choose fillet direction (`U` vs `V`) before fine-tuning width/scale/order.
+- Direction choice can change bridge topology density and span behavior more than fillet type alone.
+- After direction is locked, tune `order` for smoothness and `lrwidth/lrscale` for footprint.
+- Test `cut` only after direction is finalized; in some setups it dramatically changes resulting primitive count and whether source surfaces remain fully represented.
+
+## 71. Fit Stability Pattern
+
+From deep `fit` study (`FitCurves`, `FitSurfaces`):
+
+- Choose `method` based on downstream stability requirements:
+  - `Interpolation` for more stable CV counts when input count is stable.
+  - `Approximation` for reduction/smoothing, accepting potential CV layout variability.
+- `scope` and spline `type` can change point/CV density dramatically, especially on surfaces.
+- Bezier + breakpoint-heavy interpolation can become very dense; validate counts early before committing in animated pipelines.
+
+## 72. Pathfinding Cost-Model Pattern
+
+From deep `findshortestpath` study (`DirectedEdgesPath`, `PathAnalysis`):
+
+- Treat reachability and cost semantics as separate concerns:
+  - reachability is mainly controlled by topology and directed/avoided constraints,
+  - ranking of valid paths is controlled by distance/point/primitive/custom costs.
+- `omitdistance` should only be used when an alternative cost model is intentionally provided; otherwise costs can collapse to non-informative values.
+- For diagnostic workflows, always output explicit path metadata (`path group`, `start/end/pathcost`) so downstream nodes can distinguish routes from carrier geometry.
+
+## 73. Font Tessellation Contract Pattern
+
+From deep `font` study (`FontBasic`, `BubblyFont`):
+
+- Treat `type` and `lod` as primary performance controls; they can change point density by an order of magnitude.
+- Enable glyph metadata attributes (`textsymbol`, `textindex`) when downstream logic needs stable mapping from geometry back to characters.
+- In animated demo networks, many font parameters are expression-driven; inspect time-dependency before manual edits.
