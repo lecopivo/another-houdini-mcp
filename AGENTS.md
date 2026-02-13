@@ -66,6 +66,12 @@ You can use it to:
 - Use relevant files in `memory/` before inventing a new approach.
 - When working in a specific context (for example SOP), refresh context memory first by reading `memory/<context>_context.md` (for example `memory/sop_context.md`).
 - When working on a specific node, refresh node memory first by reading `memory/nodes/<context>/<node>.md` if it exists.
+- Treat `memory/<context>_context.md` and `memory/nodes/<context>/<node>.md` as extended documentation, not activity logs.
+- `memory/<context>_context.md` should contain generalized context-level rules, patterns, heuristics, pitfalls, and cross-node workflows.
+- `memory/nodes/<context>/<node>.md` should contain reusable node-level guidance: intent, setup contracts, parameter interactions, debug tactics, and production usage notes.
+- Do not record raw chronological "what I clicked/did" logs in these files; abstract concrete experiences into general lessons.
+- If an experiment reveals a failure mode, record the transferable rule (why it failed, how to detect, how to fix), not scene-specific narration.
+- Keep session chronology and restart checkpoints in `short_term_memory.md` only.
 - When reviewing an example scene for a target node, inspect all meaningful companion nodes in that example network (not just the target node) and capture reusable patterns in memory notes.
 - If companion-node findings are strong enough, add or update their own `memory/nodes/<context>/<node>.md` files even if they were not the primary study target.
 - Do not defer companion-node note updates: while studying one node, proactively edit other node memory notes in the same session when you discover meaningful behavior, patterns, parameters, or edge cases.

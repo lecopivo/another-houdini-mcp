@@ -16,6 +16,26 @@ The output of this work is a context-wide progress record plus one practical tut
 - Node selection source: `help/examples/nodes/<context>/`
 - Per-node notes location: `memory/nodes/<context>/<node>.md`
 
+## Role of Memory Files
+
+These files are extended, personalized documentation for future work.
+
+- `memory/<context>_context.md`
+  - Context-level reference for generalized patterns, heuristics, pitfalls, and cross-node workflows.
+  - Should help quickly answer: "How does work typically happen in this context?"
+
+- `memory/nodes/<context>/<node>.md`
+  - Node-level reference for reusable setup contracts, key parameter interactions, debug tactics, and production usage guidance.
+  - Should help quickly answer: "How do I use this node correctly in real setups?"
+
+- What these files are not:
+  - Not chronological logs of actions performed in one scene/session.
+  - Not "I clicked X then Y" narratives.
+
+- Recording rule:
+  - Convert concrete experiments into transferable lessons: why something failed, how to detect it, and how to fix/prevent it.
+  - Put session chronology and restart checkpoints in `short_term_memory.md` only.
+
 ## Workflow (Per Node)
 
 1. Pick node from shortlist in `<context>_progress.md`
@@ -33,6 +53,7 @@ The output of this work is a context-wide progress record plus one practical tut
    - avoid guessing tuple names (for example `tx/ty/tz` vs `t`, `divsx/divsy/divsz` vs `divs`)
 8. Test variations and record observed behavior, not just expected behavior
 9. Write `memory/nodes/<context>/<node>.md` using `memory/node_study_template.md`
+   - Distill observations into generalized guidance, not scene-specific logs.
 10. Run QA gate from `memory/academy_qa_checklist.md`
 11. Update progress files:
    - `memory/houdiin_ai_acedemy_progress.md`

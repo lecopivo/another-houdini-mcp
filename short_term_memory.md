@@ -1,5 +1,17 @@
 ## Short-Term Memory
 
+- 2026-02-13: Built new clean ocean FLIP setup from scratch based on corrected notes.
+- Network:
+  - `/obj/academy_flip_setup4_ocean_clean`
+  - `box -> flipcontainer -> flipsolver(0/1/2)` and `oceanspectrum -> oceanevaluate -> flipsolver(3)`
+  - downstream `fluidcompress -> particlefluidsurface -> OUT_OCEAN`
+- Verification:
+  - connectivity matches `geo1` ocean pattern
+  - output remains non-zero across sampled frames (no collapse)
+- Memory updates:
+  - `memory/nodes/sop/flipsolver.md` (added verified clean ocean recipe + settings)
+  - `memory/sop_context.md` (added explicit no-`flipboundary` rule for pure ocean-boundary path)
+
 - 2026-02-13: User asked to list all new `/obj/geo1` nodes, add them to academy plan, and start next 10 studies.
 - Plan update:
   - Added `/obj/geo1` discovery node list to `memory/houdini_ai_academy.md`.

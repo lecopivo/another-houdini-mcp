@@ -431,7 +431,7 @@ From `sop/vellumsolver` official examples (all local example assets reviewed one
 
 ## 36. SOP FLIP Network Patterns
 
-From `/obj/geo1` multi-branch SOP FLIP reference setup:
+From SOP FLIP companion studies:
 
 - Core chain:
   - `flipcontainer -> (optional flipboundary/flipcollide) -> flipsolver -> fluidcompress -> filecache -> particlefluidsurface`.
@@ -448,6 +448,7 @@ From `/obj/geo1` multi-branch SOP FLIP reference setup:
 
 - Ocean/open boundary:
   - `oceanspectrum -> oceanevaluate` feeds solver input 3 for boundary motion in large/open-water style setups.
+  - Keep solver inputs `0/1/2` coming directly from `flipcontainer` for pure ocean-boundary setups; do not route the main stream through `flipboundary` unless you intentionally need source/sink behavior.
 
 - Whitewater extension:
   - Standard downstream branch is `whitewatersource -> whitewatersolver -> whitewaterpostprocess`, typically fed from compressed FLIP outputs.
@@ -457,7 +458,7 @@ From `/obj/geo1` multi-branch SOP FLIP reference setup:
 
 ## 37. SOP Whitewater/Ocean Companion Pattern
 
-From `/obj/geo1` branches 4-6:
+From SOP FLIP ocean/whitewater companion studies:
 
 - Ocean boundary workflow:
   - `oceanspectrum -> oceanevaluate -> flipsolver(input3)` is a common open-water coupling pattern.
