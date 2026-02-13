@@ -1,5 +1,38 @@
 ## Short-Term Memory
 
+- 2026-02-13: User asked to list all new `/obj/geo1` nodes, add them to academy plan, and start next 10 studies.
+- Plan update:
+  - Added `/obj/geo1` discovery node list to `memory/houdini_ai_academy.md`.
+- Studied next 10 nodes (SOP):
+  - `flipcontainer`, `flipboundary`, `flipcollide`, `fluidcompress`, `particlefluidsurface`,
+  - `whitewatersource`, `whitewatersolver`, `whitewaterpostprocess`,
+  - `oceanspectrum`, `oceanevaluate`.
+- Added notes:
+  - `memory/nodes/sop/flipcontainer.md`
+  - `memory/nodes/sop/flipboundary.md`
+  - `memory/nodes/sop/flipcollide.md`
+  - `memory/nodes/sop/fluidcompress.md`
+  - `memory/nodes/sop/particlefluidsurface.md`
+  - `memory/nodes/sop/whitewatersource.md`
+  - `memory/nodes/sop/whitewatersolver.md`
+  - `memory/nodes/sop/whitewaterpostprocess.md`
+  - `memory/nodes/sop/oceanspectrum.md`
+  - `memory/nodes/sop/oceanevaluate.md`
+- Progress updates:
+  - `memory/nodes/sop_progress.md`: 44 studied SOP nodes.
+  - `memory/houdiin_ai_acedemy_progress.md`: 47 total studied nodes.
+  - `memory/sop_context.md`: added whitewater/ocean companion pattern.
+
+- 2026-02-13: Studied SOP FLIP reference network in `/obj/geo1` and documented reusable pattern.
+- Work completed:
+  - inspected all major branch topologies and stream wiring contracts (0/1/2 fluid streams + optional solver input 3 ocean boundary)
+  - read docs for all unique top-level/subnet node types involved in the SOP FLIP setups
+  - extracted canonical build order and variants (minimal tank, source/sink, collide, ocean boundary, whitewater extension, adaptive domain shaping)
+- Docs updated:
+  - added `memory/nodes/sop/flipsolver.md`
+  - updated `memory/sop_context.md` with SOP FLIP pattern section
+  - updated `memory/nodes/sop_progress.md` and `memory/houdiin_ai_acedemy_progress.md`
+
 - 2026-02-13: Revisited `guidedeform` after user feedback and corrected validation depth.
 - Read docs again and verified mode semantics with explicit repro:
   - `skin`, `capturedeform`, `capture`, `deform`

@@ -1,13 +1,14 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 33
-- Nodes studied: 33
+- Nodes visited: 44
+- Nodes studied: 44
 - Example sets reviewed: 45
 
 ## Shortlist
 
-- (pick next)
+- Remaining `/obj/geo1` nodes to study next:
+- `subdivide`, `attribfrommap`, `attribnoise`, `attribadjustcolor`, `file`, `bound`, `extrudevolume`, `tube`, `vdbfrompolygons`, `vdbactivate`, `volumewrangle`, `volume`, `volumesdf`, `primitive`, `filecache`, `subnet`, `output`, `testgeometry_rubbertoy`, `box`, `sphere`
 
 ## Studied Nodes
 
@@ -46,3 +47,14 @@
 | vellumconfigurehair | yes | yes | yes | `memory/nodes/sop/vellumconfigurehair.md` | studied |
 | guidedeform | yes | yes | yes | `memory/nodes/sop/guidedeform.md` | studied |
 | tetconform | yes | yes | yes | `memory/nodes/sop/tetconform.md` | studied |
+| flipsolver | yes | yes | yes | `memory/nodes/sop/flipsolver.md` | studied |
+| flipcontainer | yes | yes | yes | `memory/nodes/sop/flipcontainer.md` | studied |
+| flipboundary | yes | yes | yes | `memory/nodes/sop/flipboundary.md` | studied |
+| flipcollide | yes | yes | yes | `memory/nodes/sop/flipcollide.md` | studied |
+| fluidcompress | yes | yes | yes | `memory/nodes/sop/fluidcompress.md` | studied |
+| particlefluidsurface | yes | yes | yes | `memory/nodes/sop/particlefluidsurface.md` | studied |
+| whitewatersource | yes | yes | yes | `memory/nodes/sop/whitewatersource.md` | studied |
+| whitewatersolver | yes | yes | yes | `memory/nodes/sop/whitewatersolver.md` | studied |
+| whitewaterpostprocess | yes | yes | yes | `memory/nodes/sop/whitewaterpostprocess.md` | studied |
+| oceanspectrum | yes | yes | yes | `memory/nodes/sop/oceanspectrum.md` | studied |
+| oceanevaluate | yes | yes | yes | `memory/nodes/sop/oceanevaluate.md` | studied |

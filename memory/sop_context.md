@@ -428,3 +428,44 @@ From `sop/vellumsolver` official examples (all local example assets reviewed one
 
 - Fluid phase emission pattern:
   - Multi-fluid examples often feed source geometry/constraints through Vellum Source DOPs inside solver internals rather than SOP inputs 0/1 directly; early-frame direct solver output can be empty by design.
+
+## 36. SOP FLIP Network Patterns
+
+From `/obj/geo1` multi-branch SOP FLIP reference setup:
+
+- Core chain:
+  - `flipcontainer -> (optional flipboundary/flipcollide) -> flipsolver -> fluidcompress -> filecache -> particlefluidsurface`.
+
+- Input tri-stream contract:
+  - FLIP family nodes pass three synchronized streams (sources, container, collisions) through inputs/outputs 0/1/2.
+  - Keep these stream connections aligned between container/boundary/collide/solver/compress.
+
+- Source/sink control:
+  - `flipboundary` is for particle add/remove and boundary velocity/pressure transfer from custom geometry/volumes.
+
+- Collision control:
+  - `flipcollide` converts geometry to collision representation; pairing with proper solver collision mode is required for open vs closed colliders.
+
+- Ocean/open boundary:
+  - `oceanspectrum -> oceanevaluate` feeds solver input 3 for boundary motion in large/open-water style setups.
+
+- Whitewater extension:
+  - Standard downstream branch is `whitewatersource -> whitewatersolver -> whitewaterpostprocess`, typically fed from compressed FLIP outputs.
+
+- Adaptive-domain pattern:
+  - VDB preprocessing subnets (`vdbactivate` + `volumewrangle` + masks) are used to shape/activate solve region before `flipcontainer`.
+
+## 37. SOP Whitewater/Ocean Companion Pattern
+
+From `/obj/geo1` branches 4-6:
+
+- Ocean boundary workflow:
+  - `oceanspectrum -> oceanevaluate -> flipsolver(input3)` is a common open-water coupling pattern.
+
+- Whitewater chain contract:
+  - `whitewatersource` expects liquid fields (`surface`, `vel`) and optionally particles/pressure,
+  - `whitewatersolver` consumes source output + container + collisions,
+  - `whitewaterpostprocess` converts particles to render-friendly particles/volume/mesh outputs.
+
+- Compression-aware downstreaming:
+  - `fluidcompress` can be inserted before caching and still feed `particlefluidsurface`/`whitewatersource` reliably when stream contract is respected.
