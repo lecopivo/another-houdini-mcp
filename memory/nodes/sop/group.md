@@ -56,6 +56,7 @@
 - Wrong group class silently breaks downstream consumers.
 - Number/pattern-based groups are brittle when upstream topology changes.
 - Complex combines are easy to misread later; prefer clear naming and staged groups.
+- Always verify the created group is non-empty before using it in downstream constraints/filters (empty groups can fail silently and look like solver instability).
 
 ## Related Nodes
 

@@ -406,3 +406,25 @@ From `foreach/cheese` and `surfsect/SurfsectBasic` companions:
 
 - Boolean-style operations in production examples frequently appear inside iterative loops (`foreach + cookie`) or alternate boolean nodes (`surfsect`), not always as standalone `boolean::2.0` examples.
 - Keep one direct `boolean::2.0` repro network for parameter semantics, and use companion examples to learn broader workflow context.
+
+## 35. Vellum Solver Patterns
+
+From `sop/vellumsolver` official examples (all local example assets reviewed one-by-one):
+
+- Heavy-solver workflow hygiene:
+  - Load one vellum example, inspect it, then delete it before loading the next to avoid unnecessary memory/cook pressure.
+
+- Dynamic constraint pattern:
+  - Example setups often create or update constraints inside `vellumsolver/dopnet/forces` with Vellum Constraints/Constraint Property DOPs (Attach, Stitch, Glue, rest/property animation).
+
+- Per-point collision control:
+  - Use attrs such as `collisionignore`, `collisiongroup`, and `disableexternal` to localize collision behavior without splitting into separate solves.
+
+- Layered cloth stabilization:
+  - Integer `layer` point attr with solver `layershock` gives predictable ordering for stacked garments/sleeves.
+
+- Multi-res targeting:
+  - Upscale low-res cloth motion via high-res soft pins (`targetweight` masks) to preserve macro motion while re-solving collisions/wrinkles.
+
+- Fluid phase emission pattern:
+  - Multi-fluid examples often feed source geometry/constraints through Vellum Source DOPs inside solver internals rather than SOP inputs 0/1 directly; early-frame direct solver output can be empty by design.

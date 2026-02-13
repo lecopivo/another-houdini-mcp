@@ -5,9 +5,9 @@ This file tracks overall progress across all node contexts.
 ## Overall Summary
 
 - Contexts tracked: 11
-- Nodes visited: 24
-- Nodes fully studied (doc + examples + note): 24
-- Notes written: 24
+- Nodes visited: 26
+- Nodes fully studied (doc + examples + note): 26
+- Notes written: 26
 
 ## Context Status
 
@@ -21,7 +21,7 @@ This file tracks overall progress across all node contexts.
 | obj | 9 | 0 | 0 | 0 | 0 | 0.0% |
 | out | 9 | 0 | 0 | 0 | 0 | 0.0% |
 | shop | 4 | 0 | 0 | 0 | 0 | 0.0% |
-| sop | 236 | 24 | 24 | 26 | 24 | 10.2% |
+| sop | 236 | 26 | 26 | 44 | 26 | 11.0% |
 | top | 81 | 0 | 0 | 0 | 0 | 0.0% |
 | vop | 13 | 0 | 0 | 0 | 0 | 0.0% |
 

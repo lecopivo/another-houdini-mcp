@@ -1,13 +1,13 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 24
-- Nodes studied: 24
-- Example sets reviewed: 26
+- Nodes visited: 26
+- Nodes studied: 26
+- Example sets reviewed: 44
 
 ## Shortlist
 
-- vellumsolver
+- (pick next)
 
 ## Studied Nodes
 
@@ -37,3 +37,5 @@
 | name | yes | yes | yes | `memory/nodes/sop/name.md` | studied |
 | groupsfromname | yes | yes | yes | `memory/nodes/sop/groupsfromname.md` | studied |
 | error | yes | yes | yes | `memory/nodes/sop/error.md` | studied |
+| vellumsolver | yes | yes | yes | `memory/nodes/sop/vellumsolver.md` | studied |
+| vellumconstraints | yes | yes | yes | `memory/nodes/sop/vellumconstraints.md` | studied |

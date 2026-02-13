@@ -1,5 +1,40 @@
 ## Short-Term Memory
 
+- 2026-02-13: Added SOP study note for `vellumconstraints` after live hair-pin debugging session.
+- Docs reviewed:
+  - `help/nodes/sop/vellumconstraints.txt`
+- Example coverage:
+  - No local `help/examples/nodes/sop/vellumconstraints/` folder in corpus.
+  - Used fallback companion coverage from `sop/vellumsolver` examples + custom live setups.
+- Key observed outcomes:
+  - Separate staged constraints (`hair` then `pin`) are clearer and easier to debug.
+  - Empty/wrong-class groups can silently disable constraints and mimic solver instability.
+  - Validating group non-emptiness before solve is a high-value check.
+- Docs updated:
+  - Added `memory/nodes/sop/vellumconstraints.md`
+  - Added `memory/nodes/sop/sphere.md`
+  - Updated `memory/nodes/sop/group.md` (non-empty group gotcha)
+  - Updated `memory/nodes/sop_progress.md` and `memory/houdiin_ai_acedemy_progress.md`
+
+- 2026-02-13: Studied `sop/vellumsolver` with full local example sweep and heavy-solver hygiene.
+- Docs reviewed:
+  - `help/nodes/sop/vellumsolver.txt`
+  - `help/examples/nodes/sop/vellumsolver/*.txt` (18 examples)
+- Example handling policy followed for compute-heavy content:
+  - Loaded exactly one example at a time, inspected, then deleted it before loading the next.
+- Examples loaded/inspected (all deleted after inspection):
+  - `AnimatedConstraints`, `AnimatedPressure`, `ArmLayer`, `ArmTarget`, `CollisionDisable`, `CollisionIgnore`, `DynamicAttach`, `DynamicStitchGlue`, `GluedGrains`, `HairOrient`, `ResolutionTarget`, `SimpleWeld`, `StiffnessDropoff`, `TetrahedralFiber`, `VaryingFriction`, `VellumFluidPhasesStart`, `VellumFluidPhasesReference`, `VellumFluidSetupGeo`.
+- Key observed outcomes:
+  - Dynamic constraint creation/update pattern repeatedly appears inside `vellumsolver/dopnet/forces`.
+  - Collision control examples confirm practical use of `collisionignore`, `collisiongroup`, and `disableexternal` attrs.
+  - Layering (`layer` + `layershock`) and multi-res targeting are strong reusable workflows.
+  - Fluid phase example confirms DOP-side Vellum Source pattern; direct solver output may be empty at start frame while display merge contains collider/scene geometry.
+- Docs updated:
+  - Added `memory/nodes/sop/vellumsolver.md`
+  - Updated `memory/nodes/sop_progress.md` (25 studied SOP nodes; example sets reviewed 44)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall studied/notes 25; SOP 10.6%)
+  - Updated `memory/sop_context.md` (added Vellum Solver pattern section)
+
 - 2026-02-13: Finished all previously in-progress SOP notes using fallback coverage for nodes with missing local example folders.
 - Completed nodes promoted to studied:
   - `copytopoints`, `boolean`, `switch`, `switchif`, `voronoifracture`, `name`, `groupsfromname`, `error`
