@@ -18,6 +18,7 @@ import json
 import socket
 import threading
 import sys
+import importlib
 
 try:
     import hou
@@ -26,17 +27,23 @@ except ImportError:
     print("Open Houdini, go to Windows → Python Shell, and run this script")
     sys.exit(1)
 
-from tool_modules.registry import get_mutating_commands, get_plugin_handlers
-
 class HoudiniMCPServer:
     _active_server = None
-    MUTATING_COMMANDS = get_mutating_commands()
 
     def __init__(self, host="localhost", port=9876):
         self.host = host
         self.port = port
         self.socket = None
         self.running = False
+        self._registry = importlib.import_module("tool_modules.registry")
+        self.MUTATING_COMMANDS = set()
+        self._refresh_registry()
+
+    def _refresh_registry(self):
+        """Reload tool registry so updated tool modules are picked up live."""
+        importlib.invalidate_caches()
+        self._registry = importlib.reload(self._registry)
+        self.MUTATING_COMMANDS = self._registry.get_mutating_commands()
 
     def start(self):
         """Start the TCP socket server"""
@@ -163,6 +170,10 @@ class HoudiniMCPServer:
 
         handler = self._get_handlers().get(cmd_type)
         if handler is None:
+            # One refresh pass allows newly added/edited tools without restart.
+            self._refresh_registry()
+            handler = self._get_handlers().get(cmd_type)
+        if handler is None:
             raise ValueError(f"Unknown command: {cmd_type}")
 
         if cmd_type in self.MUTATING_COMMANDS:
@@ -172,7 +183,7 @@ class HoudiniMCPServer:
 
     def _get_handlers(self):
         """Return command handler dispatch table from per-tool modules."""
-        return get_plugin_handlers(self, hou)
+        return self._registry.get_plugin_handlers(self, hou)
 
 
 # Start the server

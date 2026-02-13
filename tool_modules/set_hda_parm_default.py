@@ -44,6 +44,18 @@ def _coerce_bool(value):
             return False
     raise ValueError(f"Cannot coerce value to bool: {value}")
 
+
+def _normalize_default_value(value):
+    if isinstance(value, tuple):
+        if len(value) == 1:
+            return value[0]
+        return list(value)
+    return value
+
+
+def _defaults_equal(expected, actual):
+    return _normalize_default_value(expected) == _normalize_default_value(actual)
+
 def set_hda_parm_default(
     param_name: str,
     default_value: Any,
@@ -96,10 +108,14 @@ def execute_plugin(params, server, hou):
         raise ValueError(f"Parameter template not found: {param_name}")
 
     parm_type = template.type()
+    expected_default = None
+
     if parm_type == hou.parmTemplateType.Toggle:
-        template.setDefaultValue(_coerce_bool(default_value))
+        expected_default = _coerce_bool(default_value)
+        template.setDefaultValue(expected_default)
     elif parm_type == hou.parmTemplateType.Menu:
-        template.setDefaultValue(int(default_value))
+        expected_default = int(default_value)
+        template.setDefaultValue(expected_default)
     else:
         num_components = template.numComponents() if hasattr(template, "numComponents") else 1
         if isinstance(default_value, (list, tuple)):
@@ -119,10 +135,23 @@ def execute_plugin(params, server, hou):
         else:
             value_tuple = tuple(float(v) for v in value_tuple)
 
+        expected_default = value_tuple if num_components != 1 else value_tuple[0]
         template.setDefaultValue(value_tuple)
 
     ptg.replace(param_name, template)
     definition.setParmTemplateGroup(ptg)
+
+    updated = definition.parmTemplateGroup().find(param_name)
+    if updated is None:
+        raise ValueError(f"Parameter template not found after update: {param_name}")
+    actual_default = updated.defaultValue()
+    if not _defaults_equal(expected_default, actual_default):
+        raise ValueError(
+            f"Default value for '{param_name}' did not persist. "
+            f"Expected {_normalize_default_value(expected_default)!r}, "
+            f"got {_normalize_default_value(actual_default)!r}. "
+            "This parameter may be a non-editable built-in default."
+        )
 
     if node is not None and bool(params.get("sync_instance", True)):
         node.matchCurrentDefinition()

@@ -1,5 +1,7 @@
 """Registry for tools implemented as one file per tool."""
 
+import importlib
+
 from . import (
     bind_internal_parameters,
     connect_nodes,
@@ -90,17 +92,28 @@ TOOL_MODULES = [
     validate_hda_behavior,
 ]
 
+def _iter_tool_modules(reload_modules: bool = False):
+    """Yield tool modules, optionally reloading each module first."""
+    for module in TOOL_MODULES:
+        if reload_modules:
+            try:
+                module = importlib.reload(module)
+            except Exception:
+                pass
+        yield module
+
 
 def register_mcp_tools(mcp, send_command, tool_decorator=None):
     """Register migrated per-tool MCP wrappers on the bridge side."""
-    for module in TOOL_MODULES:
+    for module in _iter_tool_modules(reload_modules=False):
         module.register_mcp_tool(mcp, send_command, None, tool_decorator)
 
 
 def get_plugin_handlers(server, hou):
     """Return plugin handler mapping for migrated per-tool implementations."""
     handlers = {}
-    for module in TOOL_MODULES:
+    # Reload modules in-plugin so edits are picked up without restarting Houdini.
+    for module in _iter_tool_modules(reload_modules=True):
         handlers[module.TOOL_NAME] = (
             lambda params, fn=module.execute_plugin: fn(params, server, hou)
         )
@@ -109,4 +122,8 @@ def get_plugin_handlers(server, hou):
 
 def get_mutating_commands():
     """Return migrated tool names that mutate scene state."""
-    return {module.TOOL_NAME for module in TOOL_MODULES if getattr(module, "IS_MUTATING", False)}
+    return {
+        module.TOOL_NAME
+        for module in _iter_tool_modules(reload_modules=True)
+        if getattr(module, "IS_MUTATING", False)
+    }

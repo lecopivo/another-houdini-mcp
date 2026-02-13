@@ -195,10 +195,24 @@ def geometry_stats(node, hou) -> Dict[str, Any]:
     point_attrs = [a.name() for a in geo.pointAttribs()]
     prim_attrs = [a.name() for a in geo.primAttribs()]
     detail_attrs = [a.name() for a in geo.globalAttribs()]
+    vertex_count = None
+    vertex_count_fn = getattr(geo, "vertexCount", None)
+    if callable(vertex_count_fn):
+        vertex_count = int(vertex_count_fn())
+    else:
+        vertices_fn = getattr(geo, "vertices", None)
+        if callable(vertices_fn):
+            vertex_count = len(vertices_fn())
+        else:
+            try:
+                vertex_count = int(geo.intrinsicValue("vertexcount"))
+            except Exception:
+                vertex_count = 0
+
     return {
         "points": len(geo.points()),
         "prims": len(geo.prims()),
-        "vertices": len(geo.vertices()),
+        "vertices": vertex_count,
         "point_attributes": point_attrs,
         "prim_attributes": prim_attrs,
         "detail_attributes": detail_attrs,

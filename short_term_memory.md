@@ -1,5 +1,20 @@
 ## Short-Term Memory
 
+- 2026-02-13: Fixed live MCP regressions in shared geometry stats + default-write validation.
+- Updated `tool_modules/hda_utils.py`:
+  - `geometry_stats` now computes vertex count using `Geometry.vertexCount()` when available, with fallback to `vertices()` and intrinsic `vertexcount`.
+  - This fixes live failures in both `probe_geometry` and `validate_hda_behavior` on Houdini builds where `Geometry.vertices()` is unavailable.
+- Updated `tool_modules/set_hda_parm_default.py`:
+  - Added post-write verification to confirm template defaults actually persist after `setParmTemplateGroup`.
+  - Tool now raises a clear error when defaults cannot be changed (for example non-editable built-in parms on object-level HDAs) instead of returning false success.
+- Live verification on connected Houdini:
+  - `probe_geometry(/obj/academy_polyextrude/output1)` now succeeds (points/prims/vertices returned).
+  - `validate_hda_behavior` on `/obj/mcp_verify1` with JSON-string args now succeeds (`Valid: True`, `Errors: 0`).
+  - `set_hda_parm_default(node_path=/obj/mcp_verify1, param_name=t, default_value=\"1.25\")` now correctly fails with explicit non-persisted-default error.
+  - `set_hda_parm_default` still succeeds on editable custom HDA parms (validated on `tskrivan::primitive_generator_sop::1.0` `sphere_radius`, then restored to `1.0`).
+- Restart checkpoint:
+  - If a stale plugin process is running, reload or restart the Houdini MCP plugin so modules importing `geometry_stats` pick up the latest helper implementation.
+
 - 2026-02-12: Patched refactored tool regressions after validation pass.
 - Updated `tool_modules/get_node_info.py` to handle template-flag queries safely on OBJ nodes (fallback to `isGenericFlagSet`).
 - Updated `tool_modules/validate_hda_behavior.py` to:
