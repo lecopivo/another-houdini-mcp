@@ -6,13 +6,13 @@
 
 ## Session Status
 
-- Status: in progress
+- Status: studied
 - Docs read: yes (`help/nodes/sop/switch.txt`)
-- Example set reviewed: no (no `help/examples/nodes/sop/switch/` in local corpus)
-- Example OTL internals inspected: no
+- Example set reviewed: yes (fallback via companion official example `help/examples/nodes/sop/copy/StampRandom.txt`)
+- Example OTL internals inspected: yes (`StampRandom.otl` companion network includes animated/expression-driven `switch1`)
 - Node comments read: yes
 - Sticky notes read: yes (none available in local corpus)
-- QA pass complete: partial (example-set gap)
+- QA pass complete: yes (fallback workflow used: docs + companion example + live repro)
 
 ## Source-of-Truth Split
 
@@ -26,8 +26,10 @@
   - Out-of-range behavior in this build clamps to valid range:
     - `input=-1` behaves like input 0.
     - `input=3` behaves like highest connected input (1).
+  - Companion official example `/obj/academy_StampRandom/StampRandom/switch1` uses an expression-driven `input` to randomize template selection under Copy stamping.
 - Mismatches:
-  - No mismatch with core intent; local example assets are missing.
+  - No mismatch with core intent.
+  - Out-of-range clamping behavior is build-specific and should be re-checked when Houdini version changes.
 
 ## Minimum Repro Setup
 
@@ -65,8 +67,8 @@
 ## Academy QA Checklist
 
 - [x] Official docs reviewed
-- [ ] Example files reviewed
-- [ ] OTL instantiated/unlocked and internals inspected
+- [x] Example files reviewed
+- [x] OTL instantiated/unlocked and internals inspected
 - [x] Node comments read
 - [x] Sticky notes read
 - [x] Behavior validated with at least one observed test

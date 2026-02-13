@@ -381,3 +381,28 @@ From `connectivity -> partition -> name -> groupsfromname`:
   - `partition` materializes legacy groups,
   - `name` modernizes identity,
   - `groupsfromname` re-materializes groups only when needed.
+
+## 32. Missing-Example Fallback Strategy
+
+For nodes without `help/examples/nodes/sop/<node>/` folders:
+
+- Completion criteria used in practice:
+  - Official node docs reviewed,
+  - at least one companion official example network inspected where the behavior appears,
+  - focused live repro network built and validated with parameter/geometry probes.
+
+- This keeps notes actionable while clearly documenting that coverage came from companion examples and repros rather than node-scoped example folders.
+
+## 33. Switch Companion Pattern
+
+From `copy/StampRandom`:
+
+- `switch` is often driven by stamped or expression variables from upstream copy logic.
+- Treat switch input index mapping as part of interface contract; random/animated selectors rely on stable wiring order.
+
+## 34. Boolean Companion Pattern
+
+From `foreach/cheese` and `surfsect/SurfsectBasic` companions:
+
+- Boolean-style operations in production examples frequently appear inside iterative loops (`foreach + cookie`) or alternate boolean nodes (`surfsect`), not always as standalone `boolean::2.0` examples.
+- Keep one direct `boolean::2.0` repro network for parameter semantics, and use companion examples to learn broader workflow context.

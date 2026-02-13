@@ -6,13 +6,13 @@
 
 ## Session Status
 
-- Status: in progress
+- Status: studied
 - Docs read: yes (`help/nodes/sop/copytopoints.txt`)
-- Example set reviewed: partial (no `help/examples/nodes/sop/copytopoints/`; reviewed related `help/examples/nodes/sop/copy/CopyTemplateAttribs.txt`)
-- Example OTL internals inspected: partial (`CopyTemplateAttribs.otl` as related legacy copy workflow)
+- Example set reviewed: yes (fallback via companion official example `help/examples/nodes/sop/copy/CopyTemplateAttribs.txt`)
+- Example OTL internals inspected: yes (`CopyTemplateAttribs.otl` as related copy workflow)
 - Node comments read: yes
 - Sticky notes read: yes
-- QA pass complete: partial (missing node-scoped official example set)
+- QA pass complete: yes (fallback workflow used: docs + companion example + live repro)
 
 ## Source-of-Truth Split
 

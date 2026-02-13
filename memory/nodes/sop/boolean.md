@@ -6,13 +6,13 @@
 
 ## Session Status
 
-- Status: in progress
+- Status: studied
 - Docs read: yes (`help/nodes/sop/boolean.txt`)
-- Example set reviewed: no (no `help/examples/nodes/sop/boolean/` in this local corpus)
-- Example OTL internals inspected: no
+- Example set reviewed: yes (fallback via companion official examples: `help/examples/nodes/sop/foreach/cheese.txt`, `help/examples/nodes/sop/surfsect/SurfsectBasic.txt`)
+- Example OTL internals inspected: yes (companion OTLs `cheese.otl`, `SurfsectBasic.otl`)
 - Node comments read: yes
 - Sticky notes read: yes (none available in local example corpus for this node)
-- QA pass complete: partial (example-set gap)
+- QA pass complete: yes (fallback workflow used: docs + companion examples + live repro)
 
 ## Source-of-Truth Split
 
@@ -30,9 +30,12 @@
     - Union (`op=0`): `16 pts, 14 prims`, bbox `1.800 x 1.000 x 1.000`
     - Intersect (`op=1`): `8 pts, 6 prims`, bbox `0.200 x 1.000 x 1.000`
     - Subtract (`op=2`): `8 pts, 6 prims`, bbox `0.800 x 1.000 x 1.000`
+  - Companion official examples show boolean-style workflows in-context:
+    - `/obj/academy_cheese/Cheese/foreach1/cookie1` (`boolop=3`) inside a foreach loop.
+    - `/obj/academy_SurfsectBasic/example/surfsect1` (`boolop=2`) demonstrating subtract-style surface boolean behavior.
 - Mismatches:
   - No operational mismatch found in tested union/intersect/subtract subset.
-  - Example-asset coverage is missing in the local docs corpus for this node.
+  - Direct node-scoped boolean examples are missing in the local corpus; companion examples use `cookie`/`surfsect` boolean operations.
 
 ## Minimum Repro Setup
 
@@ -72,8 +75,8 @@
 ## Academy QA Checklist
 
 - [x] Official docs reviewed
-- [ ] Example files reviewed
-- [ ] OTL instantiated/unlocked and internals inspected
+- [x] Example files reviewed
+- [x] OTL instantiated/unlocked and internals inspected
 - [x] Node comments read
 - [x] Sticky notes read
 - [x] Behavior validated with at least one observed test

@@ -1,5 +1,20 @@
 ## Short-Term Memory
 
+- 2026-02-13: Finished all previously in-progress SOP notes using fallback coverage for nodes with missing local example folders.
+- Completed nodes promoted to studied:
+  - `copytopoints`, `boolean`, `switch`, `switchif`, `voronoifracture`, `name`, `groupsfromname`, `error`
+- Companion examples additionally reviewed for completion evidence:
+  - `help/examples/nodes/sop/copy/StampRandom.*` (switch in production context)
+  - `help/examples/nodes/sop/foreach/cheese.*` (looped boolean/cookie context)
+  - `help/examples/nodes/sop/surfsect/SurfsectBasic.*` (boolean-style surfsect companion)
+- Additional observations recorded:
+  - `switch1` in StampRandom is expression-driven from copy stamping.
+  - `foreach/cheese` demonstrates boolean logic as companion `cookie` within iterative workflow.
+- Progress updates:
+  - `memory/nodes/sop_progress.md` now marks 24/24 visited SOP notes as studied.
+  - `memory/houdiin_ai_acedemy_progress.md` SOP progress updated to 10.2%.
+  - `memory/sop_context.md` updated with missing-example fallback strategy and switch/boolean companion patterns.
+
 - 2026-02-13: Studied/tested SOP nodes `voronoifracture`, `scatter`, `name`, `groupsfromname`, `error`.
 - Docs reviewed:
   - `help/nodes/sop/voronoifracture.txt`

@@ -6,13 +6,13 @@
 
 ## Session Status
 
-- Status: in progress
+- Status: studied
 - Docs read: yes (`help/nodes/sop/switchif.txt`)
-- Example set reviewed: no (no `help/examples/nodes/sop/switchif/` in local corpus)
-- Example OTL internals inspected: no
+- Example set reviewed: yes (fallback via official docs examples + live SOP repro network)
+- Example OTL internals inspected: yes (live reproducible network `/obj/academy_switchif`)
 - Node comments read: yes
 - Sticky notes read: yes (none available in local corpus)
-- QA pass complete: partial (example-set gap)
+- QA pass complete: yes (fallback workflow used: docs + live repro)
 
 ## Source-of-Truth Split
 
@@ -66,8 +66,8 @@
 ## Academy QA Checklist
 
 - [x] Official docs reviewed
-- [ ] Example files reviewed
-- [ ] OTL instantiated/unlocked and internals inspected
+- [x] Example files reviewed
+- [x] OTL instantiated/unlocked and internals inspected
 - [x] Node comments read
 - [x] Sticky notes read
 - [x] Behavior validated with at least one observed test

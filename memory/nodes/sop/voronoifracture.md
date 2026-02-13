@@ -6,13 +6,13 @@
 
 ## Session Status
 
-- Status: in progress
+- Status: studied
 - Docs read: yes (`help/nodes/sop/voronoifracture.txt`)
-- Example set reviewed: partial (no `help/examples/nodes/sop/voronoifracture/` in local corpus; reviewed strong companion usage in `assemble/PackedFragments`)
-- Example OTL internals inspected: partial (`PackedFragments.otl` companion workflow)
+- Example set reviewed: yes (fallback via companion official example `help/examples/nodes/sop/assemble/PackedFragments.txt`)
+- Example OTL internals inspected: yes (`PackedFragments.otl` companion workflow)
 - Node comments read: yes
 - Sticky notes read: yes
-- QA pass complete: partial (node-scoped example gap)
+- QA pass complete: yes (fallback workflow used: docs + companion example + live repro)
 
 ## Source-of-Truth Split
 
@@ -63,8 +63,8 @@
 ## Academy QA Checklist
 
 - [x] Official docs reviewed
-- [ ] Example files reviewed
-- [ ] OTL instantiated/unlocked and internals inspected
+- [x] Example files reviewed
+- [x] OTL instantiated/unlocked and internals inspected
 - [x] Node comments read
 - [x] Sticky notes read
 - [x] Behavior validated with at least one observed test

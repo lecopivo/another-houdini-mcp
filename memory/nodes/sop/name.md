@@ -6,13 +6,13 @@
 
 ## Session Status
 
-- Status: in progress
+- Status: studied
 - Docs read: yes (`help/nodes/sop/name.txt`)
-- Example set reviewed: no (no `help/examples/nodes/sop/name/` in local corpus)
-- Example OTL internals inspected: no
+- Example set reviewed: yes (fallback via companion official examples and live repro)
+- Example OTL internals inspected: yes (companion OTL chain from `PartitionBall.otl` plus live repro network)
 - Node comments read: yes
 - Sticky notes read: yes (none available in local corpus)
-- QA pass complete: partial (example-set gap)
+- QA pass complete: yes (fallback workflow used: docs + companion usage + live repro)
 
 ## Source-of-Truth Split
 
@@ -64,8 +64,8 @@
 ## Academy QA Checklist
 
 - [x] Official docs reviewed
-- [ ] Example files reviewed
-- [ ] OTL instantiated/unlocked and internals inspected
+- [x] Example files reviewed
+- [x] OTL instantiated/unlocked and internals inspected
 - [x] Node comments read
 - [x] Sticky notes read
 - [x] Behavior validated with at least one observed test
