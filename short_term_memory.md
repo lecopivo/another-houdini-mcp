@@ -1,5 +1,29 @@
 ## Short-Term Memory
 
+- 2026-02-13: Created new `open_help_browser` tool
+- Tool location: `tool_modules/open_help_browser.py`
+- Registered in: `tool_modules/registry.py` (import + TOOL_MODULES entry)
+- Features:
+  - Opens Houdini Help Browser via Python HOM
+  - Supports: node_type, help_path, concept, vex_function, python_command, command
+  - Concepts mapped: crowds, pyro, vellum, flip, ocean, destruction, etc.
+- Next step: Restart MCP server to pick up new tool
+
+- 2026-02-13: Completed requested 3-node uninterrupted deep-study chunk.
+- Nodes covered:
+  - `fur` (`FurBall`, `PointFur`)
+  - `gluecluster` (`glueclusterexample`)
+  - `graphcolor` (`FindNonInteractingAgents` + controlled live repro)
+- Deep-play highlights:
+  - `fur`: validated area-density vs explicit-root generation contracts; in point-root mode, root count dominated hair count while `segs` dominated geometry size.
+  - `gluecluster`: validated strength tier mapping and effects of `randomdetach` + `addclusternoise` on cluster distribution and bond mix.
+  - `graphcolor`: validated point/primitive/polygon-edge modes, sorted output behavior, and workset detail arrays for batching.
+- Memory updates:
+  - added `memory/nodes/sop/fur.md`
+  - added `memory/nodes/sop/gluecluster.md`
+  - added `memory/nodes/sop/graphcolor.md`
+  - updated SOP progress, academy totals, and SOP context patterns.
+
 - 2026-02-13: Completed requested 3-node uninterrupted deep-study chunk.
 - Nodes covered:
   - `grid` (`GridBasic`)

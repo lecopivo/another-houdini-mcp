@@ -814,3 +814,25 @@ From deep `groupexpand` study:
 - Use positive/negative steps as a symmetric grow/shrink operator around a seed group.
 - Enable step attributes when debugging region propagation; this gives an explicit wavefront index per element.
 - Normal-angle constraints can intentionally localize growth to near-coplanar regions; tighten only after validating unconstrained spread.
+
+## 80. Fur Generation-Mode Pattern
+
+From deep `fur` study (`FurBall`, `PointFur`):
+
+- Distinguish area-density generation from explicit root-point generation.
+- In explicit root mode, hair count follows root point count; density/display controls may not reduce count as expected.
+- Use segment count (`segs`) as the main geometry-cost lever once root count is fixed.
+
+## 81. Glue Strength Tier Pattern
+
+From deep `gluecluster` study:
+
+- Think in two bond tiers (`intracluster`, `intercluster`) and validate their frequency distribution, not just color visualization.
+- `cluster==0` points act detached and force inter-tier behavior; random detach and cluster noise significantly reshape this distribution.
+
+## 82. Graphcolor Workset Pattern
+
+From deep `graphcolor` study:
+
+- Connectivity mode changes both color attribute class and required number of colors.
+- Enable sort + worksets for deterministic contiguous batching (`workset_begins`, `workset_lengths`) before OpenCL/grouped downstream passes.
