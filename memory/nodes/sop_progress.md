@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 135
-- Nodes studied: 135
-- Example sets reviewed: 122
+- Nodes visited: 136
+- Nodes studied: 136
+- Example sets reviewed: 123
 
 ## Shortlist
 
@@ -149,3 +149,4 @@
 | edit | yes | yes | yes | `memory/nodes/sop/edit.md` | studied |
 | extracttransform | yes | yes | yes | `memory/nodes/sop/extracttransform.md` | studied |
 | facet | yes | yes | yes | `memory/nodes/sop/facet.md` | studied |
+| falloff | yes | yes | yes | `memory/nodes/sop/falloff.md` | studied |

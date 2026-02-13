@@ -702,3 +702,21 @@ From `facet` example deep play:
 
 - Facet operations are staged; toggles like cusp/unique/consolidate can alter shading and sharing contracts even when counts appear unchanged.
 - Be explicit about whether your goal is render-normal behavior or watertight topology preservation.
+
+## 68. Delete Stack-Debug Pattern
+
+From deeper `delete` re-study:
+
+- `delete` is a stacked filter node, not a single-selector node.
+- When outputs look wrong, audit enabled sections in this order:
+  1) entity, 2) operation/negate, 3) number mode, 4) bounding/normal/degenerate/random, 5) keep-points.
+- For deterministic pattern/range workflows, temporarily disable random/bounding filters while tuning, then re-enable intentionally.
+
+## 69. Falloff Weight Safety Pattern
+
+From deep `falloff` study (`falloff_twisted_squab`):
+
+- Treat falloff output attribute names as hard contracts for downstream wrangles/deformers.
+- `Unbounded Distance` output can exceed 1.0 and overdrive blend math (for example `lerp` extrapolation).
+- For blending masks, prefer normalized outputs or explicit clamping/remapping before use.
+- Enable lead-point/group outputs when debugging influence scope (`falloff_leadpt`, `insideRad`).

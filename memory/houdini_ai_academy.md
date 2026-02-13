@@ -51,16 +51,32 @@ These files are extended, personalized documentation for future work.
 7. Before setting parameters during tests, inspect actual parm names first:
    - use `get_node_parameters(..., only_overrides=False)` or `get_parameter_info(...)`
    - avoid guessing tuple names (for example `tx/ty/tz` vs `t`, `divsx/divsy/divsz` vs `divs`)
-8. Test variations and record observed behavior, not just expected behavior
-9. Write `memory/nodes/<context>/<node>.md` using `memory/node_study_template.md`
-   - Distill observations into generalized guidance, not scene-specific logs.
-10. Run QA gate from `memory/academy_qa_checklist.md`
-11. Update progress files:
-   - `memory/houdiin_ai_acedemy_progress.md`
-   - `memory/nodes/<context>_progress.md`
-12. Update high-level context guide:
-   - `memory/<context>_context.md`
-   - Add or revise context-level patterns, common pitfalls, and cross-node workflows discovered during node study
+8. Perform deep live play on the target node (not just smoke check):
+   - run baseline probe on a concrete output node
+   - change multiple high-impact parameters one at a time
+   - probe after each change and capture what changed (topology, attrs, or behavior)
+   - include at least one "interaction" test (two parameters together or mode + toggle)
+9. Record observed behavior, not just expected behavior
+10. Write `memory/nodes/<context>/<node>.md` using `memory/node_study_template.md`
+    - Distill observations into generalized guidance, not scene-specific logs.
+11. Run QA gate from `memory/academy_qa_checklist.md`
+12. Update progress files:
+    - `memory/houdiin_ai_acedemy_progress.md`
+    - `memory/nodes/<context>_progress.md`
+13. Update high-level context guide:
+    - `memory/<context>_context.md`
+    - Add or revise context-level patterns, common pitfalls, and cross-node workflows discovered during node study
+
+## Anti-Sloppy Study Rule
+
+- Do not batch-write generic notes for many nodes after only instantiation checks.
+- A node is not considered studied from "load + cook success" alone.
+- Complete one node end-to-end before moving to the next:
+  1) docs + examples + comments/stickies
+  2) deep parameter play with measured before/after observations
+  3) write node note immediately
+  4) update progress/context/memory
+- If multiple nodes are handled in a session, each node must still have independent evidence and findings.
 
 ## Node Study Checklist
 
@@ -91,7 +107,8 @@ A node counts as studied only when all are true:
 
 ## Cadence
 
-- Work in batches of 3-8 nodes per session
+- Prefer sequential deep study, one node at a time.
+- Optional micro-batches are allowed only if each node is fully completed end-to-end before the next node starts.
 - Prefer breadth first (all contexts touched), then depth (high-value contexts)
 - Revisit old notes when new context reveals better patterns
 

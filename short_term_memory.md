@@ -1,5 +1,31 @@
 ## Short-Term Memory
 
+- 2026-02-13: Continued strict one-node deep study with `falloff`.
+- Node covered:
+  - `falloff` via `examples/nodes/sop/falloff/falloff_twisted_squab.txt`
+- Deep-play observations recorded:
+  - radius changed influence group size significantly (`insideRad` ~2678 at `rad=3`, ~279 at `rad=1`)
+  - reverse flipped influence distribution (mean of `vis_falloff` moved from low to high)
+  - unbounded output generated values >1 and caused downstream `lerp` extrapolation (large displacement)
+  - renaming `distattr` broke downstream wrangle contract (`@vis_falloff`), resulting in zero deformation
+- Memory updates:
+  - added `memory/nodes/sop/falloff.md`
+  - updated `memory/nodes/sop_progress.md`
+  - updated `memory/houdiin_ai_acedemy_progress.md`
+  - updated `memory/sop_context.md`
+
+- 2026-02-13: Study plan tightened to prevent lazy batch summaries.
+- Updated `memory/houdini_ai_academy.md` with:
+  - mandatory deep per-node live parameter play,
+  - explicit anti-sloppy rule (no generic batch-note completion),
+  - one-node end-to-end completion protocol before moving on.
+
+- 2026-02-13: Reworked study quality standard to deep per-node exploration (no batch-generic summaries).
+- Fully re-studied `delete` with careful live play across both official examples (`DeleteDemo`, `DeleteFan`).
+- Performed multiple before/after probes on real parameter interactions:
+  - range rhythm (`select1/select2`), invert (`negate`), random (`userandom/percent`), and orphan retention (`keeppoints`).
+- Updated `memory/nodes/sop/delete.md` to detailed reusable guidance with concrete parameter/geometry deltas and failure modes.
+
 - 2026-02-13: Continued strict deep-play pass and completed another 10 nodes.
 - Deep-studied nodes:
   - `edgecollapse`, `edgecusp`, `edgedivide`, `edgeequalize`, `edgeflip`, `edgefracture`, `edgestraighten`, `edit`, `extracttransform`, `facet`
