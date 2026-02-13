@@ -228,3 +228,55 @@ From `remesh/Squidremesh`:
 - Density controls:
   - `targetsize` is the quickest coarse/fine control in uniform mode.
   - Use hard-edge constraints when silhouette or seam preservation matters.
+
+## 17. Fuse Patterns
+
+From `fuse/FuseHood`:
+
+- Separate "snap" from "weld" mentally:
+  - Snapping aligns positions.
+  - `consolidatesnappedpoints` controls whether points are actually welded.
+
+- Validation shortcut:
+  - If vertex count stays same but point count drops, welding happened as intended.
+
+## 18. Group Patterns
+
+From `group/FeaturedEdges`:
+
+- Group class correctness first:
+  - Ensure `entity` matches downstream expectation (point/prim/edge).
+
+- Feature-preserve pipeline:
+  - Build edge group in `group` and feed it directly into downstream reducers preserving creases.
+
+## 19. Switch Patterns
+
+From live `switch` tests:
+
+- Stable branch routing:
+  - Treat input index as API; rewiring changes meaning of existing expressions/keyframes.
+
+- Defensive usage:
+  - Keep a known-good fallback on low index and select heavier/riskier branch on higher index.
+
+## 20. PolyReduce Patterns
+
+From `polyreduce/PolyreduceBatwing` and `group/FeaturedEdges`:
+
+- Two-pass strategy:
+  - Start with target percentage only.
+  - Add feature constraints (`creases`, seam/boundary weights) only where quality drops.
+
+- Locked asset caveat:
+  - Official example HDAs may be non-editable; use an unlocked mirror network to test parameter sweeps.
+
+## 21. Measure Patterns
+
+From `measure/MeasureArea` and `measure/MeasureLaplacian`:
+
+- Attribute-driven workflow:
+  - Measure into named attrs (`area`, `laplacian`, etc.), then threshold/remap/use in groups/wrangles.
+
+- Loop pattern for smoothing/sharpening:
+  - Alternate measure + wrangle in foreach/repeat blocks using small iterative updates for stability.

@@ -66,6 +66,8 @@ You can use it to:
 - Use relevant files in `memory/` before inventing a new approach.
 - When working in a specific context (for example SOP), refresh context memory first by reading `memory/<context>_context.md` (for example `memory/sop_context.md`).
 - When working on a specific node, refresh node memory first by reading `memory/nodes/<context>/<node>.md` if it exists.
+- When reviewing an example scene for a target node, inspect all meaningful companion nodes in that example network (not just the target node) and capture reusable patterns in memory notes.
+- If companion-node findings are strong enough, add or update their own `memory/nodes/<context>/<node>.md` files even if they were not the primary study target.
 - If you struggle with something and then finally solve it, suggest updating the appropriate tutorial in `memory/` with that lesson.
 
 ## Tooling Improvement Expectations

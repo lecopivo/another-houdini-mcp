@@ -1,5 +1,36 @@
 ## Short-Term Memory
 
+- 2026-02-13: Studied/tested SOP nodes `fuse`, `group`, `switch`, `polyreduce`, `measure`.
+- Docs reviewed:
+  - `help/nodes/sop/fuse.txt`
+  - `help/nodes/sop/group.txt`
+  - `help/nodes/sop/switch.txt`
+  - `help/nodes/sop/polyreduce.txt`
+  - `help/nodes/sop/measure.txt`
+- Examples loaded and inspected:
+  - `/obj/academy_FuseHood` from `help/examples/nodes/sop/fuse/FuseHood.*`
+  - `/obj/academy_FeaturedEdges` from `help/examples/nodes/sop/group/FeaturedEdges.*`
+  - `/obj/academy_PolyreduceBatwing` from `help/examples/nodes/sop/polyreduce/PolyreduceBatwing.*`
+  - `/obj/academy_MeasureArea` from `help/examples/nodes/sop/measure/MeasureArea.*`
+  - `/obj/academy_MeasureLaplacian` from `help/examples/nodes/sop/measure/MeasureLaplacian.*`
+- Additional live validation network:
+  - `/obj/academy_switch` (no local official `sop/switch` example folder)
+- Key observed outcomes:
+  - Fuse: `merge_all` `40 pts` -> `fuse1` `29 pts` with consolidation on; returns to `40 pts` when off.
+  - Group + PolyReduce: edge group (`entity=2`) drives crease-preserving reduction; `60% -> 30%` reduces sphere output `432 -> 216` prims.
+  - PolyReduce batwing baseline: `30720 -> 3072` prims at `percentage=10`; direct edits blocked on locked example instance.
+  - Measure: `measure1` writes `area` attr; switching to perimeter with `attribname=perim_test` writes the new prim attr as expected.
+  - Switch: selector routes branches; out-of-range indices clamp to valid range in this build (`-1 -> 0`, `3 -> last input`).
+- Docs updated:
+  - Added `memory/nodes/sop/fuse.md`
+  - Added `memory/nodes/sop/group.md`
+  - Added `memory/nodes/sop/switch.md`
+  - Added `memory/nodes/sop/polyreduce.md`
+  - Added `memory/nodes/sop/measure.md`
+  - Updated `memory/nodes/sop_progress.md`
+  - Updated `memory/houdiin_ai_acedemy_progress.md`
+  - Updated `memory/sop_context.md`
+
 - 2026-02-13: Studied/tested SOP nodes `blast`, `merge`, and `remesh`.
 - Docs reviewed:
   - `help/nodes/sop/blast.txt`

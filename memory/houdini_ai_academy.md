@@ -26,16 +26,18 @@ The output of this work is a context-wide progress record plus one practical tut
 5. Read instructional metadata inside example networks:
    - node comments
    - sticky notes / post-it notes
-6. Before setting parameters during tests, inspect actual parm names first:
+6. Inspect meaningful companion nodes used with the target node in the same example network and record reusable patterns
+   - if companion findings are substantial, add/update their own node notes under `memory/nodes/<context>/`
+7. Before setting parameters during tests, inspect actual parm names first:
    - use `get_node_parameters(..., only_overrides=False)` or `get_parameter_info(...)`
    - avoid guessing tuple names (for example `tx/ty/tz` vs `t`, `divsx/divsy/divsz` vs `divs`)
-7. Test variations and record observed behavior, not just expected behavior
-8. Write `memory/nodes/<context>/<node>.md` using `memory/node_study_template.md`
-9. Run QA gate from `memory/academy_qa_checklist.md`
-10. Update progress files:
+8. Test variations and record observed behavior, not just expected behavior
+9. Write `memory/nodes/<context>/<node>.md` using `memory/node_study_template.md`
+10. Run QA gate from `memory/academy_qa_checklist.md`
+11. Update progress files:
    - `memory/houdiin_ai_acedemy_progress.md`
    - `memory/nodes/<context>_progress.md`
-11. Update high-level context guide:
+12. Update high-level context guide:
    - `memory/<context>_context.md`
    - Add or revise context-level patterns, common pitfalls, and cross-node workflows discovered during node study
 

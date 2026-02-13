@@ -1,15 +1,15 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 9
-- Nodes studied: 7
-- Example sets reviewed: 12
+- Nodes visited: 14
+- Nodes studied: 11
+- Example sets reviewed: 17
 
 ## Shortlist
 
-- lattice
-- polyextrude
-- attribwrangle
+- copytopoints
+- boolean
+- switch
 - vellumsolver
 
 ## Studied Nodes
@@ -25,3 +25,8 @@
 | blast | yes | yes | yes | `memory/nodes/sop/blast.md` | studied |
 | merge | yes | yes | yes | `memory/nodes/sop/merge.md` | studied |
 | remesh | yes | yes | yes | `memory/nodes/sop/remesh.md` | studied |
+| fuse | yes | yes | yes | `memory/nodes/sop/fuse.md` | studied |
+| group | yes | yes | yes | `memory/nodes/sop/group.md` | studied |
+| switch | yes | yes | no | `memory/nodes/sop/switch.md` | in progress |
+| polyreduce | yes | yes | yes | `memory/nodes/sop/polyreduce.md` | studied |
+| measure | yes | yes | yes | `memory/nodes/sop/measure.md` | studied |
