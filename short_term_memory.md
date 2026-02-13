@@ -1,5 +1,28 @@
 ## Short-Term Memory
 
+- 2026-02-13: Continued strict one-node deep study with `fractal`.
+- Node covered:
+  - `fractal` via `FractalGeoTypes` example
+- Deep-play observations recorded:
+  - `divs` significantly increased topology on both polygon and NURBS branches
+  - `scale` increased roughness amplitude while `smooth` strongly reduced roughness variance
+  - `vtxnms` changed displacement behavior from axis-biased (`dir`) to surface-normal driven breakup
+  - `seed` changed pattern realization while keeping comparable overall roughness class
+- Memory updates:
+  - added `memory/nodes/sop/fractal.md`
+  - updated SOP progress and context patterns
+
+- 2026-02-13: Continued strict one-node deep study with `force`.
+- Node covered:
+  - `force` via `ForceBasic` example plus additional clean live repro network.
+- Deep-play observations recorded:
+  - verified attribute-gating behavior (`doradial`, `doaxis`) and exact output attribute mapping (`axial->fedge`, etc.)
+  - confirmed non-metaball input passes through without force attributes
+  - confirmed example directional branch emits full directional force attribute set
+- Memory updates:
+  - added `memory/nodes/sop/force.md`
+  - updated SOP progress and SOP context patterns
+
 - 2026-02-13: Continued strict one-node deep study with `fluidsource`.
 - Node covered:
   - `fluidsource` via `TorusVolume` and `ColourAdvect` examples (node doc file missing locally)

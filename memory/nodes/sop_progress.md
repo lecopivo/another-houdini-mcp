@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 141
-- Nodes studied: 141
-- Example sets reviewed: 132
+- Nodes visited: 143
+- Nodes studied: 143
+- Example sets reviewed: 134
 
 ## Shortlist
 
@@ -155,3 +155,5 @@
 | findshortestpath | yes | yes | yes | `memory/nodes/sop/findshortestpath.md` | studied |
 | font | yes | yes | yes | `memory/nodes/sop/font.md` | studied |
 | fluidsource | yes | partial | yes | `memory/nodes/sop/fluidsource.md` | studied |
+| force | yes | yes | yes | `memory/nodes/sop/force.md` | studied |
+| fractal | yes | yes | yes | `memory/nodes/sop/fractal.md` | studied |

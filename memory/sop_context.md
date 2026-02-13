@@ -766,3 +766,25 @@ From deep `fluidsource` study (`TorusVolume`, `ColourAdvect`):
 - `divsize` mainly controls voxel resolution, while branch-composed fields (for example `Cd.x/y/z`) may keep independent resolutions.
 - `make_sdf` + `invert_sign` flips field semantics; keep sign conventions consistent with downstream sourcing/compositing.
 - Noise toggles can materially change source amplitude; retune source scale/operations when enabling procedural noise.
+
+## 75. Force-Attribute Gate Pattern
+
+From deep `force` study:
+
+- `force` is an attribute-authoring node for metaball fields; it is not a general geometry force/deform operator.
+- Toggle gates are decisive:
+  - `doradial` controls presence of `fradial`,
+- `doaxis` controls directional attrs (`dir`, `fedge`, `fvortex`, `fspiral`).
+- Directional behavior is metaball-local; upstream metaball transforms/orientation affect world-space force direction in simulation.
+
+## 76. Fractal Roughness Control Pattern
+
+From deep `fractal` study:
+
+- Tune in this order for predictable results:
+  1) `divs` for topology budget,
+  2) `scale` for amplitude,
+  3) `smooth` for jaggedness suppression,
+  4) `seed` for pattern variation.
+- Use `vtxnms=1` for surface-following breakup; use explicit `dir` when a directional bias is intentional.
+- Compare outputs with both topology counts and geometric roughness metrics (bbox/variance), since count-only checks miss shape character changes.

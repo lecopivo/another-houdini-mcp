@@ -244,7 +244,7 @@ if [ -n "$HOUDINI_DIR" ]; then
             echo "   You can do it manually later with these commands:"
             echo ""
             echo "   mkdir -p \"$SCRIPT_DIR/help\""
-            echo "   rsync -a --exclude 'videos/' --exclude 'examples/' --exclude 'files/' --exclude 'images.zip' \"$HOUDINI_HELP_DIR/\" \"$SCRIPT_DIR/help/\""
+            echo "   rsync -a --exclude 'videos/' --exclude 'files/' --exclude 'images.zip' \"$HOUDINI_HELP_DIR/\" \"$SCRIPT_DIR/help/\""
             echo "   for z in \"$SCRIPT_DIR/help\"/*.zip; do [ -f \"$z\" ] && d=\"$SCRIPT_DIR/help/$(basename \"$z\" .zip)\" && mkdir -p \"$d\" && unzip -o \"$z\" -d \"$d\"; done"
             echo ""
         fi
@@ -253,7 +253,7 @@ if [ -n "$HOUDINI_DIR" ]; then
         echo "   Expected: $HOUDINI_DIR/houdini/help"
         echo ""
         echo "   You can manually copy/unpack if it's in a different location:"
-        echo "   rsync -a --exclude 'videos/' --exclude 'examples/' --exclude 'files/' --exclude 'images.zip' /path/to/help/ \"$SCRIPT_DIR/help/\""
+        echo "   rsync -a --exclude 'videos/' --exclude 'files/' --exclude 'images.zip' /path/to/help/ \"$SCRIPT_DIR/help/\""
         echo "   for z in \"$SCRIPT_DIR/help\"/*.zip; do [ -f \"$z\" ] && d=\"$SCRIPT_DIR/help/$(basename \"$z\" .zip)\" && mkdir -p \"$d\" && unzip -o \"$z\" -d \"$d\"; done"
     fi
 fi
