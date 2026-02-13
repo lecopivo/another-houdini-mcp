@@ -280,3 +280,54 @@ From `measure/MeasureArea` and `measure/MeasureLaplacian`:
 
 - Loop pattern for smoothing/sharpening:
   - Alternate measure + wrangle in foreach/repeat blocks using small iterative updates for stability.
+
+## 22. Switch-If Patterns
+
+From live `switchif` tests:
+
+- Prefer data-aware branching over raw index switches:
+  - Use element-count or attribute-presence tests to decide fallback vs primary branch.
+
+- Keep test wiring explicit:
+  - `testinput` can inspect one input while output still selects between both; document this to avoid confusion.
+
+## 23. AttribPromote Patterns
+
+From `attribpromote/AttribPromoteSphere`:
+
+- Promotion as class handoff:
+  - Promote analysis attrs (point->prim) for face-level decisions, then demote display attrs back (prim->point) when needed.
+
+- Method matters:
+  - Treat promotion method as semantic choice, not implementation detail.
+
+## 24. Connectivity + Partition Patterns
+
+From `connectivity/ConnectedBalls` and `partition/PartitionBall`:
+
+- Piece pipeline:
+  - `connectivity` first to generate per-piece ids (`class`/`piece`), then optional `partition` to materialize groups.
+
+- Modern preference:
+  - Prefer string piece attrs for scalable pipelines; use `partition` mainly when legacy group-based consumers require it.
+
+## 25. Assemble Patterns
+
+From `assemble/PackedFragments`:
+
+- Fracture handoff pattern:
+  - `voronoifracture` generates pieces, `assemble` standardizes metadata and packs for sim.
+
+- Performance default:
+  - For many fragments, packed output is usually the right baseline for memory/runtime.
+
+## 26. Companion-Node Review Heuristic
+
+When studying a target node from examples, capture strong companion-node findings in the same pass:
+
+- Typical high-value companions in SOP examples:
+  - fracture/distribution nodes (`voronoifracture`, `scatter`),
+  - piece-labeling nodes (`connectivity`, `partition`, `name`),
+  - routing/validation nodes (`switch`, `switchif`, `null/output`).
+
+- If companion behavior materially informs production usage, create/update their node notes immediately rather than deferring.

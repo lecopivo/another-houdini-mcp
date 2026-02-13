@@ -1,5 +1,37 @@
 ## Short-Term Memory
 
+- 2026-02-13: Studied/tested SOP nodes `switchif`, `attribpromote`, `connectivity`, `partition`, `assemble`.
+- Docs reviewed:
+  - `help/nodes/sop/switchif.txt`
+  - `help/nodes/sop/attribpromote.txt`
+  - `help/nodes/sop/connectivity.txt`
+  - `help/nodes/sop/partition.txt`
+  - `help/nodes/sop/assemble.txt`
+- Examples loaded and inspected:
+  - `/obj/academy_AttribPromoteSphere` from `help/examples/nodes/sop/attribpromote/AttribPromoteSphere.*`
+  - `/obj/academy_ConnectedBalls` from `help/examples/nodes/sop/connectivity/ConnectedBalls.*`
+  - `/obj/academy_PartitionBall` from `help/examples/nodes/sop/partition/PartitionBall.*`
+  - `/obj/academy_PackedFragments` from `help/examples/nodes/sop/assemble/PackedFragments.*`
+- Additional live validation network:
+  - `/obj/academy_switchif` (no local official `sop/switchif` example folder)
+- Key observed outcomes:
+  - Switch-If: element-count test on second input cleanly routes fallback/default branch.
+  - AttribPromote: confirmed point `foo` -> primitive `foo` promotion and primitive `Cd` -> point `Cd` demotion.
+  - Connectivity: examples use primitive connectivity ids (`ball`/`piece`) as downstream control channels.
+  - Partition: example demonstrates connectivity->partition group naming flow for DOP object splitting.
+  - Assemble: fracture output packed into 20 packed pieces with name/path metadata for RBD pipeline.
+- Companion-node findings captured:
+  - Strong companion usage documented for `scatter`, `voronoifracture`, and DOP handoff patterns in assemble/partition examples.
+- Docs updated:
+  - Added `memory/nodes/sop/switchif.md`
+  - Added `memory/nodes/sop/attribpromote.md`
+  - Added `memory/nodes/sop/connectivity.md`
+  - Added `memory/nodes/sop/partition.md`
+  - Added `memory/nodes/sop/assemble.md`
+  - Updated `memory/nodes/sop_progress.md`
+  - Updated `memory/houdiin_ai_acedemy_progress.md`
+  - Updated `memory/sop_context.md`
+
 - 2026-02-13: Studied/tested SOP nodes `fuse`, `group`, `switch`, `polyreduce`, `measure`.
 - Docs reviewed:
   - `help/nodes/sop/fuse.txt`

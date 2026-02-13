@@ -68,6 +68,7 @@ You can use it to:
 - When working on a specific node, refresh node memory first by reading `memory/nodes/<context>/<node>.md` if it exists.
 - When reviewing an example scene for a target node, inspect all meaningful companion nodes in that example network (not just the target node) and capture reusable patterns in memory notes.
 - If companion-node findings are strong enough, add or update their own `memory/nodes/<context>/<node>.md` files even if they were not the primary study target.
+- Do not defer companion-node note updates: while studying one node, proactively edit other node memory notes in the same session when you discover meaningful behavior, patterns, parameters, or edge cases.
 - If you struggle with something and then finally solve it, suggest updating the appropriate tutorial in `memory/` with that lesson.
 
 ## Tooling Improvement Expectations

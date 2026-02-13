@@ -1,15 +1,16 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 14
-- Nodes studied: 11
-- Example sets reviewed: 17
+- Nodes visited: 19
+- Nodes studied: 15
+- Example sets reviewed: 21
 
 ## Shortlist
 
 - copytopoints
 - boolean
 - switch
+- switchif
 - vellumsolver
 
 ## Studied Nodes
@@ -30,3 +31,8 @@
 | switch | yes | yes | no | `memory/nodes/sop/switch.md` | in progress |
 | polyreduce | yes | yes | yes | `memory/nodes/sop/polyreduce.md` | studied |
 | measure | yes | yes | yes | `memory/nodes/sop/measure.md` | studied |
+| switchif | yes | yes | no | `memory/nodes/sop/switchif.md` | in progress |
+| attribpromote | yes | yes | yes | `memory/nodes/sop/attribpromote.md` | studied |
+| connectivity | yes | yes | yes | `memory/nodes/sop/connectivity.md` | studied |
+| partition | yes | yes | yes | `memory/nodes/sop/partition.md` | studied |
+| assemble | yes | yes | yes | `memory/nodes/sop/assemble.md` | studied |
