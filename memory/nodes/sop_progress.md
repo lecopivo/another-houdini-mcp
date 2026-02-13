@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 19
-- Nodes studied: 15
-- Example sets reviewed: 21
+- Nodes visited: 24
+- Nodes studied: 16
+- Example sets reviewed: 23
 
 ## Shortlist
 
@@ -11,6 +11,10 @@
 - boolean
 - switch
 - switchif
+- voronoifracture
+- name
+- groupsfromname
+- error
 - vellumsolver
 
 ## Studied Nodes
@@ -36,3 +40,8 @@
 | connectivity | yes | yes | yes | `memory/nodes/sop/connectivity.md` | studied |
 | partition | yes | yes | yes | `memory/nodes/sop/partition.md` | studied |
 | assemble | yes | yes | yes | `memory/nodes/sop/assemble.md` | studied |
+| voronoifracture | yes | yes | partial | `memory/nodes/sop/voronoifracture.md` | in progress |
+| scatter | yes | yes | yes | `memory/nodes/sop/scatter.md` | studied |
+| name | yes | yes | no | `memory/nodes/sop/name.md` | in progress |
+| groupsfromname | yes | yes | no | `memory/nodes/sop/groupsfromname.md` | in progress |
+| error | yes | yes | no | `memory/nodes/sop/error.md` | in progress |

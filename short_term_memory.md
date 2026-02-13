@@ -1,5 +1,35 @@
 ## Short-Term Memory
 
+- 2026-02-13: Studied/tested SOP nodes `voronoifracture`, `scatter`, `name`, `groupsfromname`, `error`.
+- Docs reviewed:
+  - `help/nodes/sop/voronoifracture.txt`
+  - `help/nodes/sop/scatter.txt`
+  - `help/nodes/sop/name.txt`
+  - `help/nodes/sop/groupsfromname.txt`
+  - `help/nodes/sop/error.txt`
+- Examples loaded and inspected:
+  - `/obj/academy_SpikyDeformingTorus` and `/obj/academy_DoorWithPolkaDots` from `help/examples/nodes/sop/scatter/*`
+  - companion voronoi workflow in `/obj/academy_PackedFragments/sphere`
+- Additional live validation network:
+  - `/obj/academy_name_groups_error` for `name`/`groupsfromname`/`error` behavior.
+- Key observed outcomes:
+  - Scatter: stable-point workflows validated via `primnum`/`primuvw` and texture-space mode.
+  - Voronoi fracture companion test: increasing scatter seeds `20 -> 40` increased packed pieces `20 -> 40` downstream.
+  - Name/GroupsFromName: confirmed `name` values (`part0`, `part1`) and regenerated prefixed groups (`nm_part0`, `nm_part1`).
+  - Error: warning severity passes geometry while reporting warning; error severity blocks downstream cook.
+- Companion-node updates made in same session:
+  - Updated `memory/nodes/sop/assemble.md` (seed-count scaling finding)
+  - Updated `memory/nodes/sop/connectivity.md` and `memory/nodes/sop/partition.md` (bridge-pattern findings)
+- Docs updated:
+  - Added `memory/nodes/sop/voronoifracture.md`
+  - Added `memory/nodes/sop/scatter.md`
+  - Added `memory/nodes/sop/name.md`
+  - Added `memory/nodes/sop/groupsfromname.md`
+  - Added `memory/nodes/sop/error.md`
+  - Updated `memory/nodes/sop_progress.md`
+  - Updated `memory/houdiin_ai_acedemy_progress.md`
+  - Updated `memory/sop_context.md`
+
 - 2026-02-13: Studied/tested SOP nodes `switchif`, `attribpromote`, `connectivity`, `partition`, `assemble`.
 - Docs reviewed:
   - `help/nodes/sop/switchif.txt`

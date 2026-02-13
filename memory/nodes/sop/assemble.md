@@ -22,6 +22,7 @@
 - Observed (live scene/params/geometry):
   - `/obj/academy_PackedFragments/sphere/voronoifracture1` outputs fractured geo with primitive `name`.
   - `/obj/academy_PackedFragments/sphere/setup_packed_prims` (assemble) outputs `20` packed pieces (`20 pts, 20 prims`) with point `name` and primitive `path`.
+  - Increasing companion scatter seeds (`chunkcenters.npts`) from `20` to `40` scales packed output to `40` pieces, then returns to `20` when restored.
   - Key overrides confirm packing workflow (`pack_geo=1`, `createpath=1`, `connect=0`).
   - Companion nodes (`scatter` -> 20 seeds, `voronoifracture`) define piece count and boundaries consumed by assemble.
 - Mismatches:

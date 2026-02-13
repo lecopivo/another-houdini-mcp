@@ -47,6 +47,7 @@
 
 1. Piece labeling before per-piece transforms, colors, or loops.
 2. Prep for partition/name workflows in sim and fracture pipelines.
+3. Upstream id generation for `name`/`groupsfromname` bridge workflows.
 
 ## Gotchas and Failure Modes
 

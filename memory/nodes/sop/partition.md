@@ -46,6 +46,7 @@
 
 1. Legacy DOP setups requiring one group per fracture piece.
 2. Transitional pipelines where groups are still expected by downstream tools.
+3. Intermediate stage before `name` assignment and optional `groupsfromname` regeneration.
 
 ## Gotchas and Failure Modes
 

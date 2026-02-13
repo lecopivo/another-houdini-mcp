@@ -331,3 +331,53 @@ When studying a target node from examples, capture strong companion-node finding
   - routing/validation nodes (`switch`, `switchif`, `null/output`).
 
 - If companion behavior materially informs production usage, create/update their node notes immediately rather than deferring.
+
+## 27. Voronoi Fracture Patterns
+
+From companion usage in `assemble/PackedFragments`:
+
+- Piece count is seed-driven:
+  - Scatter seed count is a fast first-order control on resulting fracture/piece count.
+
+- Metadata handoff:
+  - Keep `name` continuity from fracture into `assemble`/sim/export chains.
+
+## 28. Scatter Stability Patterns
+
+From `scatter/SpikyDeformingTorus` and `scatter/DoorWithPolkaDots`:
+
+- Deforming topology-stable geo:
+  - Emit `primnum`/`primuvw`, then use `attribinterpolate` downstream.
+
+- Topology-changing geo:
+  - Prefer texture-space scatter when UV correspondence is stable across model variants.
+
+## 29. Name vs Groups Patterns
+
+From live `name` + `groupsfromname` tests:
+
+- Modern default:
+  - Use `name` attrs for large disjoint sets.
+
+- Legacy bridge:
+  - Convert to groups only at boundaries where old tools/exporters require them.
+
+## 30. Error/Validation Patterns
+
+From live `error` tests:
+
+- Severity policy:
+  - Use warning for recoverable issues, error only for true stop conditions.
+
+- Network behavior:
+  - Error severity can intentionally halt downstream cook while preserving pass-through behavior for lower severities.
+
+## 31. Partition Bridge Pattern
+
+From `connectivity -> partition -> name -> groupsfromname`:
+
+- Transitional chain:
+  - `connectivity` creates stable piece ids,
+  - `partition` materializes legacy groups,
+  - `name` modernizes identity,
+  - `groupsfromname` re-materializes groups only when needed.
