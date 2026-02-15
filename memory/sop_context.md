@@ -962,3 +962,27 @@ From deep `kinefx--motionclipretime` study (`SimpleMotionClipRetime`):
 - In `Range Shift` mode, sample count can stay fixed while `clipinfo.rate` and effective duration change significantly via `speed`.
 - Validate retime edits primarily through `clipinfo` (`range`, `rate`) before pose-space inspection.
 - In constrained example assets, resample modes may appear inert due to upstream/default expression contracts; distinguish data constraints from node defects.
+
+## 97. MotionClipSequence Seam-Control Pattern
+
+From deep `kinefx--motionclipsequence` study:
+
+- Blend `method` and `region` directly alter output sample density and clip duration even when evaluated skeleton topology stays constant.
+- Validate sequencing quality with both `clipinfo.range` and seam-frame pose checks.
+- Locomotion toggles may show subtle visual impact depending on source clips; avoid assuming no effect without metadata and trajectory checks.
+
+## 98. MotionClipUpdate Patching Pattern
+
+From deep `kinefx--motionclipupdate` study:
+
+- Reliable update pipeline: `motionclipextract -> point edits -> motionclipupdate`.
+- `overlapmode` is the primary contract switch for whether edits replace, remove, or are ignored.
+- Name/time matching drives update targeting; invalid or missing matching attributes leads to no-op style behavior.
+
+## 99. RigAttribVOP Transform-Recompute Pattern
+
+From deep `kinefx--rigattribvop` study:
+
+- Use `compute`/`computeN` toggles to guarantee expected transform attribute outputs (`localtransform`, effective locals) after CVEX rig operations.
+- In KineFX CVEX workflows, attribute contract validation is as important as point-position validation.
+- Treat sticky/example annotations as secondary evidence when they conflict with actual internal node graph intent.

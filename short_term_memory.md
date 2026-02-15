@@ -1,5 +1,27 @@
 ## Short-Term Memory
 
+- 2026-02-15: Continued one-node-at-a-time deep studies without stopping after a single node.
+- Completed nodes in this continuation pass:
+  - `kinefx--motionclipsequence`
+  - `kinefx--motionclipupdate`
+  - `kinefx--rigattribvop`
+- Notes added:
+  - `memory/nodes/sop/kinefx--motionclipsequence.md`
+  - `memory/nodes/sop/kinefx--motionclipupdate.md`
+  - `memory/nodes/sop/kinefx--rigattribvop.md`
+- Key measured outcomes:
+  - Sequence: blend method/region changed sample count and `clipinfo.range` (`method 0/1/2 => 84/83/85 samples`; overlap region growth reduced output range/samples).
+  - Update: shoulder-joint Y edits from extracted points propagated into updated clip under `overlapmode=Override`; `Keep Existing` preserved baseline.
+  - RigAttribVOP: control edits moved IK chain points as expected; `compute` toggle changed output transform-attribute contract (`localtransform` presence).
+- Progress updates:
+  - `memory/nodes/sop_progress.md`: 174 studied, 73.7%, 169 example sets reviewed.
+  - `memory/houdiin_ai_acedemy_progress.md`: overall 177 studied (SOP 174 + DOP 3).
+  - `memory/sop_context.md`: added sections 97-99.
+- Cleanup done:
+  - deleted `/obj/academy_SimpleMotionClipSequence`
+  - deleted `/obj/academy_SimpleMotionClipUpdate`
+  - deleted `/obj/academy_IkSolverVop`
+
 - 2026-02-15: Continued one-node-at-a-time study as requested; completed deep study for `kinefx--motionclipretime`.
 - Docs/examples:
   - `nodes/sop/kinefx--motionclipretime.txt`

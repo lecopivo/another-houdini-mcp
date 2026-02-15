@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 171
-- Nodes studied: 171
-- Example sets reviewed: 166
+- Nodes visited: 174
+- Nodes studied: 174
+- Example sets reviewed: 169
 
 ## Shortlist
 
@@ -185,3 +185,6 @@
 | kinefx--motionclipposedelete | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipposedelete.md` | studied |
 | kinefx--motionclipposeinsert | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipposeinsert.md` | studied |
 | kinefx--motionclipretime | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipretime.md` | studied |
+| kinefx--motionclipsequence | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipsequence.md` | studied |
+| kinefx--motionclipupdate | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipupdate.md` | studied |
+| kinefx--rigattribvop | yes | yes | yes | `memory/nodes/sop/kinefx--rigattribvop.md` | studied |
