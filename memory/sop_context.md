@@ -1253,3 +1253,33 @@ From deep `polysoup` study (`PolysoupTorus` + live tests):
 - `mergeverts` is a first-order memory/vertex-count lever inside soups; test both modes when downstream requires vertex uniqueness.
 
 - Keep a `switch` A/B branch for heavy assets to compare raw polygons vs soup in the same network during QA/perf checks.
+
+## 118. Platonic Topology-Contract Pattern
+
+From deep `platonic` study (`PlatonicSolidsTypes` + live tests):
+
+- Treat `type` as a deterministic topology contract for quick benchmark seeds:
+  - each type has stable point/primitive and face-side distribution in a given Houdini build.
+
+- Use `radius` for clean proportional scaling while preserving topology.
+
+- Orientation can change axis extents/centroid placement without changing connectivity; validate center assumptions before symmetry/boolean steps.
+
+- Keep in mind strict platonic interpretation:
+  - first five modes are canonical Platonic solids,
+  - soccer ball and Utah teapot modes are convenience/demo presets with different topology characteristics.
+
+## 119. Point Two-Input Matching Pattern
+
+From deep `point` study (`PointExamples` + live tests):
+
+- Treat `point` as toggle-gated attribute editing:
+  - parameter values alone do not modify output unless their corresponding section mode is enabled.
+
+- For two-input workflows, choose correspondence contract explicitly:
+  - default point-number matching is fragile when point order changes,
+  - `matchbyattribute` with stable IDs restores deterministic mapping.
+
+- Keep legacy expression usage scoped and audited:
+  - local-variable expressions are powerful for quick effects,
+  - but hide complexity and should be validated against modern wrangle equivalents for robust pipelines.

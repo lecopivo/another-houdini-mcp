@@ -1,5 +1,40 @@
 ## Short-Term Memory
 
+- 2026-02-15: Continued SOP academy with new deep node study: `point`.
+- Docs/examples:
+  - `nodes/sop/point.txt`
+  - `examples/nodes/sop/point/PointExamples.txt`
+- Key measured outcomes:
+  - Example branches confirmed canonical Point SOP patterns: weight (`Pw`), color (`Cd`), normal (`N`), UV (`uv`), and normal-to-color remapping.
+  - Live toggle tests on poly sphere verified section-gated attribute creation (`doclr/donml/douvw/doweight` adding `Cd/N/uv/Pw`).
+  - Two-input transfer test with shuffled second-input point order:
+    - default matching (`matchbyattribute=0`) produced mapping error (`mean abs x error 0.717613`).
+    - ID matching (`matchbyattribute=1`, `attributetomatch=id`) resolved correspondence (`error 0.0`).
+- Companion-node audit in this example:
+  - Reviewed companion branches (`font`, `merge`, `uvproject`, `shop` usage); no new transferable companion rule warranted memory-file edits this pass.
+- Memory updates:
+  - Added `memory/nodes/sop/point.md`
+  - Updated `memory/nodes/sop_progress.md` (193 studied, 81.8%, 186 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 196 studied; SOP 193)
+  - Updated `memory/sop_context.md` with Point two-input matching pattern (section 119)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `platonic`.
+- Docs/examples:
+  - `nodes/sop/platonic.txt`
+  - `examples/nodes/sop/platonic/PlatonicSolidsTypes.txt`
+- Key measured outcomes:
+  - Type sweep verified deterministic topology contracts across 7 presets (tetra/cube/octa/icosa/dodeca/soccer ball/teapot).
+  - Radius scaling on cube was proportional (`0.5 -> 1.0 -> 2.0` bbox scaling) with unchanged topology.
+  - Orientation changed axis extents/center offsets (not topology), especially visible on tetrahedron.
+  - Transform (`t/r`) moved/oriented output as expected without changing point/primitive counts.
+- Companion-node note updates from this example audit:
+  - Updated `memory/nodes/sop/primitive.md` (primitive color on merged label+solid branch pattern).
+- Memory updates:
+  - Added `memory/nodes/sop/platonic.md`
+  - Updated `memory/nodes/sop_progress.md` (192 studied, 81.4%, 185 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 195 studied; SOP 192)
+  - Updated `memory/sop_context.md` with Platonic topology-contract pattern (section 118)
+
 - 2026-02-15: Continued SOP academy with new deep node study: `polysoup`.
 - Docs/examples:
   - `nodes/sop/polysoup.txt`

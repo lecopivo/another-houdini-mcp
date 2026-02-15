@@ -39,6 +39,11 @@
 - Confusing primitive vs point color can hide intended results.
 - Local variables/expressions are primitive-index dependent; topology changes alter outcomes.
 
+## Companion Finding (from Platonic study)
+
+- Applying `primitive` color (`doclr=1`) after a `merge` of label text + solid is a practical demo pattern for uniform primitive-class styling without changing topology.
+- In `PlatonicSolidsTypes`, this pattern produced primitive `Cd` on the merged branch while preserving point/primitive counts.
+
 ## Related Nodes
 
 - `point`

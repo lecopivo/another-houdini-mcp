@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 191
-- Nodes studied: 191
-- Example sets reviewed: 184
+- Nodes visited: 193
+- Nodes studied: 193
+- Example sets reviewed: 186
 
 ## Shortlist
 
@@ -205,3 +205,5 @@
 | mirror | yes | yes | yes | `memory/nodes/sop/mirror.md` | studied |
 | normal | yes | yes | yes | `memory/nodes/sop/normal.md` | studied |
 | polysoup | yes | yes | yes | `memory/nodes/sop/polysoup.md` | studied |
+| platonic | yes | yes | yes | `memory/nodes/sop/platonic.md` | studied |
+| point | yes | yes | yes | `memory/nodes/sop/point.md` | studied |

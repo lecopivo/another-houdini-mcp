@@ -3,6 +3,7 @@
 - [Creating a New HDA](./creating_new_hda.md)
 - [SOP Context Basics](./sop_context.md)
 - [DOP Context Basics](./dop_context.md)
+- [VOP Context Basics](./vop_context.md)
 - [Houdini AI Academy Plan](./houdini_ai_academy.md)
 - [Node Study Template](./node_study_template.md)
 - [Academy QA Checklist](./academy_qa_checklist.md)
