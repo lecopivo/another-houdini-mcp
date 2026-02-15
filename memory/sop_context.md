@@ -1056,3 +1056,107 @@ From deep rewrite pass on `flipcontainer`, `flipboundary`, `flipcollide`, and `f
 
 - Treat container resolution controls as first-order budget levers:
   - `particlesep` and related scale controls (`gridscale`) should be tested together because they co-drive solver detail and downstream memory/runtime costs.
+
+## 107. Line Centering-Expression Pattern
+
+From deep `line` study (`LineDirection`):
+
+- Use direction-aligned centering when line length is animated/parameterized:
+  - set axis-aligned `dir` (for example `dirx=1, diry=0, dirz=0`),
+  - drive the corresponding origin component with `-ch("dist")/2`.
+
+- This keeps the generated segment symmetric around the origin while `dist` changes, which is useful for procedural guides and rig/control helpers.
+
+- Treat `type` as a hard topology contract switch:
+  - `Points` mode emits sampled points with zero primitives,
+  - curve modes emit one primitive but may vary control-point behavior with `order`.
+
+## 108. LinearSolver Attribute-Contract Pattern
+
+From deep `linearsolver` study (`CurveInflation`):
+
+- Treat matrix/vector attribute names as API contracts, not cosmetic labels:
+  - matrix attrs (row/col/value) and RHS attr must match encoding settings,
+  - destination attr (`vectordstattr`) must match downstream consumers.
+
+- Validate boundary constraints explicitly:
+  - `pinnedgroup` materially affects solve results even when topology and cook status look unchanged.
+  - Use before/after field stats (min/max/mean) to verify intended boundary-condition behavior.
+
+- Use mode-aware attribute checks:
+  - changing `mode` (`solve` vs `decompose` vs `multiply`) can add/remove expected output attrs.
+  - probe attribute presence after mode switches before debugging downstream nodes.
+
+## 109. LSystem Rule-and-Representation Pattern
+
+From deep `lsystem` study (`LSystemMaster`, `LsystemBuilding`, and live tests):
+
+- Treat rewrite rules and turtle interpretation as separate layers:
+  - rules define symbolic growth (`premise`, `rule#`, `generations`),
+  - turtle commands define spatial realization (`+/-`, `&/`, `[ ]`, `F/f`).
+
+- Lock representation contract early in a network:
+  - skeleton mode is lightweight and path-centric,
+  - tube mode can multiply topology significantly and should be enabled intentionally.
+
+- Leaf-command wiring is a strict dependency:
+  - `J/K/M` tokens require corresponding leaf inputs; missing wiring yields missing instances without necessarily producing hard errors.
+
+- For fractional generations, validate continuous toggles explicitly:
+  - `contLength`/`contAngl`/`contWidth` can change geometric extent while keeping similar topology.
+
+## 110. Magnet Attribute-Gating Pattern
+
+From deep `magnet` study (`MagnetBubbles`, `MagnetDistortion`, and live tests):
+
+- Treat Magnet SOP as two coupled contracts:
+  - influence contract from input-1 metaball fields (region + falloff + weight),
+  - effect contract from Magnet transform parameters (`t/r/s`) gated by attribute toggles.
+
+- Always verify field overlap first:
+  - shell-like geometry only changes where points enter metaball influence,
+  - no-overlap cases can look like broken transforms but are valid zero-effect results.
+
+- Enable one attribute gate at a time during debug:
+  - `position` for displacement,
+  - `color` for `Cd` modulation (`clampcolor` to enforce `[0,1]`),
+  - `nml` for normal reorientation,
+  - `velocity` for `v` edits.
+
+- Metaball `metaweight` is a first-order strength multiplier; validate deformation amplitude scaling when tuning look/intensity.
+
+## 111. MaskByFeature Multi-Channel Mask Pattern
+
+From deep `maskbyfeature` study (`MaskByFeatureBasic`):
+
+- Emit mask channels as explicit separate attributes during lookdev:
+  - directional mask for incidence,
+  - combined mask for directional + shadow/AO interactions,
+  - AO/shadow masks for isolated diagnostics.
+
+- Validate direction settings before shadow/AO tuning:
+  - vector orientation and `maxangle` can dominate outcome and make downstream shadow tuning misleading.
+
+- Treat shadows and AO as subtractive/attenuating layers on top of directional contribution:
+  - with shadows disabled, combined often tracks directional mask closely,
+  - enabling self/caster shadows and AO usually lowers combined mask means.
+
+- Use stable attribute naming to avoid accidental overwrites when enabling multiple outputs in the same node.
+
+## 112. MatchTopology Ambiguity-Resolution Pattern
+
+From deep `matchtopology` study (`MatchTopologySphere` + live tests):
+
+- Separate two validation states:
+  - contract validity (point/prim/vertex counts match),
+  - mapping correctness (the actual intended correspondence).
+
+- A warning-free cook is not guaranteed unless ambiguity is resolved:
+  - symmetric components can produce multiple valid mappings,
+  - use landmark point correspondences (`trackpts`/`refpts`) to force intended mapping.
+
+- Always run a post-match numeric validation:
+  - compare point-number-aligned `P` (or key attributes) against reference,
+  - use RMS/mean deltas to confirm mapping actually recovered.
+
+- `assumeprimmatch` is a performance shortcut, not a correctness fix; apply only when primitive correspondence is already trustworthy.

@@ -1,5 +1,110 @@
 ## Short-Term Memory
 
+- 2026-02-15: Continued SOP academy with new deep node study: `matchtopology`.
+- Docs/examples:
+  - `nodes/sop/matchtopology.txt`
+  - `examples/nodes/sop/matchtopology/MatchTopologySphere.txt`
+- Key measured outcomes:
+  - Baseline reordered meshes had large point-number mismatch against reference (RMS `~1.42419`) before remap.
+  - Official example setup produced perfect remap in tested branches (`matchtopology_*` RMS `0.0`).
+  - Live ambiguity case showed warning (`Connected components had ambiguous matches...`) and non-zero RMS (`~1.414213`) despite successful cook.
+  - Adding tracking/reference hints (`trackpts="44 2 71"`, `refpts="0 1 2"`) resolved ambiguity and restored RMS `0.0`.
+  - Topology mismatch failure (different reference sphere frequency) raised hard errors for point/primitive count mismatch.
+- Memory updates:
+  - Added `memory/nodes/sop/matchtopology.md`
+  - Updated `memory/nodes/sop_progress.md` (186 studied, 78.8%, 179 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 189 studied; SOP 186)
+  - Updated `memory/sop_context.md` with MatchTopology ambiguity-resolution pattern (section 112)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `maskbyfeature`.
+- Docs/examples:
+  - `nodes/sop/maskbyfeature.txt`
+  - `examples/nodes/sop/maskbyfeature/MaskByFeatureBasic.txt`
+- Key measured outcomes:
+  - Baseline combined output (`Cd`) on example had mean `0.1855` over `2986` points.
+  - Enabling directional output added `dir_mask` (mean `0.2562`) without topology change.
+  - Direction interaction: reducing `maxangle 90 -> 20` strongly reduced directional contribution (`dir_mask` mean `0.2562 -> 0.0479`).
+  - Flipping vector direction (`Y 1 -> -1`) collapsed combined mask in this setup (`Cd` mean `0.1855 -> 0.0000`) while directional remained non-zero.
+  - Shadow interaction: `castshadows=0` made combined match directional mean (`0.2561`); `castshadows=1,selfshadows=1` reduced combined mean to `0.1635`.
+  - AO interaction (`enableao=1,aosamples=8`) emitted `ao_mask` (mean `0.7085`) and reduced combined mean further to `0.1408`.
+- Memory updates:
+  - Added `memory/nodes/sop/maskbyfeature.md`
+  - Updated `memory/nodes/sop_progress.md` (185 studied, 78.4%, 178 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 188 studied; SOP 185)
+  - Updated `memory/sop_context.md` with MaskByFeature multi-channel mask pattern (section 111)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `magnet`.
+- Docs/examples:
+  - `nodes/sop/magnet.txt`
+  - `examples/nodes/sop/magnet/MagnetBubbles.txt`
+  - `examples/nodes/sop/magnet/MagnetDistortion.txt`
+- Key measured outcomes:
+  - Position mode (`tx=1.0`) with overlapping metaball affected only influenced subset (`moved 96/312`, `max_disp=2.0`).
+  - Color-only mode (`position=0`, `color=1`, `sy=-1`) changed `Cd` without moving points; unclamped range dipped below zero (`-0.002`).
+  - `clampcolor=1` restored `Cd` range to `[0,1]`.
+  - Normal-only mode (`nml=1`, `ty=-69`) changed normals (mean delta `~0.5976`) with zero point displacement.
+  - Velocity-only mode (`velocity=1`, `tz=1.5`) changed average `v` from `(0,1,0)` to approximately `(0,0.8536,0.2371)`.
+  - Metaball `metaweight` scaled deformation amplitude near-linearly in tested setup (`0.5/2.0/4.0 -> max_disp 0.5/2.0/4.0`).
+- Memory updates:
+  - Added `memory/nodes/sop/magnet.md`
+  - Updated `memory/nodes/sop_progress.md` (184 studied, 78.0%, 177 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 187 studied; SOP 184)
+  - Updated `memory/sop_context.md` with Magnet attribute-gating pattern (section 110)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `lsystem`.
+- Docs/examples:
+  - `nodes/sop/lsystem.txt`
+  - `examples/nodes/sop/lsystem/LSystemMaster.txt`
+  - `examples/nodes/sop/lsystem/LsystemBuilding.txt`
+- Key measured outcomes:
+  - Generation scaling in skeleton mode: `gen 3 -> 5` changed output `13 pts / 3 prims -> 40 pts / 9 prims`.
+  - Representation switch (`type`): at same rules/generations, skeleton `40/9/48` vs tube `522/18/522` (pts/prims/verts).
+  - `pointwidth=1` in skeleton mode emitted key point attrs (`width`, `arc`, `gen`, `up`, `segs`, `div`, `lage`).
+  - Fractional generation interaction: `gen=3.5` with `contLength=1` reduced bbox extent versus `contLength=0` while topology stayed constant.
+  - Leaf insertion contract validated: adding `J` command (`B=&FFF[fJ]A`) with leaf input wired increased output from `40/9` to `52/21`.
+  - Randomization contract validated: changing `randseed` with non-zero `randscale` changed shape extents while keeping topology fixed.
+- Memory updates:
+  - Added `memory/nodes/sop/lsystem.md`
+  - Updated `memory/nodes/sop_progress.md` (183 studied, 77.5%, 176 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 186 studied; SOP 183)
+  - Updated `memory/sop_context.md` with LSystem rule-and-representation pattern (section 109)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `linearsolver`.
+- Docs/examples:
+  - `nodes/sop/linearsolver.txt`
+  - `examples/nodes/sop/linearsolver/CurveInflation.txt`
+- Key measured outcomes:
+  - Baseline solve emitted point attr `z` with range `0.0 .. 0.562163` (mean `0.172899`) on `8184` points.
+  - Direct vs iterative solver produced matching sampled output stats in this tested setup.
+  - Clearing `pinnedgroup` changed solve field materially (`z max 0.562163 -> 0.730753`, mean `0.172899 -> 0.287632`).
+  - Renaming `vectordstattr` (`z -> z_alt`) moved output attribute contract as expected.
+  - `mode=Decompose` removed solved destination attr `z` in this network (mode-contract validation).
+- Memory updates:
+  - Added `memory/nodes/sop/linearsolver.md`
+  - Updated `memory/nodes/sop_progress.md` (182 studied, 77.1%, 175 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 185 studied; SOP 182)
+  - Updated `memory/sop_context.md` with LinearSolver attribute-contract pattern (section 108)
+- Cleanup done:
+  - deleted `/obj/academy_CurveInflation`
+
+- 2026-02-15: Continued SOP academy with new deep node study: `line`.
+- Docs/examples:
+  - `nodes/sop/line.txt`
+  - `examples/nodes/sop/line/LineDirection.txt`
+- Key measured outcomes:
+  - Primitive contract sweep confirmed `type` mapping: polygon, NURBS, Bezier, and point-only (`0 prims`).
+  - Polygon density scaling verified (`points=2 -> 10` produced `2 -> 10` vertices on single primitive).
+  - Bezier interaction test showed order-sensitive output (`type=2`, `order 2 -> 6` changed output points `10 -> 11`).
+  - Centering expression from example validated: `originx=-ch("dist")/2` kept X-axis line centered as `dist` changed (`4.0 -> 7.5`).
+- Memory updates:
+  - Added `memory/nodes/sop/line.md`
+  - Updated `memory/nodes/sop_progress.md` (181 studied, 76.7%, 174 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 184 studied; SOP 181)
+  - Updated `memory/sop_context.md` with Line centering-expression pattern (section 107)
+- Cleanup done:
+  - deleted `/obj/academy_LineDirection`
+  - deleted `/obj/academy_line_live`
+
 - 2026-02-15: Reworked FLIP-family SOP notes to richer academy format after quality feedback.
 - Rewritten/expanded notes:
   - `memory/nodes/sop/flipcontainer.md`

@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 180
-- Nodes studied: 180
-- Example sets reviewed: 173
+- Nodes visited: 186
+- Nodes studied: 186
+- Example sets reviewed: 179
 
 ## Shortlist
 
@@ -194,3 +194,9 @@
 | laplacian | yes | yes | yes | `memory/nodes/sop/laplacian.md` | studied |
 | latticefromvolume | yes | yes | yes | `memory/nodes/sop/latticefromvolume.md` | studied |
 | layer | yes | yes | yes | `memory/nodes/sop/layer.md` | studied |
+| line | yes | yes | yes | `memory/nodes/sop/line.md` | studied |
+| linearsolver | yes | yes | yes | `memory/nodes/sop/linearsolver.md` | studied |
+| lsystem | yes | yes | yes | `memory/nodes/sop/lsystem.md` | studied |
+| magnet | yes | yes | yes | `memory/nodes/sop/magnet.md` | studied |
+| maskbyfeature | yes | yes | yes | `memory/nodes/sop/maskbyfeature.md` | studied |
+| matchtopology | yes | yes | yes | `memory/nodes/sop/matchtopology.md` | studied |
