@@ -1,5 +1,123 @@
 ## Short-Term Memory
 
+- 2026-02-15: Continued one-node-at-a-time study as requested; completed deep study for `kinefx--motionclipretime`.
+- Docs/examples:
+  - `nodes/sop/kinefx--motionclipretime.txt`
+  - `examples/nodes/sop/kinefx--motionclipretime/SimpleMotionClipRetime.txt`
+- Key measured outcomes:
+  - Example default (`Range Shift`, speed 0.7): output reduced to `22` samples with range `0..1.1905`, rate `~16.8`.
+  - `speed` sweep in Range Shift mode changed rate/duration while keeping sample count stable (`22`).
+  - Resample-mode sweeps in this asset showed stable counts/ranges (noted as example-data/default-expression nuance).
+- Memory updates:
+  - Added `memory/nodes/sop/kinefx--motionclipretime.md`
+  - Updated `memory/nodes/sop_progress.md` (171 studied, 72.5%)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 174)
+  - Updated `memory/sop_context.md` with MotionClipRetime timing-contract pattern (section 96)
+- Cleanup done: deleted `/obj/academy_SimpleMotionClipRetime`.
+
+- 2026-02-15: Completed second half of requested 10-node SOP batch (continuous run).
+- Completed nodes:
+  - `kinefx--motionclipcycle`
+  - `kinefx--motionclipevaluate`
+  - `kinefx--motionclipextract`
+  - `kinefx--motionclipposedelete`
+  - `kinefx--motionclipposeinsert`
+- Notes added:
+  - `memory/nodes/sop/kinefx--motionclipcycle.md`
+  - `memory/nodes/sop/kinefx--motionclipevaluate.md`
+  - `memory/nodes/sop/kinefx--motionclipextract.md`
+  - `memory/nodes/sop/kinefx--motionclipposedelete.md`
+  - `memory/nodes/sop/kinefx--motionclipposeinsert.md`
+- Key measured outcomes:
+  - `motionclipcycle`: `cyclesafter` scaled output duration/prim count (`0.0 -> 56 prims`, `1.5 -> 132`, `3.0 -> 209`).
+  - `motionclipextract`: frame range and step strongly changed extracted sample counts; `@name=` group syntax required for reliable joint filtering.
+  - `motionclipposedelete`: frame-range invert uses mode-specific `negate2` (`delete10-20 -> 45 prims`, invert keep-only -> 12).
+  - `motionclipposeinsert`: inserting into missing frame increased sample count; `overlapmode=Error` correctly triggered cook error on frame conflict.
+  - `motionclipevaluate`: official example behaved as effectively static across tested frames (important dataset caveat).
+- Progress updates:
+  - `memory/nodes/sop_progress.md`: 170 studied, 72.0%, 165 example sets reviewed.
+  - `memory/houdiin_ai_acedemy_progress.md`: overall 173 studied (SOP 170 + DOP 3).
+  - `memory/sop_context.md`: added sections 94-95.
+- Cleanup done:
+  - deleted `/obj/academy_SimpleMotionClipCycle`
+  - deleted `/obj/academy_SimpleMotionClipEvaluate`
+  - deleted `/obj/academy_SimpleMotionClipExtract`
+  - deleted `/obj/academy_SimpleMotionClipPoseDelete`
+  - deleted `/obj/academy_SimpleMotionClipPoseInsert`
+
+- 2026-02-15: Continued SOP academy (user requested next 10 nodes, continuous run) and completed first 5 nodes of that batch.
+- Completed nodes:
+  - `kinefx--characterblendshapes`
+  - `kinefx--configurejointlimits`
+  - `kinefx--dynamicwarp`
+  - `kinefx--motionclip`
+  - `kinefx--motionclipblend`
+- Notes added:
+  - `memory/nodes/sop/kinefx--characterblendshapes.md`
+  - `memory/nodes/sop/kinefx--configurejointlimits.md`
+  - `memory/nodes/sop/kinefx--dynamicwarp.md`
+  - `memory/nodes/sop/kinefx--motionclip.md`
+  - `memory/nodes/sop/kinefx--motionclipblend.md`
+- Key batch findings:
+  - Character blendshape channels require strict naming contract between `blendshape_channel` metadata and animated channel attrs.
+  - Dynamic warp mode/output-length changes are best validated via `clipinfo.range`.
+  - MotionClipBlend envelope/effect parameters changed evaluated pose substantially while clip topology stayed stable.
+  - ConfigureJointLimits example can contain valid config keys with weak/degenerate numeric limits depending on motion source quality.
+- Progress updates:
+  - `memory/nodes/sop_progress.md`: 165 studied, 69.9%, 160 example sets reviewed.
+  - `memory/houdiin_ai_acedemy_progress.md`: overall 168 studied (SOP 165 + DOP 3).
+  - `memory/sop_context.md`: added sections 91-93.
+- Cleanup done:
+  - deleted `/obj/academy_SimpleCharacterBlendShapes`
+  - deleted `/obj/academy_InbetweenShapes`
+  - deleted `/obj/academy_ConfigureLimitsFromMotionClip`
+  - deleted `/obj/academy_DynamicWarpRemoveStalls`
+  - deleted `/obj/academy_SimpleMotionClip`
+  - deleted `/obj/academy_SimpleMotionClipBlend`
+  - deleted `/obj/academy_characterblendshapes_live`
+- Remaining nodes in this requested 10-node batch:
+  - `kinefx--motionclipcycle`
+  - `kinefx--motionclipevaluate`
+  - `kinefx--motionclipextract`
+  - `kinefx--motionclipposedelete`
+  - `kinefx--motionclipposeinsert`
+
+- 2026-02-15: Continued SOP academy and completed deep study for `kinefx--attachjointgeo`.
+- Docs/examples:
+  - `nodes/sop/kinefx--attachjointgeo.txt`
+  - `examples/nodes/sop/kinefx--attachjointgeo/capturegeoexample.txt`
+- Networks inspected:
+  - `/obj/academy_capturegeoexample/capture_geometry_example`
+  - Live repro: `/obj/academy_attachjointgeo_live`
+- Key measured outcomes:
+  - Official example: `add_capture_geometry` had `45` prims with `4` `jointgeo` capture-shape assignments; mirrored transfer produced `47` prims.
+  - Live repro: single assignment increased prim count `41 -> 42`; `role=0` set `jointgeo.role='control'`, `role=1` set `jointgeo.role='capture'`.
+  - `shape_worldtrans1=1` preserved explicit `jointgeo.offset`; `shape_worldtrans1=0` removed explicit world offset.
+  - Important naming nuance: `mergepacked` output primitive name differed from upstream shape name; `shapename#` must match post-pack names.
+- Memory updates:
+  - Added `memory/nodes/sop/kinefx--attachjointgeo.md`
+  - Updated `memory/nodes/sop_progress.md` (160 studied, 66.5%)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 160)
+  - Updated `memory/sop_context.md` with AttachJointGeo metadata-contract pattern (section 90)
+- Cleanup done: deleted `/obj/academy_capturegeoexample` and `/obj/academy_attachjointgeo_live`.
+
+- 2026-02-15: Continued SOP academy and completed deep study for `kinefx--agentposefromrig`.
+- Docs/examples:
+  - `nodes/sop/kinefx--agentposefromrig.txt`
+  - `examples/nodes/sop/kinefx--agentposefromrig/TransferPoseToAgent.txt`
+- Key issue discovered and fixed during study:
+  - Loaded example had stale internal object paths (`/obj/TransferPoseToAgent1/...`) after instantiation under `/obj/academy_TransferPoseToAgent`.
+  - Repointed `agent1.objsubnet` and `agent1.locomotionnode` to the new object path to restore cooking.
+- Key measured outcomes:
+  - Root mode contracts differ materially (primitive transform motion vs root-joint application vs ignore).
+  - `group`/`joints` act as strict transfer gates.
+  - Geometry contract remains stable (`5` points / `5` Agent prims) while pose data changes.
+- Memory updates:
+  - Added `memory/nodes/sop/kinefx--agentposefromrig.md`
+  - Updated `memory/nodes/sop_progress.md` (159 studied, 66.1%)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 159)
+  - Updated `memory/sop_context.md` with AgentPoseFromRig root-mode pattern (section 89)
+
 - 2026-02-15: Updated academy documentation standards per user request.
 - Updated files:
   - `memory/node_study_template.md` (reworked to richer `heightfield_erode-2.0` style with required sections and quality rules)

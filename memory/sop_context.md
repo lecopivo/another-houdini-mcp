@@ -896,3 +896,69 @@ From deep `kinefx--agentfromrig` study (`AgentFromSOPs`):
 - Use `userestframe` to keep agent rig definitions stable over time when source skeletons are animated.
 - Keep `createlocomotionjoint` enabled for locomotion-clip-ready agents unless a custom locomotion strategy is explicit.
 - Treat `agentname` emission as pipeline identity contract, not cosmetic metadata.
+
+## 89. AgentPoseFromRig Root-Mode Pattern
+
+From deep `kinefx--agentposefromrig` study (`TransferPoseToAgent`):
+
+- Treat `roottransformmode` as the primary motion-space contract:
+  - one mode moves agent primitive/point transforms,
+  - one mode keeps primitive transform stable and applies motion at root-joint level,
+  - one mode ignores root transfer.
+- Use `group` + `joints` as strict gating controls for partial-agent/partial-body updates.
+- If loaded example assets fail to cook after renaming the top-level object, inspect internal object-path parms on crowd/agent nodes and repoint them before behavior analysis.
+
+## 90. AttachJointGeo Metadata-Contract Pattern
+
+From deep `kinefx--attachjointgeo` study (`capturegeoexample`):
+
+- Validate `jointgeo` primitive metadata after assignments; this is the real contract that downstream KineFX tools consume.
+- `role` changes semantic intent in `jointgeo` (`control` vs `capture`) without changing skeleton hierarchy.
+- When using `mergepacked` shape libraries, verify final primitive `name` values before setting `shapename#` (names can differ from upstream expectations).
+
+## 91. KineFX Blendshape Channel-Contract Pattern
+
+From deep `kinefx--characterblendshapes` study:
+
+- Treat blendshape channels as strict schema contracts between geometry metadata (`blendshape_channel`) and animated-pose channel attrs.
+- Validate deformation changes with measured geometry deltas; successful cook does not guarantee channels are wired correctly.
+- In-between shape workflows are highly sensitive to correct intermediate metadata/weights.
+
+## 92. KineFX MotionClip Domain Pattern
+
+From deep `kinefx--motionclip`, `kinefx--dynamicwarp`, and `kinefx--motionclipblend` studies:
+
+- Use MotionClip domain for timing edits first, and only evaluate to skeleton geometry when needed for visualization/deformation.
+- Validate timing operations through `clipinfo` (`range`, `rate`, source range), not just primitive counts.
+- In blend/warp nodes, many meaningful changes appear in evaluated pose trajectories while clip topology remains constant.
+
+## 93. Joint-Limit Data Validity Pattern
+
+From deep `kinefx--configurejointlimits` study:
+
+- Existence of limit keys in configuration dictionaries is not enough; verify that numeric ranges are non-degenerate and motion-source is valid.
+- Keep `rest_transform` and `rotation_order` consistent with downstream consumers to avoid misleading limit behavior.
+
+## 94. MotionClip Selection-Syntax Pattern
+
+From deep `kinefx--motionclipextract` and `kinefx--motionclipposedelete` studies:
+
+- KineFX joint filtering is most reliable with explicit group syntax (for example `@name=Hips`), not plain token names.
+- Delete/extract nodes can preserve clip metadata while changing sample counts significantly; validate both count and metadata.
+- Selection inversion parameters are mode-specific (`negate`, `negate2`, etc.); verify the active one before concluding behavior is broken.
+
+## 95. MotionClip Edit Chain Pattern
+
+From deep `kinefx--motionclipcycle`, `kinefx--motionclipevaluate`, and `kinefx--motionclipposeinsert` studies:
+
+- Preferred edit chain: `motionclip` domain edits (`cycle`, `delete`, `insert`, `blend`, `warp`) first, then `motionclipevaluate` for pose-space validation.
+- `clipinfo.range` is a primary diagnostic for timing edits (cycle/warp/delete); evaluated pose may hide timing changes at single-frame checks.
+- Overlap/error modes on insert/delete nodes are useful for enforcing procedural safety contracts in automated pipelines.
+
+## 96. MotionClipRetime Timing-Contract Pattern
+
+From deep `kinefx--motionclipretime` study (`SimpleMotionClipRetime`):
+
+- In `Range Shift` mode, sample count can stay fixed while `clipinfo.rate` and effective duration change significantly via `speed`.
+- Validate retime edits primarily through `clipinfo` (`range`, `rate`) before pose-space inspection.
+- In constrained example assets, resample modes may appear inert due to upstream/default expression contracts; distinguish data constraints from node defects.

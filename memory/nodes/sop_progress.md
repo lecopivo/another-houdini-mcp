@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 158
-- Nodes studied: 158
-- Example sets reviewed: 152
+- Nodes visited: 171
+- Nodes studied: 171
+- Example sets reviewed: 166
 
 ## Shortlist
 
@@ -172,3 +172,16 @@
 | join | yes | yes | yes | `memory/nodes/sop/join.md` | studied |
 | kinefx--agentanimationunpack | yes | yes | yes | `memory/nodes/sop/kinefx--agentanimationunpack.md` | studied |
 | kinefx--agentfromrig | yes | yes | yes | `memory/nodes/sop/kinefx--agentfromrig.md` | studied |
+| kinefx--agentposefromrig | yes | yes | yes | `memory/nodes/sop/kinefx--agentposefromrig.md` | studied |
+| kinefx--attachjointgeo | yes | yes | yes | `memory/nodes/sop/kinefx--attachjointgeo.md` | studied |
+| kinefx--characterblendshapes | yes | yes | yes | `memory/nodes/sop/kinefx--characterblendshapes.md` | studied |
+| kinefx--configurejointlimits | yes | yes | yes | `memory/nodes/sop/kinefx--configurejointlimits.md` | studied |
+| kinefx--dynamicwarp | yes | yes | yes | `memory/nodes/sop/kinefx--dynamicwarp.md` | studied |
+| kinefx--motionclip | yes | yes | yes | `memory/nodes/sop/kinefx--motionclip.md` | studied |
+| kinefx--motionclipblend | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipblend.md` | studied |
+| kinefx--motionclipcycle | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipcycle.md` | studied |
+| kinefx--motionclipevaluate | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipevaluate.md` | studied |
+| kinefx--motionclipextract | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipextract.md` | studied |
+| kinefx--motionclipposedelete | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipposedelete.md` | studied |
+| kinefx--motionclipposeinsert | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipposeinsert.md` | studied |
+| kinefx--motionclipretime | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipretime.md` | studied |
