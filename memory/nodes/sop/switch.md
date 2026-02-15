@@ -58,6 +58,14 @@
 - Different branch attribute schemas can cause downstream instability.
 - Missing local examples means behavior should be validated per build/network.
 
+## Companion Finding (from PolySoup study)
+
+- `switch` is useful as a diagnostics/perf toggle for heavy geometry optimization branches.
+- In `PolysoupTorus`, switching raw vs polysoup kept point count fixed (`4,000,000`) while changing primitive/vertex load dramatically:
+  - raw: `4,000,000 prims / 16,000,000 verts`
+  - polysoup: `1 prim / 4,000,000 verts`.
+- This makes `switch` a practical pattern for A/B viewport-debug branches before final export.
+
 ## Related Nodes
 
 - `switchif`

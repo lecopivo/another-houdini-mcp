@@ -35,6 +35,12 @@
 - Legacy/alternative nodes (`cookie`, `copy`) can diverge from newer counterparts; verify intended tool variant.
 - Crowd motion-path nodes are sensitive to clip naming/state graph consistency.
 
+## Companion Finding (from PolySoup study)
+
+- `convert` is the practical exit path from polygon soup back to regular polygons for editing/compatibility.
+- In a live soup branch (`112 pts / 1 PolySoup prim / 112 verts`), converting back produced `112 pts / 108 Polygon prims / 432 verts`, preserving key primitive attribute `classid`.
+- Use this to verify semantic preservation after soup optimization, while accepting increased primitive/vertex overhead in editable polygon form.
+
 ## Related Nodes
 
 - `attribwrangle`

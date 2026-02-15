@@ -1234,3 +1234,22 @@ From deep `normal` study (`BoxNormals` + live tests):
 - Keep `origifzero` enabled when disconnected points may carry intentional custom normals; otherwise compute pass can zero them out.
 
 - `docompute=0` is modify-only: it normalizes/reverses existing `N` but does not create missing normals.
+
+## 117. PolySoup Optimization-Boundary Pattern
+
+From deep `polysoup` study (`PolysoupTorus` + live tests):
+
+- Use polysoup as a late-stage optimization boundary, not a general modeling state:
+  - keep upstream editable polygons,
+  - compact to soup near export/render/cache handoff.
+
+- Soup partitioning is controlled by primitive semantics:
+  - differing primitive groups or primitive attrs split soups,
+  - `ignoregroups`/`ignoreattribs` can force larger merges but may alter intended partitions.
+
+- `minpolys` is a useful guardrail:
+  - high thresholds can intentionally keep small fragments as regular polygons.
+
+- `mergeverts` is a first-order memory/vertex-count lever inside soups; test both modes when downstream requires vertex uniqueness.
+
+- Keep a `switch` A/B branch for heavy assets to compare raw polygons vs soup in the same network during QA/perf checks.

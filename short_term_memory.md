@@ -1,5 +1,24 @@
 ## Short-Term Memory
 
+- 2026-02-15: Continued SOP academy with new deep node study: `polysoup`.
+- Docs/examples:
+  - `nodes/sop/polysoup.txt`
+  - `examples/nodes/sop/polysoup/PolysoupTorus.txt`
+- Key measured outcomes:
+  - Official torus example showed large structural compaction (`4,000,000` prims -> `1` soup prim, and `16,000,000` verts -> `4,000,000`).
+  - Primitive partition behavior: preserving attrs/groups yielded `2` soups; enabling both `ignoreattribs` and `ignoregroups` merged to `1` soup.
+  - `minpolys` threshold test: setting `minpolys=200` forced fallback to regular polygons (`108` polygon prims) on the test mesh.
+  - `mergeverts` strongly changed soup vertex count (`432` -> `112`) on identical input.
+  - Converting soup back to polygons restored editable polygon topology while preserving tested prim attribute (`classid`).
+- Companion-node note updates from this example audit:
+  - Updated `memory/nodes/sop/switch.md` (heavy raw-vs-soup A/B pattern with measured counts).
+  - Updated `memory/nodes/sop/convert.md` (soup->polygon restoration pattern with measured contract preservation).
+- Memory updates:
+  - Added `memory/nodes/sop/polysoup.md`
+  - Updated `memory/nodes/sop_progress.md` (191 studied, 80.9%, 184 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 194 studied; SOP 191)
+  - Updated `memory/sop_context.md` with PolySoup optimization-boundary pattern (section 117)
+
 - 2026-02-15: Continued SOP academy with new deep node study: `normal`.
 - Docs/examples:
   - `nodes/sop/normal.txt`

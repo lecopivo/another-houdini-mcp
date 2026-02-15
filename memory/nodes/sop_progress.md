@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 190
-- Nodes studied: 190
-- Example sets reviewed: 183
+- Nodes visited: 191
+- Nodes studied: 191
+- Example sets reviewed: 184
 
 ## Shortlist
 
@@ -204,3 +204,4 @@
 | metaball | yes | yes | yes | `memory/nodes/sop/metaball.md` | studied |
 | mirror | yes | yes | yes | `memory/nodes/sop/mirror.md` | studied |
 | normal | yes | yes | yes | `memory/nodes/sop/normal.md` | studied |
+| polysoup | yes | yes | yes | `memory/nodes/sop/polysoup.md` | studied |
