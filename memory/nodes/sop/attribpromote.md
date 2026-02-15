@@ -56,6 +56,10 @@
 - Promotion method strongly changes meaning (e.g., `First` vs `Average`).
 - Pattern promotion can unintentionally affect more attrs than expected.
 
+## Companion Finding (from Normal study)
+
+- Promoting point normals to vertex normals is a valid display-merge tactic: point `N` is copied per incident vertex, preserving visual result while satisfying vertex-class expectations of downstream merged branches.
+
 ## Related Nodes
 
 - `attribtransfer`

@@ -1,5 +1,25 @@
 ## Short-Term Memory
 
+- 2026-02-15: Continued SOP academy with new deep node study: `normal`.
+- Docs/examples:
+  - `nodes/sop/normal.txt`
+  - `examples/nodes/sop/normal/BoxNormals.txt`
+- Key measured outcomes:
+  - Verified class contracts: point/vertex/primitive/detail modes write `N` only on their selected class.
+  - Vertex cusp behavior: at one shared point, `cusp=30` kept `3` unique vertex normals, `cusp=120/180` collapsed to `1`.
+  - Polygon soup branch validated vertex-normal support (`vtxN=True` on soup geometry).
+  - Triangulated vs quad point normals showed near-identical absolute alignment (`|dot| ~ 0.99-1.0`) but sign inversion due to winding.
+  - Disconnected-point edge case: `origifzero=0` zeroed seeded normals; `origifzero=1` preserved seeded `N={0,2,0}`.
+  - Modify-only mode (`docompute=0`) normalized/reversed existing normals but did not create missing ones.
+- Companion-node note updates from this example audit:
+  - Updated `memory/nodes/sop/divide.md` (triangulation/winding-normal sign caution).
+  - Updated `memory/nodes/sop/attribpromote.md` (point->vertex normal promotion pattern for merged display).
+- Memory updates:
+  - Added `memory/nodes/sop/normal.md`
+  - Updated `memory/nodes/sop_progress.md` (190 studied, 80.5%, 183 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 193 studied; SOP 190)
+  - Updated `memory/sop_context.md` with Normal class-and-cusp contract pattern (section 116)
+
 - 2026-02-15: Continued SOP academy with new deep node study: `mirror`.
 - Docs/examples:
   - `nodes/sop/mirror.txt`

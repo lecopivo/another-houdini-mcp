@@ -1215,3 +1215,22 @@ From deep `mirror` study (`MirrorSpout` + live tests):
   - on clipped/centered meshes it can significantly reduce seam-point duplication.
 
 - Enable output grouping when mirrored side needs downstream isolation (UV/material/fix-up passes).
+
+## 116. Normal Class-and-Cusp Contract Pattern
+
+From deep `normal` study (`BoxNormals` + live tests):
+
+- Treat normal generation as an explicit attribute-class contract:
+  - point, vertex, primitive, and detail normals are distinct outputs and should match downstream expectations.
+
+- Cusp angle is a topology-aware edge classifier:
+  - low cusp preserves hard splits (multiple vertex normals per shared point),
+  - higher cusp merges to smooth normals at the same shared point.
+
+- In triangulated-vs-quad comparisons, validate orientation separately from quality:
+  - winding changes can flip sign while preserving absolute alignment,
+  - compare with absolute dot or normalize winding before judging weighting behavior.
+
+- Keep `origifzero` enabled when disconnected points may carry intentional custom normals; otherwise compute pass can zero them out.
+
+- `docompute=0` is modify-only: it normalizes/reverses existing `N` but does not create missing normals.

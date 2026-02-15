@@ -29,3 +29,8 @@
 ## Gotchas and Failure Modes
 
 - different divide modes (convex, triangulate, smooth, remove shared edges) can dominate over `divs`.
+
+## Companion Finding (from Normal study)
+
+- In `BoxNormals`-style workflows, triangulation can flip effective normal sign relative to quad topology when compared point-by-point.
+- Practical check: compare normal alignment using absolute dot (or verify winding) before interpreting this as a shading-quality regression.
