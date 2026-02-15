@@ -1,5 +1,59 @@
 ## Short-Term Memory
 
+- 2026-02-15: Continued SOP academy with new deep node study: `mirror`.
+- Docs/examples:
+  - `nodes/sop/mirror.txt`
+  - `examples/nodes/sop/mirror/MirrorSpout.txt`
+- Key measured outcomes:
+  - Baseline mirror-all duplicated source topology (`6 -> 12` prims, `8 -> 16` points in test box).
+  - `keepOriginal=0` produced mirrored-only output (removed original side from result).
+  - `operation=Clip Primitives and Mirror` reduced primitive count (`12 -> 10` in tested setup), confirming cut-before-mirror behavior.
+  - Seam consolidation in clip-centered case reduced points (`16 -> 12`) with same primitive count.
+  - Plane authoring mode materially changed result extents/center (`Direction` vs `Transform`).
+  - Group-limited mirroring (`group="0-2"`) reduced mirrored coverage (`12 -> 9` prims).
+  - Output-group creation produced prim group `mirrored_half` with mirrored-side primitives for downstream targeting.
+  - Example confirms channel-reference pattern linking mirror `dist` to clip distance for stable procedural center alignment.
+- Memory updates:
+  - Added `memory/nodes/sop/mirror.md`
+  - Updated `memory/nodes/sop_progress.md` (189 studied, 80.1%, 182 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 192 studied; SOP 189)
+  - Updated `memory/sop_context.md` with Mirror symmetry-contract pattern (section 115)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `metaball`.
+- Docs/examples:
+  - `nodes/sop/metaball.txt`
+  - `examples/nodes/sop/metaball/BlendMetaballs.txt`
+  - `examples/nodes/sop/metaball/MetaExpression.txt`
+- Key measured outcomes:
+  - Overlap-distance sweeps changed converted surface continuity/extent as expected (`tx` separation increased X span and altered point/prim counts).
+  - Weight sweeps showed strong amplitude/coverage changes, including negative weight contraction behavior.
+  - Kernel variation materially changed converted output footprint (`wyvill/blinn/elendt/hart` produced distinct counts/extents).
+  - Superquadric exponent sweeps (`expxy/expz`) shifted shape style from expanded/squarish to contracted/starish in converted output.
+  - Meta-expression examples validated composition behavior: `min/max/sum` produced distinct surface counts, including a valid empty-result expression case.
+- Memory updates:
+  - Added `memory/nodes/sop/metaball.md`
+  - Updated `memory/nodes/sop_progress.md` (188 studied, 79.7%, 181 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 191 studied; SOP 188)
+  - Updated `memory/sop_context.md` with Metaball field-composition pattern (section 114)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `mdd`.
+- Docs/examples:
+  - `nodes/sop/mdd.txt`
+  - `examples/nodes/sop/mdd/SimpleMDD.txt`
+- Key measured outcomes:
+  - Example cache path (`/home/tskrivan/output.mdd`) was unavailable here; node emitted missing-file warning and passed input through.
+  - Built a valid local test cache via MDD ROP (`/out/academy_mdd_writer`) to `/tmp/academy_anim.mdd` from animated box (`ry=$F*15`).
+  - With matching topology input: frame sampling moved points as expected (point 0 changed across frames 1/6/12).
+  - Without input: MDD SOP emitted point-only output (`8 pts / 0 prims`) while preserving cache motion.
+  - Interpolation modes differed at fractional frame (`5.5`): `interp=0` vs `interp=1/2` produced distinct point samples.
+  - Coordinate-system toggle changed Z sign on sampled positions (`coordsys=0` vs `1`).
+  - Topology mismatch test warned (`mismatching point counts`) and partially moved only `8/162` points (unsafe partial application).
+- Memory updates:
+  - Added `memory/nodes/sop/mdd.md`
+  - Updated `memory/nodes/sop_progress.md` (187 studied, 79.2%, 180 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 190 studied; SOP 187)
+  - Updated `memory/sop_context.md` with MDD cache-contract validation pattern (section 113)
+
 - 2026-02-15: Continued SOP academy with new deep node study: `matchtopology`.
 - Docs/examples:
   - `nodes/sop/matchtopology.txt`

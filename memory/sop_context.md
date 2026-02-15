@@ -1160,3 +1160,58 @@ From deep `matchtopology` study (`MatchTopologySphere` + live tests):
   - use RMS/mean deltas to confirm mapping actually recovered.
 
 - `assumeprimmatch` is a performance shortcut, not a correctness fix; apply only when primitive correspondence is already trustworthy.
+
+## 113. MDD Cache-Contract Validation Pattern
+
+From deep `mdd` study (`SimpleMDD` + live export/import tests):
+
+- Validate MDD ingestion in three stages:
+  - file availability/integrity (no missing-file warnings),
+  - topology contract (matching point counts/order),
+  - motion sanity (landmark points change as expected across frames).
+
+- Use point-only mode (no input) as a fast cache diagnostic:
+  - confirms whether cache contains expected point motion independent of source connectivity.
+
+- Treat mismatched point counts as hard pipeline failures even when SOP still cooks:
+  - partial point application can occur, producing plausible but corrupted results.
+
+- Explicitly verify coordinate-system handling (`coordsys`) when exchanging caches with right-handed tools; Z sign can invert motion.
+
+## 114. Metaball Field-Composition Pattern
+
+From deep `metaball` study (`BlendMetaballs`, `MetaExpression`, and live tests):
+
+- Treat metaball setups as implicit field composition first, mesh generation second:
+  - do artistic tuning in implicit space,
+  - evaluate final behavior on converted geometry before downstream topology-dependent nodes.
+
+- Primary artistic levers are orthogonal and should be tuned separately:
+  - spatial overlap (`tx/ty/tz`, radii),
+  - influence strength/sign (`metaweight`, including negative/pusher behavior),
+  - falloff/profile (`kernel`, superquadric exponents).
+
+- `metaExpression` is a high-level boolean-like field combiner:
+  - `sum/max/min` combinations can drastically change resulting surface coverage,
+  - some valid expressions intentionally yield empty geometry after conversion.
+
+- Validate post-convert point/primitive counts and extents whenever kernel/exponent/expression changes are introduced.
+
+## 115. Mirror Symmetry-Contract Pattern
+
+From deep `mirror` study (`MirrorSpout` + live tests):
+
+- Treat mirror operations as three independent contracts:
+  - source selection contract (`group`, `keepOriginal`),
+  - plane contract (`Direction` or `Transform` mode),
+  - seam contract (`consolidatepts` + tolerance).
+
+- For production symmetry, clip-first workflows are usually safer:
+  - `Clip Primitives and Mirror` avoids hidden overlapping interiors,
+  - channel-link mirror distance to clip distance for stable procedural alignment.
+
+- Validate seam consolidation only in near-plane conditions:
+  - welding has no effect when no counterpart points are within tolerance,
+  - on clipped/centered meshes it can significantly reduce seam-point duplication.
+
+- Enable output grouping when mirrored side needs downstream isolation (UV/material/fix-up passes).

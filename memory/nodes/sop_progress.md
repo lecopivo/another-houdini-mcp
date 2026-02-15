@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 186
-- Nodes studied: 186
-- Example sets reviewed: 179
+- Nodes visited: 189
+- Nodes studied: 189
+- Example sets reviewed: 182
 
 ## Shortlist
 
@@ -200,3 +200,6 @@
 | magnet | yes | yes | yes | `memory/nodes/sop/magnet.md` | studied |
 | maskbyfeature | yes | yes | yes | `memory/nodes/sop/maskbyfeature.md` | studied |
 | matchtopology | yes | yes | yes | `memory/nodes/sop/matchtopology.md` | studied |
+| mdd | yes | yes | yes | `memory/nodes/sop/mdd.md` | studied |
+| metaball | yes | yes | yes | `memory/nodes/sop/metaball.md` | studied |
+| mirror | yes | yes | yes | `memory/nodes/sop/mirror.md` | studied |
