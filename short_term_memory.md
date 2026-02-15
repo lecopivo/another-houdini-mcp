@@ -1,5 +1,16 @@
 ## Short-Term Memory
 
+- 2026-02-15: Added generalized MaterialX viewport memory notes from live build session.
+- Session scope:
+  - Built and iterated a MaterialX viewport material subnet in `/mat` and validated object-level assignment workflow.
+  - Captured reusable control-surfacing pattern (exposed subnet parms driving internal graph expressions).
+  - Captured general parameter-orthogonality rule: threshold controls should remain independent from spacing/frequency controls.
+- Memory updates:
+  - Added `memory/vop_context.md` (general MaterialX viewport patterns, output wiring, control-design rules).
+  - Added `memory/nodes/vop/materialx_sdf_viz_subnet.md` (generalized MaterialX viewport-subnet pattern note).
+  - Updated `memory/nodes/vop_progress.md` (first VOP study entry).
+  - Updated `memory/index.md` (added VOP context link).
+
 - 2026-02-15: Continued SOP academy with new deep node study: `point`.
 - Docs/examples:
   - `nodes/sop/point.txt`
