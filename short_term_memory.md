@@ -1,5 +1,21 @@
 ## Short-Term Memory
 
+- 2026-02-15: Resumed Houdini AI Academy studies after user request.
+- Node studied: `heightfield_erode-2.0`
+- Docs reviewed: `nodes/sop/heightfield_erode-2.0.txt` (19746 bytes)
+- Examples loaded/inspected:
+  - `upscaling`: Multi-resolution erosion upscaling workflow (low-res -> 2x resample -> mid-res -> 2x resample -> high-res)
+  - `volcano`: Custom solver-based erosion with lava/water interaction
+- Sticky notes captured: Upscaling strategy, custom fluid interaction patterns, negative flow amounts for mass buildup
+- Live validation network: `/obj/academy_heightfield_erode_live` (heightfield -> noise -> erode::2.0 -> OUT)
+- Parameter testing: `hydro_erosionrate`, `hydro_bankangle`, `rain_amount` confirmed volume topology stability with voxel-level changes
+- Multi-frame probe: Verified 6-layer output (`height`, `debris`, `sediment`, `water`, `bedrock`, `mask`) at frames 1, 10, 20
+- Memory updates:
+  - Added `memory/nodes/sop/heightfield_erode-2.0.md`
+  - Updated `memory/nodes/sop_progress.md` (153 studied, 63.6%)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 153)
+- Next checkpoint: Continue with next unstudied nodes (hole, isooffset, join, kinefx nodes, etc.)
+
 - 2026-02-13: Created example setups for VEX proximity functions.
 - Created networks:
   - `/obj/nearpoint_example`: sphere + scatter + attribwrangle using `nearpoint(1, @P)` with input 1 wired to target

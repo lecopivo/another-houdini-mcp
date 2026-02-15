@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 149
-- Nodes studied: 149
-- Example sets reviewed: 141
+- Nodes visited: 153
+- Nodes studied: 153
+- Example sets reviewed: 146
 
 ## Shortlist
 
@@ -163,3 +163,7 @@
 | fur | yes | yes | yes | `memory/nodes/sop/fur.md` | studied |
 | gluecluster | yes | yes | yes | `memory/nodes/sop/gluecluster.md` | studied |
 | graphcolor | yes | yes | yes | `memory/nodes/sop/graphcolor.md` | studied |
+| groupfindpath | yes | yes | yes | `memory/nodes/sop/groupfindpath.md` | studied |
+| groupfromattribboundary | yes | yes | yes | `memory/nodes/sop/groupfromattribboundary.md` | studied |
+| grouptransfer | yes | yes | yes | `memory/nodes/sop/grouptransfer.md` | studied |
+| heightfield_erode-2.0 | yes | yes | yes | `memory/nodes/sop/heightfield_erode-2.0.md` | studied |
