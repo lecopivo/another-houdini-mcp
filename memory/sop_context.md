@@ -854,3 +854,45 @@ From wrangle node usage patterns:
 - **Common mistake**: Using `nearpoint(1, ...)` without wiring input 1 results in errors or incorrect behavior.
 
 - **Hardcoded paths are fragile**: They break when networks move or are copied to different locations. Relative input references are portable and self-contained.
+
+## 84. Hole Tolerance-Gating Pattern
+
+From deep `hole` study (`HoleBasic`):
+
+- Treat `dist` and `angle` as hard bridge gates; if either is too low for the interior shape offset/rotation, output remains unchanged.
+- `snap` is a geometric alignment pass after bridging; it can collapse off-plane depth to the host surface plane.
+- `break` (`Un-bridge Holes`) is an explicit reverse mode for restoring previously holed regions.
+
+## 85. IsoOffset Output-Contract Pattern
+
+From deep `isooffset` study (`Brickify`, `SquabVolume`):
+
+- Treat `output` as a contract switch (surface mesh vs fog/SDF volume vs tetra/cube interior), not a cosmetic toggle.
+- In tetra workflows, increase sampling (`samplediv`) early if output is sparse/empty; coarse grids can silently remove expected tetra content.
+- In `mode=Minimum`, use positive `offset`; zero offset can validly produce no iso surface.
+
+## 86. Join Topology-Control Pattern
+
+From deep `join` study (`BasicJoin`):
+
+- Treat `loop` and `prim` as topology switches (`loop` changes closure; `prim` preserves original pieces plus joined output).
+- Tune `blend` with `tolerance` together; sharper vs smoother transitions are controlled by the pair, not one parameter alone.
+- Always verify output primitive class after join (NURBS/mesh conversion can occur based on input types).
+
+## 87. AgentAnimationUnpack Clip-Selection Pattern
+
+From deep `kinefx--agentanimationunpack` study (`AgentClipToMotionClip`):
+
+- Treat `output` as a data-contract switch: skeleton pose geometry (`Current/Clip/Rest Pose`) vs MotionClip packed outputs (`MotionClip`/`Packed MotionClips`).
+- Clip selectors are strict contracts:
+  - `agentclipname` mismatch can validly return empty output in single-clip mode.
+  - `agentclippattern` directly controls packed-clip count in multi-clip mode.
+- In MotionClip mode, validate `clipinfo`/`time` metadata to confirm usable downstream retime/update pipelines.
+
+## 88. AgentFromRig Stability Pattern
+
+From deep `kinefx--agentfromrig` study (`AgentFromSOPs`):
+
+- Use `userestframe` to keep agent rig definitions stable over time when source skeletons are animated.
+- Keep `createlocomotionjoint` enabled for locomotion-clip-ready agents unless a custom locomotion strategy is explicit.
+- Treat `agentname` emission as pipeline identity contract, not cosmetic metadata.

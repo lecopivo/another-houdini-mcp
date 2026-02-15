@@ -2,50 +2,82 @@
 
 Use this for each `memory/nodes/<context>/<node>.md` note.
 
+Target style: model notes after `memory/nodes/sop/heightfield_erode-2.0.md` (rich, practical, production-oriented).
+
 ## Workflow Reference
 
 Use `memory/houdini_ai_academy.md` section `Workflow (Per Node)` as the canonical end-to-end process.
 
-## Session Status
+## Required Note Structure
 
-- Status: planned | in progress | studied
-- Docs read: yes/no
-- Example set reviewed: yes/no
-- Example OTL internals inspected: yes/no
-- Node comments read: yes/no
-- Sticky notes read: yes/no
-- QA pass complete: yes/no
+Use these sections and order unless a section is genuinely not applicable.
 
-## Source-of-Truth Split
+### 1) Title
 
-Record both sides explicitly:
+- `# <node_name> (<CONTEXT>)`
 
-- Intent (docs/comments/stickies): what the example says should happen.
-- Observed (live scene/params/geometry): what actually happens in this Houdini build.
-- Mismatches: list and explain any contradictions.
+### 2) Intent
 
-## Minimum Repro Setup
+- 1-3 sentences: what the node is for, where it fits, and why you would choose it.
 
-- Node graph:
-- Key parameter names and values:
-- Output verification method:
+### 3) Core Behavior
 
-## Key Parameters and Interactions
+- Short bullets describing runtime behavior and data contract (topology/attrs/time dependence/modes).
 
-- 
+### 4) Key Parameters
 
-## Practical Use Cases (At Least 2)
+- Group by tabs/subsystems when relevant.
+- Explain high-impact parameters and interactions, not every single parm.
 
-1. 
-2. 
+### 5) Typical Workflow
 
-## Gotchas and Failure Modes
+- Include at least one canonical mini graph.
 
-- 
+Example:
 
-## Related Nodes
+```text
+input -> target_node -> OUT
+```
 
-- 
+- Give concise, practical operation steps.
+
+### 6) Production Usage
+
+- Document practical heuristics and "first-pass" defaults when useful.
+- Include measured outcomes from live validation (counts, attrs, mode changes, etc.).
+
+### 7) Gotchas
+
+- Transferable failure modes + detection + fix.
+
+### 8) Companion Nodes
+
+- List meaningful companion nodes and what role they play.
+
+### 9) Optional Sections (Use When Valuable)
+
+- `Version Notes`
+- `Related Nodes`
+- `Practical Use Cases`
+
+### 10) Study Validation
+
+- Checklist bullets showing evidence of completion.
+
+Suggested format:
+
+- `✅ Read docs: ...`
+- `✅ Reviewed example(s): ...`
+- `✅ Inspected internals/comments/stickies`
+- `✅ Ran live parameter/behavior tests`
+
+## Quality Rules
+
+- Prefer reusable guidance over chronological logs.
+- Record observed behavior, not only expected behavior.
+- Include concrete measured evidence from this Houdini build.
+- Explicitly note mismatches between docs/examples and observed behavior.
+- Keep prose concise but sufficiently detailed for future reuse.
 
 ## Academy QA Checklist
 
@@ -54,6 +86,7 @@ Record both sides explicitly:
 - [ ] OTL instantiated/unlocked and internals inspected
 - [ ] Node comments read
 - [ ] Sticky notes read
-- [ ] Behavior validated with at least one observed test
-- [ ] Source-of-truth split documented (intent vs observed)
+- [ ] Behavior validated with observed tests
+- [ ] Measured outcomes captured (counts/attrs/mode behavior)
+- [ ] Mismatches documented when present
 - [ ] Context and progress files updated

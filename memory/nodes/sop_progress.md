@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 153
-- Nodes studied: 153
-- Example sets reviewed: 146
+- Nodes visited: 158
+- Nodes studied: 158
+- Example sets reviewed: 152
 
 ## Shortlist
 
@@ -167,3 +167,8 @@
 | groupfromattribboundary | yes | yes | yes | `memory/nodes/sop/groupfromattribboundary.md` | studied |
 | grouptransfer | yes | yes | yes | `memory/nodes/sop/grouptransfer.md` | studied |
 | heightfield_erode-2.0 | yes | yes | yes | `memory/nodes/sop/heightfield_erode-2.0.md` | studied |
+| hole | yes | yes | yes | `memory/nodes/sop/hole.md` | studied |
+| isooffset | yes | yes | yes | `memory/nodes/sop/isooffset.md` | studied |
+| join | yes | yes | yes | `memory/nodes/sop/join.md` | studied |
+| kinefx--agentanimationunpack | yes | yes | yes | `memory/nodes/sop/kinefx--agentanimationunpack.md` | studied |
+| kinefx--agentfromrig | yes | yes | yes | `memory/nodes/sop/kinefx--agentfromrig.md` | studied |

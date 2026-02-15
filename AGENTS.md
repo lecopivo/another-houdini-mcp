@@ -69,6 +69,7 @@ You can use it to:
 - Treat `memory/<context>_context.md` and `memory/nodes/<context>/<node>.md` as extended documentation, not activity logs.
 - `memory/<context>_context.md` should contain generalized context-level rules, patterns, heuristics, pitfalls, and cross-node workflows.
 - `memory/nodes/<context>/<node>.md` should contain reusable node-level guidance: intent, setup contracts, parameter interactions, debug tactics, and production usage notes.
+- Node-note format should follow `memory/node_study_template.md` and mirror the richer reference style of `memory/nodes/sop/heightfield_erode-2.0.md` (Intent, Core Behavior, Key Parameters, Typical Workflow, Production Usage with measured outcomes, Gotchas, Companion Nodes, Study Validation).
 - Do not record raw chronological "what I clicked/did" logs in these files; abstract concrete experiences into general lessons.
 - If an experiment reveals a failure mode, record the transferable rule (why it failed, how to detect, how to fix), not scene-specific narration.
 - Keep session chronology and restart checkpoints in `short_term_memory.md` only.

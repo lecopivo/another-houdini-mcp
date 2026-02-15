@@ -59,6 +59,15 @@ These files are extended, personalized documentation for future work.
 9. Record observed behavior, not just expected behavior
 10. Write `memory/nodes/<context>/<node>.md` using `memory/node_study_template.md`
     - Distill observations into generalized guidance, not scene-specific logs.
+    - Match the richer reference style used in `memory/nodes/sop/heightfield_erode-2.0.md`:
+      - `Intent`
+      - `Core Behavior`
+      - `Key Parameters` (grouped by subsystem/tab)
+      - `Typical Workflow` (with mini graph)
+      - `Production Usage` (including measured outcomes)
+      - `Gotchas`
+      - `Companion Nodes`
+      - `Study Validation`
 11. Run QA gate from `memory/academy_qa_checklist.md`
 12. Update progress files:
     - `memory/houdiin_ai_acedemy_progress.md`
@@ -81,17 +90,22 @@ These files are extended, personalized documentation for future work.
 ## Node Study Checklist
 
 - Core purpose and where it fits in production workflows
+- Clear `Intent` section
+- Clear `Core Behavior` section
 - Most important parameters and parameter interactions
+- `Key Parameters` grouped by subsystem/tab where relevant
 - Typical input/output data assumptions
-- Minimum reproducible setup
+- Typical workflow graph (for example `input -> node -> OUT`)
 - Key guidance captured from node comments and sticky notes
 - Explicit source-of-truth split:
   - intended behavior (docs/comments/stickies)
   - observed behavior (live network/params/geometry)
   - mismatches if any
-- At least 2 practical use cases
+- Production guidance and practical defaults where useful
+- Measured validation outcomes (counts, attrs, mode behavior, frame behavior)
 - Gotchas/failure modes/debug tactics
-- Related nodes and when to choose each
+- Companion/related nodes and when to choose each
+- Study validation checklist at end of note
 
 ## Definition of Done (Per Node)
 

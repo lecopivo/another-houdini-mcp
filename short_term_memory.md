@@ -1,5 +1,11 @@
 ## Short-Term Memory
 
+- 2026-02-15: Updated academy documentation standards per user request.
+- Updated files:
+  - `memory/node_study_template.md` (reworked to richer `heightfield_erode-2.0` style with required sections and quality rules)
+  - `memory/houdini_ai_academy.md` (workflow + checklist now explicitly require richer note structure and measured outcomes)
+  - `AGENTS.md` (tutorial expectations now reference the richer node-note format)
+
 - 2026-02-15: Resumed Houdini AI Academy studies after user request.
 - Node studied: `heightfield_erode-2.0`
 - Docs reviewed: `nodes/sop/heightfield_erode-2.0.txt` (19746 bytes)
@@ -15,6 +21,88 @@
   - Updated `memory/nodes/sop_progress.md` (153 studied, 63.6%)
   - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 153)
 - Next checkpoint: Continue with next unstudied nodes (hole, isooffset, join, kinefx nodes, etc.)
+
+- 2026-02-15: Continued academy run and completed deep study for `hole`.
+- Docs reviewed: `nodes/sop/hole.txt` + example note `examples/nodes/sop/hole/HoleBasic.txt`.
+- Example inspected: `/obj/academy_HoleBasic` (all four branches: make_hole, distance_tolerance, angle_tolerance, remove_hole).
+- Key measured outcomes:
+  - make-hole baseline: `2 prims / 14 verts` -> `1 prim / 16 verts` after bridge.
+  - distance gating: `dist=0.05` no bridge (`2/14`), `dist=0.3` bridge (`1/16`).
+  - angle gating: increasing `angle` to `80` enabled bridge on rotated interior (`1/16`).
+  - snap interaction: `snap=0` kept off-plane depth (`z span ~0.437`), `snap=1` flattened to plane (`z span 0.0`).
+  - un-bridge mode: `break=1` restores filled result (`2/14`), `break=0` keeps bridged hole (`1/16`).
+- Memory updates:
+  - Added `memory/nodes/sop/hole.md`
+  - Updated `memory/nodes/sop_progress.md` (154 studied, 64.0%)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 154)
+  - Updated `memory/sop_context.md` with Hole tolerance-gating pattern (section 84)
+- Cleanup done: deleted `/obj/academy_HoleBasic` and `/obj/academy_hole_live` after study.
+
+- 2026-02-15: Continued academy run and completed deep study for `isooffset`.
+- Docs reviewed: `nodes/sop/isooffset.txt` + example notes `examples/nodes/sop/isooffset/Brickify.txt`, `examples/nodes/sop/isooffset/SquabVolume.txt`.
+- Examples inspected:
+  - `/obj/academy_Brickify` (brickify via tetra/cube isooffset workflow)
+  - `/obj/academy_SquabVolume` (volume visualization workflow)
+- Key measured outcomes:
+  - output switch behavior: `iso surface` vs `fog`/`SDF` volumes vs `tetra mesh` modes produced distinct primitive classes.
+  - tetra interaction: at `samplediv=30`, `tetratype=1` generated `10144` tetrahedra; coarse sampling can produce empty tetra outputs.
+  - mode interaction: `mode=Minimum` with `offset=0` produced empty result, `offset=0.05` produced valid shell (`1478 pts / 1536 prims`).
+  - SDF resolution scaling: `samplediv=20 -> (20,9,20)`, `samplediv=60 -> (60,23,60)`.
+- Memory updates:
+  - Added `memory/nodes/sop/isooffset.md`
+  - Updated `memory/nodes/sop_progress.md` (155 studied, 64.4%)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 155)
+  - Updated `memory/sop_context.md` with IsoOffset output-contract pattern (section 85)
+- Cleanup done: deleted `/obj/academy_Brickify`, `/obj/academy_SquabVolume`, and `/obj/academy_isooffset_live` after study.
+
+- 2026-02-15: Continued academy run and completed deep study for `join`.
+- Docs reviewed: `nodes/sop/join.txt` + example note `examples/nodes/sop/join/BasicJoin.txt`.
+- Example inspected: `/obj/academy_BasicJoin` (both branches: `Join_U_NoWrap_Attribute`, `Join_U_Wrap_Blend`).
+- Key measured outcomes:
+  - no-wrap branch: `copy1 (3 prims / 300 pts)` -> `join_U (1 prim / 340 pts)` with inherited `Cd` in attribute branch.
+  - wrap branch: `copy1 (3 prims / 300 pts)` -> `join_U (1 prim / 270 pts)` with `loop=1`.
+  - live sweeps: `prim=1` increased output to 4 prims (kept originals + joined result); `blend`/`tolerance` materially changed join density.
+  - input class nuance: polygon inputs still joined in this build and converted to `Mesh` output (contrasts with example sticky warning).
+- Memory updates:
+  - Added `memory/nodes/sop/join.md`
+  - Updated `memory/nodes/sop_progress.md` (156 studied, 64.8%)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 156)
+  - Updated `memory/sop_context.md` with Join topology-control pattern (section 86)
+- Cleanup done: deleted `/obj/academy_BasicJoin` and `/obj/academy_join_live` after study.
+
+- 2026-02-15: Continued academy run and completed deep study for `kinefx--agentanimationunpack`.
+- Docs reviewed: `nodes/sop/kinefx--agentanimationunpack.txt` + example note `examples/nodes/sop/kinefx--agentanimationunpack/AgentClipToMotionClip.txt`.
+- Example inspected: `/obj/academy_AgentClipToMotionClip/crowd`.
+- Key measured outcomes:
+  - `output` mode sweep validated contract switch: pose outputs (`Polygon` skeleton geo) vs MotionClip outputs (`PackedGeometry`).
+  - single MotionClip mode (`output=3`) emitted packed per-joint clip data with `clipinfo` detail attr + `time` prim attr.
+  - packed multi-clip mode (`output=4`) count followed clip selection pattern (`*` -> 2 clips, `walk`/`run` -> 1 clip each).
+  - invalid `agentclipname` produced empty output (`0` prims), confirming strict clip-name contract.
+- Memory updates:
+  - Added `memory/nodes/sop/kinefx--agentanimationunpack.md`
+  - Updated `memory/nodes/sop_progress.md` (157 studied, 65.3%)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 157)
+  - Updated `memory/sop_context.md` with AgentAnimationUnpack clip-selection pattern (section 87)
+- Cleanup done: deleted `/obj/academy_AgentClipToMotionClip` after study.
+
+- 2026-02-15: User requested matching the richer memory-note format exemplified by `memory/nodes/sop/heightfield_erode-2.0.md`.
+- Reformatted recent SOP notes to that style:
+  - `memory/nodes/sop/hole.md`
+  - `memory/nodes/sop/isooffset.md`
+  - `memory/nodes/sop/join.md`
+  - `memory/nodes/sop/kinefx--agentanimationunpack.md`
+- Continued studies and completed deep pass for `kinefx--agentfromrig`.
+- Docs reviewed: `nodes/sop/kinefx--agentfromrig.txt` + example note `examples/nodes/sop/kinefx--agentfromrig/AgentFromSOPs.txt`.
+- Key measured outcomes:
+  - `createagentname=0` removed `agentname` point attribute.
+  - `createlocomotionjoint` toggled presence of `__locomotion__` joint (`27` transforms with, `26` without).
+  - `userestframe=1` kept rest transforms stable across frames; `userestframe=0` made rig rest transform time-dependent.
+- Memory updates:
+  - Added `memory/nodes/sop/kinefx--agentfromrig.md`
+  - Updated `memory/nodes/sop_progress.md` (158 studied, 65.7%)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 158)
+  - Updated `memory/sop_context.md` with AgentFromRig stability pattern (section 88)
+- Cleanup done: deleted `/obj/academy_AgentFromSOPs` after study.
 
 - 2026-02-13: Created example setups for VEX proximity functions.
 - Created networks:
