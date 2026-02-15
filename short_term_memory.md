@@ -1,5 +1,70 @@
 ## Short-Term Memory
 
+- 2026-02-15: Reworked FLIP-family SOP notes to richer academy format after quality feedback.
+- Rewritten/expanded notes:
+  - `memory/nodes/sop/flipcontainer.md`
+  - `memory/nodes/sop/flipboundary.md`
+  - `memory/nodes/sop/flipcollide.md`
+  - `memory/nodes/sop/flipsolver.md`
+- Coverage method:
+  - No local official example folders were available for these four nodes via `list_example_nodes`.
+  - Used node docs + synthetic live validation network: `/obj/academy_flip_detailed`.
+- Measured outcomes captured in notes:
+  - `flipcontainer`: `particlesep` and `gridscale` produced strong particle-count/detail-attribute changes.
+  - `flipboundary`: source/sink + boundary method materially changed FLIP particle counts.
+  - `flipcollide`: collision mode changed collision stream primitive contract (`VDB`-style vs extra packed surface payloads).
+  - `flipsolver`: boundary mode + substep sweeps changed frame-12 particle totals in reproducible ways.
+- Cleanup done:
+  - deleted `/obj/academy_flip_detailed` after validation.
+- Progress counters unchanged (note-quality rewrite pass, not new node additions).
+
+- 2026-02-15: Continued continuous one-node-at-a-time studies with another 3-node batch.
+- Completed nodes:
+  - `laplacian`
+  - `latticefromvolume`
+  - `layer`
+- Notes added:
+  - `memory/nodes/sop/laplacian.md`
+  - `memory/nodes/sop/latticefromvolume.md`
+  - `memory/nodes/sop/layer.md`
+- Key measured outcomes:
+  - Laplacian: explicit/forward branch became unstable at larger diffusion steps; implicit/backward branch remained numerically stable in tested range.
+  - LatticeFromVolume: output type sweep quantified contract differences (points/polyline/tet/hex), and expand padding strongly changed lattice coverage/count.
+  - Layer: validated layer metadata contract (`layercount`, `currentlayer`) across MultiTexture/MultiUV; captured local node-doc gap for legacy `layer` SOP.
+- Progress updates:
+  - `memory/nodes/sop_progress.md`: 180 studied, 76.3%, 173 example sets reviewed.
+  - `memory/houdiin_ai_acedemy_progress.md`: overall 183 studied (SOP 180 + DOP 3).
+  - `memory/sop_context.md`: added sections 103-105.
+- Cleanup done:
+  - deleted `/obj/academy_LaplacianSmoothing`
+  - deleted `/obj/academy_latticefromvolume_live`
+  - deleted `/obj/academy_PigLattice`
+  - deleted `/obj/academy_MultiUV`
+  - deleted `/obj/academy_MultiTexture`
+
+- 2026-02-15: Continued continuous one-node-at-a-time run; completed next 3 deep node studies.
+- Completed nodes:
+  - `kinefx--rigdoctor`
+  - `kinefx--rigmatchpose`
+  - `kinefx--rigmirrorpose`
+- Notes added:
+  - `memory/nodes/sop/kinefx--rigdoctor.md`
+  - `memory/nodes/sop/kinefx--rigmatchpose.md`
+  - `memory/nodes/sop/kinefx--rigmirrorpose.md`
+- Important nuance for this trio: no official `list_example_nodes` example assets were available for these nodes in current corpus, so studies used thorough live synthetic validation networks.
+- Key measured outcomes:
+  - RigDoctor: repaired bad names (`arm joint` -> `arm_joint`, empty -> `point_0`), preserved optional raw names when sanitization/init disabled, and validated hierarchy helper attrs.
+  - RigMatchPose: verified output-mode contract differences (`Pass Through` vs `Matched Pose`) and global match delta storage via detail `scene_transform`.
+  - RigMirrorPose: validated operation modes and mirror mapping behavior; observed token-matching fragility (`value=-1`) versus robust position+name matching.
+- Progress updates:
+  - `memory/nodes/sop_progress.md`: 177 studied, 75.0%.
+  - `memory/houdiin_ai_acedemy_progress.md`: overall 180 studied (SOP 177 + DOP 3).
+  - `memory/sop_context.md`: added sections 100-102.
+- Cleanup done:
+  - deleted `/obj/academy_rigdoctor_live`
+  - deleted `/obj/academy_rigmatchpose_live`
+  - deleted `/obj/academy_rigmirrorpose_live`
+
 - 2026-02-15: Continued one-node-at-a-time deep studies without stopping after a single node.
 - Completed nodes in this continuation pass:
   - `kinefx--motionclipsequence`

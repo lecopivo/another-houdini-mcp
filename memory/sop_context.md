@@ -986,3 +986,73 @@ From deep `kinefx--rigattribvop` study:
 - Use `compute`/`computeN` toggles to guarantee expected transform attribute outputs (`localtransform`, effective locals) after CVEX rig operations.
 - In KineFX CVEX workflows, attribute contract validation is as important as point-position validation.
 - Treat sticky/example annotations as secondary evidence when they conflict with actual internal node graph intent.
+
+## 100. RigDoctor Stabilization Pattern
+
+From deep `kinefx--rigdoctor` study:
+
+- Place Rig Doctor after topology/name edits to re-establish a stable downstream skeleton contract.
+- Name sanitation/initialization is a deliberate normalization step; preserve original names explicitly if pipelines depend on raw naming.
+- Validate whether hierarchy helper attrs (`parent_idx`, `child_indices`, `eval_ord`) are emitted as expected in the current build/profile.
+
+## 101. RigMatchPose Output-Mode Pattern
+
+From deep `kinefx--rigmatchpose` study:
+
+- `Matched Pose` vs `Pass Through` output modes are critical contract switches (transform-applied vs metadata-only pose storage).
+- Track global alignment through the detail delta attribute (default `scene_transform`) for reversible retarget-space normalization.
+- Always inspect both outputs independently; each side can have different write behavior.
+
+## 102. RigMirrorPose Correspondence Pattern
+
+From deep `kinefx--rigmirrorpose` study:
+
+- Run compute-only correspondence checks before full pose mirroring to verify `mirrorpt` mappings.
+- Token-based name matching is sensitive to naming conventions and token-position settings; unmatched pairs often appear as `value=-1`.
+- If mirroring appears wrong, compare name-token method vs position+name method rather than assuming transform math is at fault.
+
+## 103. Laplacian Step-Stability Pattern
+
+From deep `laplacian` study (`LaplacianSmoothing`):
+
+- Forward/explicit-style diffusion is highly step-size sensitive; small increases in diffusion coefficient can shift from smooth shrink to explosive growth.
+- Backward/implicit-style solve pipelines tolerate larger magnitude steps and remain numerically stable more often, but can over-smooth/collapse geometry.
+- Validate both numerical health and geometric magnitude (`max |P|`/bbox), not just solver success.
+
+## 104. LatticeFromVolume Topology-Contract Pattern
+
+From deep `latticefromvolume` study (`PigLattice` + live validation):
+
+- `type` is a hard output-contract switch (points/polyline/tet/hex) with major primitive-count implications for downstream deformers/solvers.
+- `expand` directly controls support envelope size; insufficient padding can undermine border deformation behavior.
+- Keep `ix/iy/iz/rest` attributes intact for robust lattice-to-volume deformation workflows.
+
+## 105. Legacy Layer Metadata Pattern
+
+From deep `layer` study (`MultiTexture`, `MultiUV`):
+
+- Layer workflows rely on detail metadata (`layercount`, `currentlayer`) and layer-aware consumers more than visible attribute renaming.
+- Explicit layer-switch placement is critical; missing switches can silently overwrite intended layered UV/texture data.
+- When local docs are missing for legacy nodes, triangulate behavior from examples + measured geometry metadata.
+
+## 106. FLIP Stream-Debug Pattern (No-Example Case)
+
+From deep rewrite pass on `flipcontainer`, `flipboundary`, `flipcollide`, and `flipsolver` when node-scoped official examples were unavailable:
+
+- Preserve FLIP tri-stream wiring as a strict interface:
+  - stream 0 = particles/source payload,
+  - stream 1 = container/detail fields,
+  - stream 2 = collision payload.
+  - Misaligned stream wiring can still cook but produce misleadingly "valid" outputs.
+
+- Use synthetic validation networks when examples are missing:
+  - build a minimal reproducible chain (`flipcontainer -> flipboundary -> flipcollide -> flipsolver`),
+  - add debug nulls after each stage,
+  - probe both topology and metadata before/after parameter sweeps.
+
+- Validate mode switches by contract changes, not only counts:
+  - `flipcollide` surface/volume style toggles can change collision primitive classes (for example VDB-like volume payloads vs additional packed/surface payloads),
+  - `flipboundary` source/sink behavior should be verified through particle birth/death trends across fixed-frame probes.
+
+- Treat container resolution controls as first-order budget levers:
+  - `particlesep` and related scale controls (`gridscale`) should be tested together because they co-drive solver detail and downstream memory/runtime costs.

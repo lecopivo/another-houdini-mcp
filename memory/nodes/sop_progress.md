@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 174
-- Nodes studied: 174
-- Example sets reviewed: 169
+- Nodes visited: 180
+- Nodes studied: 180
+- Example sets reviewed: 173
 
 ## Shortlist
 
@@ -187,4 +187,10 @@
 | kinefx--motionclipretime | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipretime.md` | studied |
 | kinefx--motionclipsequence | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipsequence.md` | studied |
 | kinefx--motionclipupdate | yes | yes | yes | `memory/nodes/sop/kinefx--motionclipupdate.md` | studied |
+| kinefx--rigdoctor | yes | yes | yes | `memory/nodes/sop/kinefx--rigdoctor.md` | studied |
 | kinefx--rigattribvop | yes | yes | yes | `memory/nodes/sop/kinefx--rigattribvop.md` | studied |
+| kinefx--rigmatchpose | yes | yes | yes | `memory/nodes/sop/kinefx--rigmatchpose.md` | studied |
+| kinefx--rigmirrorpose | yes | yes | yes | `memory/nodes/sop/kinefx--rigmirrorpose.md` | studied |
+| laplacian | yes | yes | yes | `memory/nodes/sop/laplacian.md` | studied |
+| latticefromvolume | yes | yes | yes | `memory/nodes/sop/latticefromvolume.md` | studied |
+| layer | yes | yes | yes | `memory/nodes/sop/layer.md` | studied |
