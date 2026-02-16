@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 214
+- Nodes visited: 226
 - Nodes studied: 214
-- Example sets reviewed: 207
+- Example sets reviewed: 219
 
 ## Shortlist
 
@@ -228,3 +228,15 @@
 | ray | yes | yes | yes | `memory/nodes/sop/ray.md` | studied |
 | smooth | yes | yes | yes | `memory/nodes/sop/smooth.md` | studied |
 | skin | yes | yes | yes | `memory/nodes/sop/skin.md` | studied |
+| orientalongcurve | yes | yes | no | `memory/nodes/sop/orientalongcurve.md` | docs-and-example complete; live validation pending |
+| pathdeform | yes | yes | no | `memory/nodes/sop/pathdeform.md` | docs-and-example complete; live validation pending |
+| paint | yes | yes | no | `memory/nodes/sop/paint.md` | docs-and-example complete; live validation pending |
+| spiral | yes | yes | no | `memory/nodes/sop/spiral.md` | docs-and-example complete; live validation pending |
+| stitch | yes | yes | no | `memory/nodes/sop/stitch.md` | docs-and-example complete; live validation pending |
+| surfsect | yes | yes | no | `memory/nodes/sop/surfsect.md` | docs-and-example complete; live validation pending |
+| sblend | yes | yes | no | `memory/nodes/sop/sblend.md` | docs-and-example complete; live validation pending |
+| scatteralign | yes | yes | no | `memory/nodes/sop/scatteralign.md` | docs-and-example complete; live validation pending |
+| spraypaint | yes | yes | no | `memory/nodes/sop/spraypaint.md` | docs-and-example complete; live validation pending |
+| curve- | yes | yes | no | `memory/nodes/sop/curve-.md` | docs-and-example complete; live validation pending |
+| pointsfromvolume | yes | yes | no | `memory/nodes/sop/pointsfromvolume.md` | docs-and-example complete; live validation pending |
+| polyknit | yes | yes | no | `memory/nodes/sop/polyknit.md` | docs-and-example complete; live validation pending |

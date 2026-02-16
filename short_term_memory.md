@@ -1,5 +1,72 @@
 ## Short-Term Memory
 
+- 2026-02-16: Continued SOP academy with additional new-node documentation passes for `curve-`, `pointsfromvolume`, and `polyknit`.
+- Docs/examples reviewed:
+  - `help/nodes/sop/curve-.txt`, `help/examples/nodes/sop/curve-/CurveHood.txt`
+  - `help/nodes/sop/pointsfromvolume.txt`, `help/examples/nodes/sop/pointsfromvolume/AlphaOmega.txt`
+  - `help/nodes/sop/polyknit.txt`, `help/examples/nodes/sop/polyknit/PolyKnitBasic.txt`
+- Notes added (docs/examples complete, live validation pending):
+  - `memory/nodes/sop/curve-.md`
+  - `memory/nodes/sop/pointsfromvolume.md`
+  - `memory/nodes/sop/polyknit.md`
+- Tracker updates:
+  - `memory/nodes/sop_progress.md`: visited `226`, studied `214`, example sets reviewed `219`
+  - `memory/houdiin_ai_acedemy_progress.md`: overall visited `229`, fully studied `217`, notes written `229`
+- Next checkpoint:
+  - Continue adding new SOP notes while maintaining a separate live-validation backlog promotion pass.
+
+- 2026-02-16: Continued SOP academy with additional new-node documentation passes for `sblend`, `scatteralign`, and `spraypaint`.
+- Docs/examples reviewed:
+  - `help/nodes/sop/sblend.txt`, `help/examples/nodes/sop/sblend/BlendPointAttributes.txt`, `help/examples/nodes/sop/sblend/BlendVertexAttributes.txt`
+  - `help/nodes/sop/scatteralign.txt`, `help/examples/nodes/sop/scatteralign/ScatterAlignBasic.txt`
+  - `help/nodes/sop/spraypaint.txt`, `help/examples/nodes/sop/spraypaint/Splurgegun.txt`
+- Notes added (docs/examples complete, live validation pending):
+  - `memory/nodes/sop/sblend.md`
+  - `memory/nodes/sop/scatteralign.md`
+  - `memory/nodes/sop/spraypaint.md`
+- Tracker updates:
+  - `memory/nodes/sop_progress.md`: visited `223`, studied `214`, example sets reviewed `216`
+  - `memory/houdiin_ai_acedemy_progress.md`: overall visited `226`, fully studied `217`, notes written `226`
+- Next checkpoint:
+  - Continue live validation backlog for pending SOP notes and promote validated nodes to fully studied.
+
+- 2026-02-16: Continued SOP academy with additional new-node documentation passes for `spiral`, `stitch`, and `surfsect`.
+- Docs/examples reviewed:
+  - `help/nodes/sop/spiral.txt`, `help/examples/nodes/sop/spiral/BoltSpiral.txt`
+  - `help/nodes/sop/stitch.txt`, `help/examples/nodes/sop/stitch/StitchGrid.txt`
+  - `help/nodes/sop/surfsect.txt`, `help/examples/nodes/sop/surfsect/SurfsectBasic.txt`
+- Notes added (docs/examples complete, live validation pending):
+  - `memory/nodes/sop/spiral.md`
+  - `memory/nodes/sop/stitch.md`
+  - `memory/nodes/sop/surfsect.md`
+- Tracker updates:
+  - `memory/nodes/sop_progress.md`: visited `220`, studied `214`, example sets reviewed `213`
+  - `memory/houdiin_ai_acedemy_progress.md`: overall visited `223`, fully studied `217`, notes written `223`
+- Next checkpoint:
+  - Complete live Houdini validation sweeps for pending nodes (`orientalongcurve`, `pathdeform`, `paint`, `spiral`, `stitch`, `surfsect`) and promote them to fully studied.
+
+- 2026-02-16: Continued SOP academy with new node documentation passes for `orientalongcurve`, `pathdeform`, and `paint`.
+- Docs/examples reviewed:
+  - `help/nodes/sop/orientalongcurve.txt`
+  - `help/examples/nodes/sop/orientalongcurve/TankTread.txt`
+  - `help/nodes/sop/pathdeform.txt`
+  - `help/examples/nodes/sop/pathdeform/PathDeformBasic.txt`
+  - `help/examples/nodes/sop/pathdeform/PathDeformPiece.txt`
+  - `help/nodes/sop/paint.txt`
+  - `help/examples/nodes/sop/paint/PaintAttributes.txt`
+  - `help/examples/nodes/sop/paint/PaintPoints.txt`
+  - `help/examples/nodes/sop/paint/PaintColour.txt`
+- Notes added (docs/examples complete, live validation pending):
+  - `memory/nodes/sop/orientalongcurve.md`
+  - `memory/nodes/sop/pathdeform.md`
+  - `memory/nodes/sop/paint.md`
+- Tracker updates:
+  - `memory/nodes/sop_progress.md`: visited `217`, studied `214`, example sets reviewed `210`
+  - `memory/houdiin_ai_acedemy_progress.md`: overall visited `220`, fully studied `217`, notes written `220`
+- Session constraint checkpoint:
+  - Houdini runtime validation tools were unavailable in this pass (`hou` module not available in shell context and no direct live-scene MCP execution path used), so measured live geometry outcomes are deferred.
+  - Next step on resume: run live parameter sweeps and measurements for `orientalongcurve`, `pathdeform`, `paint`, then promote these notes from pending to fully studied.
+
 - 2026-02-16: Continued uninterrupted SOP academy run with deep studies for `ray`, `smooth`, and `skin`.
 - Docs/examples:
   - `nodes/sop/ray.txt`, `examples/nodes/sop/ray/RayWrap.txt`
