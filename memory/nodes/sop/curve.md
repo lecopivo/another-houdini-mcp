@@ -35,6 +35,12 @@
 - Legacy/alternative nodes (`cookie`, `copy`) can diverge from newer counterparts; verify intended tool variant.
 - Crowd motion-path nodes are sensitive to clip naming/state graph consistency.
 
+## Companion Finding (from PolyCut study)
+
+- For downstream edge/point threshold splitting (`polycut`), stable point order along the curve is a key contract. Keep curve construction deterministic (avoid accidental reordering) so attribute-crossing cuts land in predictable places.
+
+- In multi-panel curve construction (`PolySplitHood` pattern), snapping dependent curves to earlier footprinted curves creates intentional point dependencies that help preserve panel alignment while later split operations refine topology.
+
 ## Related Nodes
 
 - `attribwrangle`

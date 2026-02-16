@@ -1,5 +1,166 @@
 ## Short-Term Memory
 
+- 2026-02-16: Continued uninterrupted SOP academy run with deep studies for `refine`, `remeshgrid`, and `rails`.
+- Docs/examples:
+  - `nodes/sop/refine.txt`, `examples/nodes/sop/refine/BasicRefine.txt`
+  - `nodes/sop/remeshgrid.txt`, `examples/nodes/sop/remeshgrid/AdaptiveRemeshToGrid.txt`
+  - `nodes/sop/rails.txt`, `examples/nodes/sop/rails/BasicRail.txt`
+- Key measured outcomes:
+  - `refine`: mode behavior validated across refine/unrefine/subdivide. Division sweeps scaled density (`div 2->10` gave `232->1800` pts in refine/subdivide). Unrefine tolerance strongly reduced detail (`tol 0.01->0.12` gave `232->66` pts, reduced bbox Z).
+  - `remeshgrid`: voxel resolution and adaptivity were first-order topology controls (`divisionsize 0.05->0.2` gave `4074->240` pts; `adaptivity 0.0->0.5` gave `996->401` pts). Thin-plate mode + offset changed thickness/extent; high smoothing collapsed detail; sharpen restored dense edge-preserving output.
+  - `rails`: default/vertex/stretch modes preserved counts (`162 pts / 9 prims`) but changed geometry placement materially. `usevtx` pairs can drastically alter spread; `scale` and `roll` changed section amplitude/orientation; downstream `skin` outputs remained `198 pts / 1 prim`.
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/copy.md` with mirrored dual-rail generation pattern (`ncy=2`, `sx=-1`).
+  - Updated `memory/nodes/sop/facet.md` already retained from prior revolve companion pass.
+- Memory updates:
+  - Added `memory/nodes/sop/refine.md`
+  - Added `memory/nodes/sop/remeshgrid.md`
+  - Added `memory/nodes/sop/rails.md`
+  - Updated `memory/nodes/sop_progress.md` (211 studied, 89.4%, 204 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 214 studied; SOP 211)
+  - Updated `memory/sop_context.md` with sections 135-137
+- Cleanup done:
+  - deleted `/obj/academy_BasicRefine`
+  - deleted `/obj/academy_AdaptiveRemeshToGrid`
+  - deleted `/obj/academy_BasicRail`
+  - deleted `/obj/academy_remeshgrid_live`
+
+- 2026-02-16: Continued uninterrupted SOP academy run with deep studies for `resample`, `rest`, and `revolve`.
+- Docs/examples:
+  - `nodes/sop/resample.txt`, `examples/nodes/sop/resample/ResampleLines.txt`
+  - `nodes/sop/rest.txt`, `examples/nodes/sop/rest/BasicRest.txt`
+  - `nodes/sop/revolve.txt`, `examples/nodes/sop/revolve/BasicRevolve.txt`
+- Key measured outcomes:
+  - `resample`: length and segment contracts scaled density as expected (`length 0.3 -> 0.05` gave `39 -> 217` points; `segs 4 -> 20` gave `15 -> 63` points). `last=0` reduced span/end reach; `onlypoints=1` emitted point-only output.
+  - `rest`: Store mode wrote `rest` as expected; blank `restattribname` removed rest output. `nml=2` added `rnml`. In this example/build, `extract` and `swap` caused probe failure (`NoneType` geometry in probe path), so mode handling needs explicit validation per setup.
+  - `revolve`: division/type/cap/polygonization contracts validated. `divs 8 -> 48` scaled points `80 -> 480`; enabling caps increased primitives (`1 -> 3`); `polys=1` massively increased primitive count (`3 -> 452`) at same point count in test state.
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/facet.md` with revolve-convert/facet parameterization note.
+- Memory updates:
+  - Added `memory/nodes/sop/resample.md`
+  - Added `memory/nodes/sop/rest.md`
+  - Added `memory/nodes/sop/revolve.md`
+  - Updated `memory/nodes/sop_progress.md` (208 studied, 88.1%, 201 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 211 studied; SOP 208)
+  - Updated `memory/sop_context.md` with sections 132-134
+- Cleanup done:
+  - deleted `/obj/academy_ResampleLines`
+  - deleted `/obj/academy_BasicRest`
+  - deleted `/obj/academy_BasicRevolve`
+
+- 2026-02-16: Continued uninterrupted SOP academy run with deep studies for `project`, `spring`, and `sweep`.
+- Docs/examples:
+  - `nodes/sop/project.txt`, `examples/nodes/sop/project/ProjectCurve.txt`
+  - `nodes/sop/spring.txt`, `examples/nodes/sop/spring/SpringFlag.txt`
+  - `nodes/sop/sweep.txt`, `examples/nodes/sop/sweep/SweepBasic.txt`
+- Key measured outcomes:
+  - `project`: owner-surface output remained topology-stable while downstream extracted profiles changed strongly by projection direction in live tests (`axis user X: 18 pts / 2 prims`; `axis Z baseline: 284 / 3`; `axis XY: 90 / 21`).
+  - `spring`: fixed-anchor contract validated (`fixed_points` count `6`); blanking `fixed` moved all points including anchors (`100/100` moved, `6/6` anchor points moved). Force and stiffness sweeps changed displacement envelope significantly (`windx 0->5`, `springk 20->300`).
+  - `sweep`: topology stayed stable under shape sweeps while extents changed; attribute-transform toggle was high impact (`xformbyattribs 0->1` enlarged bbox with same `648 pts / 36 prims`).
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/cap.md` with sweep-pipeline rounded-U-cap interaction note.
+- Memory updates:
+  - Added `memory/nodes/sop/project.md`
+  - Added `memory/nodes/sop/spring.md`
+  - Added `memory/nodes/sop/sweep.md`
+  - Updated `memory/nodes/sop_progress.md` (205 studied, 86.9%, 198 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 208 studied; SOP 205)
+  - Updated `memory/sop_context.md` with sections 129-131
+- Cleanup done:
+  - deleted `/obj/academy_ProjectCurve`
+  - deleted `/obj/academy_SpringFlag`
+  - deleted `/obj/academy_SweepBasic`
+  - deleted `/obj/academy_project_live`
+  - deleted `/obj/academy_spring_live`
+  - deleted `/obj/academy_sweep_live`
+
+- 2026-02-16: Resumed interrupted SOP academy batch and completed deep study for `profile`.
+- Docs/examples:
+  - `nodes/sop/profile.txt`
+  - `examples/nodes/sop/profile/FlagProfiles.txt`
+- Key measured outcomes:
+  - Extract branch (`profile1`) produced standalone curve output (`69 pts / 1 prim`) from projected profile.
+  - `parametric` switch validated two distinct contracts:
+    - `parametric=0` followed deformed host across time (`frame 1 -> frame 24` center/size changed, pts `69 -> 81`).
+    - `parametric=1` stayed stable as planar XY image across frames (`10 pts`, center `(0.5,0.5,0)`).
+  - Fitting controls changed extraction density (`sdivs=5 -> 56 pts`, `sdivs=20 -> 78 pts`; `smooth=0 -> 11 pts`).
+  - Remap branch in this example changed profile-domain behavior while host geometry contract remained unchanged (`49 pts / 1 prim`, mean point delta vs project `0.0`).
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/group.md` with pinned-anchor bounding-box group pattern for spring-driven hosts.
+- Memory updates:
+  - Added `memory/nodes/sop/profile.md`
+  - Finalized pending batch trackers:
+    - `memory/nodes/sop_progress.md` (202 studied, 85.6%, 195 example sets reviewed)
+    - `memory/houdiin_ai_acedemy_progress.md` (overall 205 studied; SOP 202)
+    - `memory/sop_context.md` with sections 127-128
+- Cleanup done:
+  - deleted `/obj/academy_PolyPatchDNA`
+  - deleted `/obj/academy_FlagProfiles`
+
+- 2026-02-16: Finalized pending tracker/context updates for previously completed `polypatch` study.
+- Docs/examples:
+  - `nodes/sop/polypatch.txt`
+  - `examples/nodes/sop/polypatch/PolyPatchDNA.txt`
+- Key measured outcomes previously captured in node note and now reflected in context/progress:
+  - Division/connectivity sweeps validated large topology-scaling ranges.
+  - Representation switch (`polys=0` mesh vs `polys=1` polygons) confirmed contract change.
+  - Wrap toggles (`closeu/closev`) materially changed seam/topology outcomes.
+- Memory updates:
+  - Confirmed `memory/nodes/sop/polypatch.md`
+  - Added SOP context section `127. PolyPatch Ordering-and-Representation Pattern`
+
+- 2026-02-15: Continued SOP academy with new deep node study: `polysplit`.
+- Docs/examples:
+  - `nodes/sop/polysplit.txt`
+  - `examples/nodes/sop/polysplit/PolySplitHood.txt`
+- Key measured outcomes:
+  - Example chain showed panel-curve merge/fuse prep before long polysplit refinement sequence (`29 pts / 3 prims` after fuse to `56 pts / 40 prims` after final split).
+  - Live shortest-path split locations (`splitloc`) produced predictable topology increases from baseline.
+  - `close=1` added closure cut compared with `close=0`.
+  - Edge-loop mode (`pathtype=edge loop`) scaled topology with `numloops`.
+  - Output edge-group creation worked for inserted split paths.
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/curve.md` with dependency-driven curve authoring pattern relevant to panel split workflows.
+- Memory updates:
+  - Added `memory/nodes/sop/polysplit.md`
+  - Updated `memory/nodes/sop_progress.md` (200 studied, 84.7%, 193 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 203 studied; SOP 200)
+  - Updated `memory/sop_context.md` with PolySplit path-authoring pattern (section 126)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `polycut`.
+- Docs/examples:
+  - `nodes/sop/polycut.txt`
+  - `examples/nodes/sop/polycut/PolyCutBasic.txt`
+- Key measured outcomes:
+  - Example four-way comparison validated remove/cut and point/edge mode differences with clear topology outcomes.
+  - Threshold mode (`Cut At Attribute Change`) showed expected adaptive segmentation: lower `cutthreshold` yielded higher point counts and lower max segment lengths.
+  - Closed-curve `keepclosed` behavior confirmed on polygon circle test (`keepclosed=1` preserved closed fragments; `0` did not).
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/curve.md` with stable point-order contract for predictable threshold/crossing cuts.
+- Memory updates:
+  - Added `memory/nodes/sop/polycut.md`
+  - Updated `memory/sop_context.md` with PolyCut transition-segmentation pattern (section 125)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `polycap`.
+- Docs/examples:
+  - `nodes/sop/polycap.txt`
+  - `examples/nodes/sop/polycap/PolycapTube.txt`
+- Key measured outcomes:
+  - Example selective-cap pattern validated (`group=p8-9`, `capall=0`) adding a single cap to one tube end.
+  - Scope behavior confirmed:
+    - `capall=1` + empty group capped all open loops,
+    - `capall=0` + empty group produced no caps.
+  - `triangulate` significantly increased cap primitive count.
+  - `unique=1` duplicated cap points (point count increase without primitive-count change).
+  - `updatenorms` changed resulting normal field when seeded custom normals were present.
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/tube.md` with selective boundary-loop capping prep pattern (`consolidatepts=0` + explicit edge loop group).
+- Memory updates:
+  - Added `memory/nodes/sop/polycap.md`
+  - Updated `memory/nodes/sop_progress.md` (198 studied, 83.9%, 191 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 201 studied; SOP 198)
+  - Updated `memory/sop_context.md` with PolyCap boundary-loop contract pattern (section 124)
+
 - 2026-02-15: Continued SOP academy with new deep node study: `polybevel`.
 - Docs/examples:
   - `nodes/sop/polybevel.txt`

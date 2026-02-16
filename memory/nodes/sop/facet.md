@@ -33,3 +33,8 @@
 
 - `facet` with cusp is a useful post-bevel hard-edge pass: it can split shared points along beveled face boundaries without changing primitive count.
 - In `PolybevelBox`, enabling cusp after bevel changed topology from `24 pts / 14 prims` to `72 pts / 14 prims`, clarifying hard-edge shading boundaries.
+- In `BasicRevolve` polygon branch (`revolve_convert -> facet1`), converting revolved mesh-style output to polygonal parameterization before cusp gave explicit per-face normals for label/demo comparisons.
+
+## Companion Finding (from RayWrap study)
+
+- After `ray`-based shrinkwrap/projection, a downstream `facet` normal recompute pass is a practical shading fix: it replaces stale pre-wrap parallel normals with surface-consistent normals for correct lighting.

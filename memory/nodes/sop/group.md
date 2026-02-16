@@ -50,6 +50,7 @@
 
 1. Define precise reduction-preserve edges for decimation.
 2. Build reusable selection masks for downstream modeling FX chains.
+3. Create pinned-point anchor sets (via bounding-box selection) for spring/cloth-style host deformation setups.
 
 ## Gotchas and Failure Modes
 

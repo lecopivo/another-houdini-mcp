@@ -1349,3 +1349,255 @@ From deep `polybevel` study (`PolybevelBox` + live tests):
   - displacement grows with offset initially but may plateau or clamp as local constraints engage.
 
 - Emit edge/corner output groups when downstream tasks (UV/material/fix-up) need stable selection of fillet faces.
+
+## 124. PolyCap Boundary-Loop Contract Pattern
+
+From deep `polycap` study (`PolycapTube` + live tests):
+
+- Treat PolyCap as a boundary-loop closure tool with explicit scope controls:
+  - `capall` for automatic closure of all open loops,
+  - edge-group targeting for selective one-end capping.
+
+- Keep point-sharing strategy explicit:
+  - `unique=0` fuses caps into existing topology,
+  - `unique=1` duplicates points for isolated cap ownership.
+
+- `triangulate` is a topology-shape switch, not just a display preference; it can multiply cap primitive counts significantly.
+
+- When custom point normals exist, `updatenorms` can materially change resulting normal field on capped regions.
+
+## 125. PolyCut Transition-Segmentation Pattern
+
+From deep `polycut` study (`PolyCutBasic` + live tests):
+
+- Treat polycut as a transition detector plus fragmentation strategy:
+  - detection by attribute crossing or attribute-change threshold,
+  - action by remove or cut, in point or edge mode.
+
+- Threshold mode (`Cut At Attribute Change`) is a controllable adaptive resampler for curves:
+  - lower thresholds increase point density and bound segment-length deltas.
+
+- Validate `keepclosed` only on genuinely closed input curves; open inputs may show no difference.
+
+## 126. PolySplit Path-Authoring Pattern
+
+From deep `polysplit` study (`PolySplitHood` + live tests):
+
+- Separate split intent into path authoring and topology density:
+  - path authoring via `splitloc`, `pathtype`, `close`,
+  - density via edge-loop count and repeated split paths.
+
+- For panel-style workflows, pre-fuse dependency-driven curves before splitting to stabilize point references.
+
+- Use output edge groups to track inserted control loops for downstream operations.
+
+- Treat `splitloc` strings as procedural contracts; preserve/validate them carefully because small token changes produce large topology differences.
+
+## 127. PolyPatch Ordering-and-Representation Pattern
+
+From deep `polypatch` study (`PolyPatchDNA` + live tests):
+
+- Treat input point ordering as a hard surface-contract prerequisite; ambiguous order yields twisted or unintuitive patches.
+
+- Tune topology in two stages:
+  - first resolution (`divisionsx/y`),
+  - then connectivity style (`rows/cols/quads/triangles/alternating`) for downstream compatibility.
+
+- Keep representation intent explicit:
+  - mesh output (`polys=0`) is compact for shaping,
+  - polygon output (`polys=1`) is better for polygon-only downstream tools.
+
+- Validate wrap toggles (`closeu/closev`) early; they can materially change seam behavior and primitive counts.
+
+## 128. Profile Extract-vs-Remap Contract Pattern
+
+From deep `profile` study (`FlagProfiles` + live tests):
+
+- Separate `profile` usage into two different contracts:
+  - extraction contract (stand-alone curve output),
+  - remap contract (profile-domain repositioning on host surface).
+
+- `parametric` is a major behavior switch:
+  - `parametric=0` extracts world-space curves that follow host deformation,
+  - `parametric=1` extracts stable planar XY parametric images suitable for edit/reproject workflows.
+
+- In remap-heavy setups, geometry counts may stay unchanged while profile placement still changes; validate with profile visualization/domain checks, not topology alone.
+
+- Audit animated range expressions (`urange*`, `vrange*`) before manual tuning; keyframed remap ranges can override expected interactive behavior.
+
+## 129. Project Metadata-First Validation Pattern
+
+From deep `project` study (`ProjectCurve` + live tests):
+
+- Treat `project` output as owner-surface plus embedded profile metadata; owner geometry often appears unchanged.
+
+- Validate projection edits through downstream profile consumers (`profile` extraction and/or `trim`), not only direct point/primitive counts on `project`.
+
+- Use non-symmetric projector placement when testing `axis`/`vector`/`projside`; symmetric setups can hide directional differences.
+
+- In multi-mode setups, separate vector-projection tuning from parametric-range tuning (`userange`, `urange*`, `vrange*`); effects are mode-dependent.
+
+## 130. Spring Frame-Reset Evaluation Pattern
+
+From deep `spring` study (`SpringFlag` + live tests):
+
+- Reset simulation from start frame before comparing parameter sweeps; otherwise stale state can mask real parameter effects.
+
+- Anchor contracts are first-order behavior controls:
+  - valid `fixed` groups preserve attachment points,
+  - missing/blank `fixed` turns anchored setups into fully free-moving simulations.
+
+- Tune in this order for stable iteration:
+  1) force envelope (`external`, `wind`),
+  2) spring response (`springk`, `mass`, `drag`),
+  3) detail noise (`turb*`, `period`, `seed`).
+
+- Validate fixed-point integrity explicitly (`fixed points moved == 0`) during QA.
+
+## 131. Sweep Shape-vs-Topology Pattern
+
+From deep `sweep` study (`SweepBasic` + live tests):
+
+- Separate shape controls from topology controls:
+  - `scale`/`twist`/`roll` and attribute transforms mainly alter placement/orientation,
+  - topology may remain unchanged despite strong visual differences.
+
+- Audit expression-driven parameters before manual tuning; keyed `scale` can override interactive expectations.
+
+- `xformbyattribs` is a high-impact behavior switch; it can materially change resulting extents with identical point/primitive counts.
+
+- When using sweep as frame generator, validate downstream `skin`/`cap` contract after sweep parameter changes, not only sweep output itself.
+
+## 132. Resample Density-Contract Pattern
+
+From deep `resample` study (`ResampleLines` + live tests):
+
+- Choose one primary density contract per branch:
+  - segment-length contract (`length`), or
+  - segment-count contract (`segs`).
+
+- Validate endpoint policy explicitly:
+  - `last=1` preserves endpoint inclusion,
+  - `last=0` can shorten effective curve span and miss exact endpoint.
+
+- Arc vs chord measurement can produce near-count outputs with different geometric spacing assumptions; treat `measure` as semantic, not cosmetic.
+
+- Clear animated demo keyframes before tuning, or parameter edits can appear ineffective.
+
+## 133. Rest Attribute-Contract Pattern
+
+From deep `rest` study (`BasicRest` + live tests):
+
+- Treat `restattribname` as the core contract switch:
+  - non-empty writes rest position attrs,
+  - blank disables rest-position output entirely.
+
+- Validate optional rest attributes (`rnml`, transform attrs) by direct attribute presence checks, not assumptions from shader look alone.
+
+- Mode changes (`store`/`extract`/`swap`) must be validated in current build/example context; legacy setups may cook differently than expected.
+
+- Keep topology/reference-input parity strict when sourcing rest from input 1.
+
+## 134. Revolve Parameterization-and-Caps Pattern
+
+From deep `revolve` study (`BasicRevolve` + live tests):
+
+- Separate three independent design choices:
+  - revolution extent (`type`, start/end angles),
+  - tessellation density (`divs`),
+  - parameterization/output style (`polys`, `surftype`).
+
+- For polygon workflows, `polys` can be a major primitive-count multiplier while keeping point counts similar.
+
+- Validate cap behavior (`cap`) against source openness and revolve type; cap primitives can appear at rotational seams/origin depending on source profile class.
+
+- In NURBS/Bezier workflows, `imperfect` is a shape-fidelity control (even CV layout vs exact-follow), not just a performance toggle.
+
+## 135. Refine Mode-and-Tolerance Pattern
+
+From deep `refine` study (`BasicRefine` + live tests):
+
+- Treat `refine`, `unrefine`, and `subdivide` as distinct intent modes:
+  - `refine`/`subdivide` for controlled densification,
+  - `unrefine` for lossy simplification.
+
+- Tune density with `divsu/divsv` first; then localize with domain windows (`domainu*`, `domainv*`) as needed.
+
+- In `unrefine`, tolerance is the dominant quality-risk control; raising tolerance can reduce points quickly but also melt silhouette/detail.
+
+- Primitive counts may stay fixed while point/vertex density shifts heavily; always track both.
+
+## 136. RemeshGrid Volumetric-Rebuild Pattern
+
+From deep `remeshgrid` study (`AdaptiveRemeshToGrid` + live tests):
+
+- Use a staged tuning order:
+  1) `divisionsize` for base density,
+  2) `adaptivity` for flat-vs-curved allocation,
+  3) shape modifiers (`dilateerode`, smoothing),
+  4) edge recovery (`sharpenfeatures`).
+
+- Surface interpretation is a contract switch:
+  - closed-volume for watertight solids,
+  - thin-plate for open/sheet inputs with explicit thickness (`surfoffset`).
+
+- High smoothing iterations can aggressively collapse topology; verify against silhouette and count targets.
+
+- Plan for attribute/UV restoration after remesh unless transfer options are explicitly enabled and validated.
+
+## 137. Rails Frame-to-Skin Pattern
+
+From deep `rails` study (`BasicRail` + live tests):
+
+- Treat `rails` output as section frames and `skin` as final surface stage.
+
+- `usevtx` is a high-impact anchoring contract:
+  - carefully chosen vertex pairs stabilize profile placement,
+  - poor pairs can explode width/offset while topology appears unchanged.
+
+- `stretch` and `scale` both affect section amplitude but with different intent:
+  - `scale` is global section scaling,
+  - `stretch` aligns section scaling to rail separation behavior.
+
+- Compare modes with positional metrics (bbox/mean displacement), not topology counts alone.
+
+## 138. Ray Projection-Side-and-Offset Pattern
+
+From deep `ray` study (`RayWrap` + live tests):
+
+- Separate hit-side policy from post-hit offset:
+  - `lookfar` selects near vs far collision surface,
+  - `lift` offsets along the resulting projection direction/path.
+
+- Validate `dotrans` state explicitly:
+  - `dotrans=1` performs geometric wrap,
+  - `dotrans=0` can look like a no-op if you only inspect topology.
+
+- For sampled rays (`sample>1`), combiner mode (`combinetype`) can shift final placement noticeably; record chosen policy in production setups.
+
+- Always include a post-ray normal-fix step (`facet`/normal recompute) when shading accuracy matters.
+
+## 139. Smooth Scope-Dominance Pattern
+
+From deep `smooth` study (`Hills` + live tests):
+
+- In many production networks, smoothing scope (`group` + constraints) affects outcomes more strongly than moderate strength/quality tweaks.
+
+- Because `smooth` typically preserves topology, rely on displacement/extent metrics (not counts) for QA.
+
+- If broad shape trends must be preserved, tune scope first and strength second.
+
+## 140. Skin Assembly-Mode Pattern
+
+From deep `skin` study (`SkinBasic`, `SkinCurves` + live tests):
+
+- Treat `skin` as an assembly node with three practical regimes:
+  - one-input loft (ordered section stack),
+  - two-input cross-skin (U/V boundary sets),
+  - grouped-N assembly (`skinops` + `inc`) for pattern variants.
+
+- `keepshape` is a fidelity/performance contract switch in one-input lofts; disabling it can reduce control density and smooth interpolation.
+
+- `prim=1` is a payload switch (include sources + skin) and should be used only when downstream nodes can handle mixed geometry.
+
+- For multi-curve assets, document curve ordering and grouping rules; identical curves with different assembly mode settings can yield very different primitive counts.

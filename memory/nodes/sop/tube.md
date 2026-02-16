@@ -37,6 +37,11 @@
 - Primitive-type output may be too sparse for downstream SOPs expecting polygonal detail.
 - Orientation mismatches are a common source of axis confusion.
 
+## Companion Finding (from PolyCap study)
+
+- For selective end-cap workflows, polygon tube output with `consolidatepts=0` gives stable boundary-edge selections (for example `p8-9` loop in the PolyCap example) so a single tube end can be capped explicitly.
+- This pattern is useful when one end must remain open for downstream modeling operations.
+
 ## Related Nodes
 
 - `cylinder` (workflow equivalent in some pipelines)

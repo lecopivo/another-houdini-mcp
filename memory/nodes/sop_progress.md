@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 197
-- Nodes studied: 197
-- Example sets reviewed: 190
+- Nodes visited: 214
+- Nodes studied: 214
+- Example sets reviewed: 207
 
 ## Shortlist
 
@@ -211,3 +211,20 @@
 | polywire | yes | yes | yes | `memory/nodes/sop/polywire.md` | studied |
 | peak | yes | yes | yes | `memory/nodes/sop/peak.md` | studied |
 | polybevel | yes | yes | yes | `memory/nodes/sop/polybevel.md` | studied |
+| polycap | yes | yes | yes | `memory/nodes/sop/polycap.md` | studied |
+| polycut | yes | yes | yes | `memory/nodes/sop/polycut.md` | studied |
+| polysplit | yes | yes | yes | `memory/nodes/sop/polysplit.md` | studied |
+| polypatch | yes | yes | yes | `memory/nodes/sop/polypatch.md` | studied |
+| profile | yes | yes | yes | `memory/nodes/sop/profile.md` | studied |
+| project | yes | yes | yes | `memory/nodes/sop/project.md` | studied |
+| spring | yes | yes | yes | `memory/nodes/sop/spring.md` | studied |
+| sweep | yes | yes | yes | `memory/nodes/sop/sweep.md` | studied |
+| resample | yes | yes | yes | `memory/nodes/sop/resample.md` | studied |
+| rest | yes | yes | yes | `memory/nodes/sop/rest.md` | studied |
+| revolve | yes | yes | yes | `memory/nodes/sop/revolve.md` | studied |
+| refine | yes | yes | yes | `memory/nodes/sop/refine.md` | studied |
+| remeshgrid | yes | yes | yes | `memory/nodes/sop/remeshgrid.md` | studied |
+| rails | yes | yes | yes | `memory/nodes/sop/rails.md` | studied |
+| ray | yes | yes | yes | `memory/nodes/sop/ray.md` | studied |
+| smooth | yes | yes | yes | `memory/nodes/sop/smooth.md` | studied |
+| skin | yes | yes | yes | `memory/nodes/sop/skin.md` | studied |

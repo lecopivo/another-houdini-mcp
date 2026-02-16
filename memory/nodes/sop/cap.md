@@ -29,6 +29,7 @@
 
 - Primary behavior is driven by node-specific core parameters shown in the example network.
 - Loop/deform/sim nodes depend strongly on upstream attribute naming, topology stability, and expected class contracts.
+- In sweep pipelines, rounded U-end caps (`firstu/lastu` end-cap-rounded modes) can close open swept frames while preserving a single-cap primitive contract downstream.
 
 ## Gotchas and Failure Modes
 
