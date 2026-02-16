@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 226
+- Nodes visited: 235
 - Nodes studied: 214
-- Example sets reviewed: 219
+- Example sets reviewed: 228
 
 ## Shortlist
 
@@ -240,3 +240,12 @@
 | curve- | yes | yes | no | `memory/nodes/sop/curve-.md` | docs-and-example complete; live validation pending |
 | pointsfromvolume | yes | yes | no | `memory/nodes/sop/pointsfromvolume.md` | docs-and-example complete; live validation pending |
 | polyknit | yes | yes | no | `memory/nodes/sop/polyknit.md` | docs-and-example complete; live validation pending |
+| opencl | yes | yes | no | `memory/nodes/sop/opencl.md` | docs-and-example complete; live validation pending |
+| particle | yes | yes | no | `memory/nodes/sop/particle.md` | docs-and-example complete; live validation pending |
+| polyhinge | yes | yes | no | `memory/nodes/sop/polyhinge.md` | docs-and-example complete; live validation pending |
+| pyrosolver | yes | yes | no | `memory/nodes/sop/pyrosolver.md` | docs-and-example complete; live validation pending |
+| quadremesh | yes | yes | no | `memory/nodes/sop/quadremesh.md` | docs-and-example complete; live validation pending |
+| rbdbulletsolver | yes | yes | no | `memory/nodes/sop/rbdbulletsolver.md` | docs-and-example complete; live validation pending |
+| rbdconnectedfaces | yes | yes | no | `memory/nodes/sop/rbdconnectedfaces.md` | docs-and-example complete; live validation pending |
+| rbdconstraintsfromlines | yes | yes | no | `memory/nodes/sop/rbdconstraintsfromlines.md` | docs-and-example complete; live validation pending |
+| rbddeformpieces | yes | yes | no | `memory/nodes/sop/rbddeformpieces.md` | docs-and-example complete; live validation pending |

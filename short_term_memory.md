@@ -1,5 +1,35 @@
 ## Short-Term Memory
 
+- 2026-02-16: Continued SOP academy with additional new-node documentation passes for `pyrosolver`, `quadremesh`, and `rbdbulletsolver`.
+- Docs/examples reviewed:
+  - `help/nodes/sop/pyrosolver.txt`, `help/examples/nodes/sop/pyrosolver/PyroSimpleUpres.txt`, `help/examples/nodes/sop/pyrosolver/PyroPackedRBD.txt`
+  - `help/nodes/sop/quadremesh.txt`, `help/examples/nodes/sop/quadremesh/QuadRemeshBasicExample.txt`, `help/examples/nodes/sop/quadremesh/QuadRemeshGuidingExample.txt`
+  - `help/nodes/sop/rbdbulletsolver.txt`, `help/examples/nodes/sop/rbdbulletsolver/RBDBulletSolver.txt`, `help/examples/nodes/sop/rbdbulletsolver/GuidedRBDBulletSolver.txt`
+- Notes added (docs/examples complete, live validation pending):
+  - `memory/nodes/sop/pyrosolver.md`
+  - `memory/nodes/sop/quadremesh.md`
+  - `memory/nodes/sop/rbdbulletsolver.md`
+- Tracker updates:
+  - `memory/nodes/sop_progress.md`: visited `232`, studied `214`, example sets reviewed `225`
+  - `memory/houdiin_ai_acedemy_progress.md`: overall visited `235`, fully studied `217`, notes written `235`
+- Next checkpoint:
+  - Continue node-note expansion for remaining SOP examples, then run a dedicated live-measurement promotion sweep when Houdini execution path is restored.
+
+- 2026-02-16: Continued SOP academy with additional new-node documentation passes for `opencl`, `particle`, and `polyhinge`.
+- Docs/examples reviewed:
+  - `help/nodes/sop/opencl.txt`, `help/examples/nodes/sop/opencl/SimpleOpenCLSOPSnippets.txt`
+  - `help/nodes/sop/particle.txt`, `help/examples/nodes/sop/particle/ParticleExamples.txt`, `help/examples/nodes/sop/particle/ParticleFountain.txt`
+  - `help/nodes/sop/polyhinge.txt`, `help/examples/nodes/sop/polyhinge/PolyHingeBasic.txt`, `help/examples/nodes/sop/polyhinge/PolyHingeEdge.txt`
+- Notes added (docs/examples complete, live validation pending):
+  - `memory/nodes/sop/opencl.md`
+  - `memory/nodes/sop/particle.md`
+  - `memory/nodes/sop/polyhinge.md`
+- Tracker updates:
+  - `memory/nodes/sop_progress.md`: visited `229`, studied `214`, example sets reviewed `222`
+  - `memory/houdiin_ai_acedemy_progress.md`: overall visited `232`, fully studied `217`, notes written `232`
+- Next checkpoint:
+  - Continue extending docs/example coverage on remaining SOP examples, then execute backlog live validation/promotion sweep.
+
 - 2026-02-16: Continued SOP academy with additional new-node documentation passes for `curve-`, `pointsfromvolume`, and `polyknit`.
 - Docs/examples reviewed:
   - `help/nodes/sop/curve-.txt`, `help/examples/nodes/sop/curve-/CurveHood.txt`
