@@ -1283,3 +1283,69 @@ From deep `point` study (`PointExamples` + live tests):
 - Keep legacy expression usage scoped and audited:
   - local-variable expressions are powerful for quick effects,
   - but hide complexity and should be validated against modern wrangle equivalents for robust pipelines.
+
+## 120. PointCloudIso Reconstruction-Prep Pattern
+
+From deep `pointcloudiso` study (`TwistyCube` + live tests):
+
+- Treat reconstruction as a two-stage contract:
+  - prepare a clean point cloud with valid outward point normals,
+  - then surface with `pointcloudiso`.
+
+- Use `add` point-keep extraction as a clear boundary between polygon modeling and point-cloud surfacing.
+
+- Tune `stepsize` first as the dominant quality/performance control:
+  - too large can collapse to empty output,
+  - smaller values rapidly increase polygonized complexity.
+
+- Toggle `buildpolysoup` when output primitive count is a bottleneck; it changes representation without changing overall surfaced shape intent.
+
+## 121. PolyWire Backbone-and-Tessellation Pattern
+
+From deep `polywire` study (`PolywireModel` + live tests):
+
+- Treat polywire as a two-part contract:
+  - backbone quality contract (curve topology, fused junctions, valence),
+  - tessellation contract (`div`, `segs`, optional attrib overrides).
+
+- Use pre-fuse cleanup on curve skeletons before tube generation to reduce duplicate junction points.
+
+- Separate thickness and tessellation tuning:
+  - `radius`/scale-attribute drive silhouette thickness,
+  - `div`/`segs` drive topology density and performance.
+
+- Prefer attribute-driven width control for branched forms:
+  - author branch-specific scalar attrs upstream (for example `width`),
+  - bind via `usescaleattrib` instead of duplicating many polywire variants.
+
+## 122. Peak Direction-and-Blend Pattern
+
+From deep `peak` study (`PeakEars` + live tests):
+
+- Treat peak deformation as a direction-source choice plus blend scope:
+  - direction from normals (default) or custom vector attribute,
+  - blend/scope via group and/or mask attribute.
+
+- `normalizeattrib` is a critical behavior switch in custom-attribute mode:
+  - off = direction + magnitude from attribute,
+  - on = direction only, uniform displacement magnitude from `dist`.
+
+- Use mask attributes for controlled falloff over hard groups when shaping organic regions.
+
+- Keep post-peak smoothing (`subdivide`/`smooth`) in mind for dense production meshes to reduce local faceting artifacts.
+
+## 123. PolyBevel Scope-and-Density Pattern
+
+From deep `polybevel` study (`PolybevelBox` + live tests):
+
+- Separate bevel control into two independent axes:
+  - geometric offset axis (`offset`, collision/pinch limits),
+  - topology density axis (`divisions`, profile shape).
+
+- Use explicit edge groups for predictable edits:
+  - blank groups bevel all eligible edges and can over-apply on production meshes.
+
+- Expect non-linear offset behavior near geometric limits:
+  - displacement grows with offset initially but may plateau or clamp as local constraints engage.
+
+- Emit edge/corner output groups when downstream tasks (UV/material/fix-up) need stable selection of fillet faces.

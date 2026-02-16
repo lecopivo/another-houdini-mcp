@@ -28,3 +28,8 @@
 ## Gotchas and Failure Modes
 
 - facet pipeline stages interact; understand order (normals, unique/consolidate, cusp) before tuning.
+
+## Companion Finding (from PolyBevel study)
+
+- `facet` with cusp is a useful post-bevel hard-edge pass: it can split shared points along beveled face boundaries without changing primitive count.
+- In `PolybevelBox`, enabling cusp after bevel changed topology from `24 pts / 14 prims` to `72 pts / 14 prims`, clarifying hard-edge shading boundaries.

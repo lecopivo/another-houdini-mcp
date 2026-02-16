@@ -58,6 +58,11 @@
 - If crease topology does not match main mesh point numbering, second-input crease matching fails.
 - Mixed local/global subdivision near boundaries can produce visible transition artifacts if crack-closing options are not chosen intentionally.
 
+## Companion Finding (from Peak study)
+
+- Subdividing immediately after localized peak deformation is an effective artifact-cleanup pattern for accent edits.
+- In `PeakEars`, `subdivide` (`algorithm=0`, `iterations=2`) preserved core attrs (`P`,`uv`) while increasing resolution significantly (`1302 -> 19818` points), smoothing the peaked ear region.
+
 ## Related Nodes
 
 - `crease`

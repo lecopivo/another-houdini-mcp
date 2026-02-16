@@ -35,6 +35,11 @@
 - Example-driven study confirms setup viability, but production behavior still depends on consistent upstream attribute naming/types.
 - Heavy examples (dense geometry/crowd) can mask performance issues until scaled up.
 
+## Companion Finding (from PolyWire study)
+
+- Legacy `attribute` rename flow remains a practical bridge step for downstream nodes expecting specific driver attribute names.
+- In `PolywireModel`, renaming point `Alpha` to `width` created a clean contract for `polywire` scale-attribute modulation without recomputing upstream values.
+
 ## Related Nodes
 
 - `attribwrangle`

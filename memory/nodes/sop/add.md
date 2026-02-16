@@ -40,6 +40,11 @@
 - Point-order dependence makes results sensitive to upstream topology reorder.
 - Aggressive point removal can produce empty outputs unexpectedly.
 
+## Companion Finding (from PointCloudIso study)
+
+- `add` with point-keep mode (`keep=1`, points-folder active) is a reliable prep step for surfacing pipelines: it strips primitives while preserving point attributes (including `N`) needed by `pointcloudiso`.
+- In `TwistyCube`-style chains, this point-only extraction is the contract boundary between polygonal shaping and point-cloud reconstruction.
+
 ## Related Nodes
 
 - `group`

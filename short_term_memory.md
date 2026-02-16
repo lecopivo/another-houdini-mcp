@@ -1,5 +1,83 @@
 ## Short-Term Memory
 
+- 2026-02-15: Continued SOP academy with new deep node study: `polybevel`.
+- Docs/examples:
+  - `nodes/sop/polybevel.txt`
+  - `examples/nodes/sop/polybevel/PolybevelBox.txt`
+- Key measured outcomes:
+  - Example chain confirmed bevel face insertion pattern (`box 8/6 -> bevel 24/14`), followed by cusp splitting in facet (`72/14`).
+  - Live offset sweep showed displacement growth while topology stayed fixed at given division/shape settings.
+  - Division sweep materially increased topology (`divisions 1 -> 4` caused major point/primitive growth).
+  - Fillet shape modes produced distinct topology regimes (from low-face to high-face outputs at same offset/divisions).
+  - Output edge/corner fillet groups were emitted successfully for downstream targeted operations.
+  - Partial edge-group beveling (`group="0-3"`) constrained operation to a subset of the mesh.
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/facet.md` with post-bevel cusp split pattern and measured point-count change.
+- Memory updates:
+  - Added `memory/nodes/sop/polybevel.md`
+  - Updated `memory/nodes/sop_progress.md` (197 studied, 83.5%, 190 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 200 studied; SOP 197)
+  - Updated `memory/sop_context.md` with PolyBevel scope-and-density pattern (section 123)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `peak`.
+- Docs/examples:
+  - `nodes/sop/peak.txt`
+  - `examples/nodes/sop/peak/PeakEars.txt`
+- Key measured outcomes:
+  - Example uses point-group peaking (`65 189`) to form ear tips, followed by subdivision smoothing.
+  - Baseline normal-mode peaking (`dist=0.2`) moved all points uniformly (max/mean displacement `0.2`).
+  - Group scoping limited moved points (`62/162`) with lower average displacement.
+  - Mask-attribute blending (`maskattrib=mask`) produced partial displacement strength (mean displacement halved to `0.1`).
+  - Custom attribute mode (`flow`) behavior differed by normalization:
+    - non-normalized used per-point magnitude,
+    - normalized used uniform distance from `dist`.
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/subdivide.md` with post-peak smoothing pattern and measured topology increase (`1302 -> 19818` points at `iterations=2`).
+- Memory updates:
+  - Added `memory/nodes/sop/peak.md`
+  - Updated `memory/nodes/sop_progress.md` (196 studied, 83.1%, 189 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 199 studied; SOP 196)
+  - Updated `memory/sop_context.md` with Peak direction-and-blend pattern (section 122)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `polywire`.
+- Docs/examples:
+  - `nodes/sop/polywire.txt`
+  - `examples/nodes/sop/polywire/PolywireModel.txt`
+- Key measured outcomes:
+  - Example backbone prep validated: `scene` had `30` points, `fuse` reduced to `24` before tube generation.
+  - Baseline tube output (`radius=0.03, div=4, segs=1`) was `116 pts / 154 prims / 536 verts`.
+  - Radius sweep changed thickness extents while keeping topology counts stable.
+  - `div` and `segs` sweeps both increased topology significantly (`div 3->8`, `segs 1->4`).
+  - Enabling scale attribute modulation (`usescaleattrib=1`, `scaleattrib=width`) changed effective thickness based on upstream width values (min `0.01`, max `0.21`).
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/attribute.md` (Alpha->width rename contract for downstream polywire scaling).
+  - Updated `memory/nodes/sop/fuse.md` (pre-polywire backbone fusion pattern and measured point reduction).
+- Memory updates:
+  - Added `memory/nodes/sop/polywire.md`
+  - Updated `memory/nodes/sop_progress.md` (195 studied, 82.6%, 188 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 198 studied; SOP 195)
+  - Updated `memory/sop_context.md` with PolyWire backbone-and-tessellation pattern (section 121)
+
+- 2026-02-15: Continued SOP academy with new deep node study: `pointcloudiso`.
+- Docs/examples:
+  - `nodes/sop/pointcloudiso.txt`
+  - `examples/nodes/sop/pointcloudiso/TwistyCube.txt`
+- Key measured outcomes:
+  - Example prep chain confirmed expected pattern: deform polygonal source -> add point normals -> remove primitives to points-only -> reconstruct iso surface.
+  - Step-size sweep showed strong topology sensitivity:
+    - `stepsize=1.5` produced empty output,
+    - `stepsize=1.0` produced coarse mesh,
+    - `stepsize=0.5` produced denser mesh.
+  - Normals contract validated: point cloud without `N` failed to produce usable reconstruction in live test; with `N` it surfaced correctly.
+  - `buildpolysoup` toggled representation from many polygon prims to one polysoup primitive at same settings.
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/add.md` with point-keep extraction pattern for pointcloud reconstruction workflows.
+- Memory updates:
+  - Added `memory/nodes/sop/pointcloudiso.md`
+  - Updated `memory/nodes/sop_progress.md` (194 studied, 82.2%, 187 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 197 studied; SOP 194)
+  - Updated `memory/sop_context.md` with PointCloudIso reconstruction-prep pattern (section 120)
+
 - 2026-02-15: Added generalized MaterialX viewport memory notes from live build session.
 - Session scope:
   - Built and iterated a MaterialX viewport material subnet in `/mat` and validated object-level assignment workflow.

@@ -56,6 +56,11 @@
 - Snapping without consolidation only moves points; it does not weld topology.
 - For line cleanup, fuse may still leave separate primitives; append `join` when needed.
 
+## Companion Finding (from PolyWire study)
+
+- For curve-skeleton tube workflows, fusing before `polywire` reduces duplicate branch points and improves junction consistency.
+- In `PolywireModel`, fusing reduced backbone points (`30 -> 24`) before tube generation, yielding cleaner input for attribute-driven width modulation.
+
 ## Related Nodes
 
 - `pointweld`
