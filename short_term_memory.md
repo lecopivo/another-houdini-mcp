@@ -1,5 +1,31 @@
 ## Short-Term Memory
 
+- 2026-02-16: Continued uninterrupted SOP academy run with deep studies for `ray`, `smooth`, and `skin`.
+- Docs/examples:
+  - `nodes/sop/ray.txt`, `examples/nodes/sop/ray/RayWrap.txt`
+  - `nodes/sop/smooth.txt`, `examples/nodes/sop/smooth/Hills.txt`
+  - `nodes/sop/skin.txt`, `examples/nodes/sop/skin/SkinBasic.txt`, `examples/nodes/sop/skin/SkinCurves.txt`
+- Key measured outcomes:
+  - `ray`: projection-side and offset contracts validated. `lookfar=1` hit far surface and expanded wrapped depth (`bbox Z 1.729584 -> 4.513329`), `lift` adjusted stand-off, `dotrans=0` kept near-source geometry, and sample combiner mode changed final placement envelope.
+  - `smooth`: topology remained stable while scope governed visible effect. In `Hills`, empty group (all points) reduced height range vs grouped `Hills` smoothing (`bbox Y 0.312524 -> 0.257076`).
+  - `skin`: assembly-mode behavior validated across one-input and multi-curve grouped workflows. `keepshape` changed one-input fidelity (`70 -> 50` pts when off), `prim=1` appended source primitives, and grouped-N mode (`skinops=groups`) strongly changed primitive partitions (`N=1/2/3 -> 6/3/2 prims`).
+- Companion-node updates from this example audit:
+  - Updated `memory/nodes/sop/facet.md` with post-ray normal-recompute shading fix pattern.
+  - Updated `memory/nodes/sop/copy.md` with one-input skin section-stack authoring pattern.
+- Memory updates:
+  - Added `memory/nodes/sop/ray.md`
+  - Added `memory/nodes/sop/smooth.md`
+  - Added `memory/nodes/sop/skin.md`
+  - Updated `memory/nodes/sop_progress.md` (214 studied, 90.7%, 207 example sets reviewed)
+  - Updated `memory/houdiin_ai_acedemy_progress.md` (overall 217 studied; SOP 214)
+  - Updated `memory/sop_context.md` with sections 138-140
+- Cleanup done:
+  - deleted `/obj/academy_RayWrap`
+  - deleted `/obj/academy_Hills`
+  - deleted `/obj/academy_SkinBasic`
+  - deleted `/obj/academy_SkinCurves`
+  - deleted `/obj/academy_ray_live`
+
 - 2026-02-16: Continued uninterrupted SOP academy run with deep studies for `refine`, `remeshgrid`, and `rails`.
 - Docs/examples:
   - `nodes/sop/refine.txt`, `examples/nodes/sop/refine/BasicRefine.txt`
