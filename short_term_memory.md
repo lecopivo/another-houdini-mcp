@@ -1,5 +1,35 @@
 ## Short-Term Memory
 
+- 2026-02-16: Continued SOP academy with additional new-node documentation passes for `rbdguidesetup`, `rbdmatchtransforms`, and `rbdconetwistconstraintproperties`.
+- Docs/examples reviewed:
+  - `help/nodes/sop/rbdguidesetup.txt`, `help/examples/nodes/sop/rbdguidesetup/RBDGuideSetup.txt`
+  - `help/nodes/sop/rbdmatchtransforms.txt`, `help/examples/nodes/sop/rbdmatchtransforms/RBDMatchTransforms.txt`
+  - `help/nodes/sop/rbdconetwistconstraintproperties.txt`, `help/examples/nodes/sop/rbdconetwistconstraintproperties/ConeTwist.txt`
+- Notes added (docs/examples complete, live validation pending):
+  - `memory/nodes/sop/rbdguidesetup.md`
+  - `memory/nodes/sop/rbdmatchtransforms.md`
+  - `memory/nodes/sop/rbdconetwistconstraintproperties.md`
+- Tracker updates:
+  - `memory/nodes/sop_progress.md`: visited `238`, studied `214`, example sets reviewed `231`
+  - `memory/houdiin_ai_acedemy_progress.md`: overall visited `241`, fully studied `217`, notes written `241`
+- Next checkpoint:
+  - Keep advancing remaining SOP node docs/examples in batches, then run live-validation promotion backlog pass.
+
+- 2026-02-16: Continued SOP academy with additional new-node documentation passes for `rbdconnectedfaces`, `rbdconstraintsfromlines`, and `rbddeformpieces`.
+- Docs/examples reviewed:
+  - `help/nodes/sop/rbdconnectedfaces.txt`, `help/examples/nodes/sop/rbdconnectedfaces/RBDConnectedFaces.txt`
+  - `help/nodes/sop/rbdconstraintsfromlines.txt`, `help/examples/nodes/sop/rbdconstraintsfromlines/RBDConstraints.txt`
+  - `help/nodes/sop/rbddeformpieces.txt`, `help/examples/nodes/sop/rbddeformpieces/RBDDeformPieces.txt`
+- Notes added (docs/examples complete, live validation pending):
+  - `memory/nodes/sop/rbdconnectedfaces.md`
+  - `memory/nodes/sop/rbdconstraintsfromlines.md`
+  - `memory/nodes/sop/rbddeformpieces.md`
+- Tracker updates:
+  - `memory/nodes/sop_progress.md`: visited `235`, studied `214`, example sets reviewed `228`
+  - `memory/houdiin_ai_acedemy_progress.md`: overall visited `238`, fully studied `217`, notes written `238`
+- Next checkpoint:
+  - Continue through remaining SOP nodes with docs/example coverage, then batch-promote via live validation when execution path is restored.
+
 - 2026-02-16: Continued SOP academy with additional new-node documentation passes for `pyrosolver`, `quadremesh`, and `rbdbulletsolver`.
 - Docs/examples reviewed:
   - `help/nodes/sop/pyrosolver.txt`, `help/examples/nodes/sop/pyrosolver/PyroSimpleUpres.txt`, `help/examples/nodes/sop/pyrosolver/PyroPackedRBD.txt`

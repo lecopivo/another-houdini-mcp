@@ -1,9 +1,9 @@
 # SOP Progress
 
 - Total node example directories: 236
-- Nodes visited: 235
+- Nodes visited: 238
 - Nodes studied: 214
-- Example sets reviewed: 228
+- Example sets reviewed: 231
 
 ## Shortlist
 
@@ -249,3 +249,6 @@
 | rbdconnectedfaces | yes | yes | no | `memory/nodes/sop/rbdconnectedfaces.md` | docs-and-example complete; live validation pending |
 | rbdconstraintsfromlines | yes | yes | no | `memory/nodes/sop/rbdconstraintsfromlines.md` | docs-and-example complete; live validation pending |
 | rbddeformpieces | yes | yes | no | `memory/nodes/sop/rbddeformpieces.md` | docs-and-example complete; live validation pending |
+| rbdguidesetup | yes | yes | no | `memory/nodes/sop/rbdguidesetup.md` | docs-and-example complete; live validation pending |
+| rbdmatchtransforms | yes | yes | no | `memory/nodes/sop/rbdmatchtransforms.md` | docs-and-example complete; live validation pending |
+| rbdconetwistconstraintproperties | yes | yes | no | `memory/nodes/sop/rbdconetwistconstraintproperties.md` | docs-and-example complete; live validation pending |
